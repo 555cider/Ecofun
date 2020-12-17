@@ -1,4 +1,5 @@
 HELP.md
+*.properties
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -13,10 +14,6 @@ build/
 .settings
 .springBeans
 .sts4-cache
-<<<<<<< HEAD
-=======
-*.properties
->>>>>>> faaee53b26184a460d5e6d361753d2bc2cd35e14
 
 ### IntelliJ IDEA ###
 .idea
@@ -38,11 +35,5 @@ out/
 .vscode/
 
 ### Java ###
-<<<<<<< HEAD
 *.class
 
-### properties file ###
-*.properties
-=======
-*.class
->>>>>>> faaee53b26184a460d5e6d361753d2bc2cd35e14
