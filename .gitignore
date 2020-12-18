@@ -36,4 +36,5 @@ out/
 
 ### Java ###
 *.class
+*.properties
 
