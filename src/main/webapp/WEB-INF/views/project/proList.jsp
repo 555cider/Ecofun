@@ -32,21 +32,20 @@
 <div class="container">
 	<!-- Content-Header (프로젝트) -->
 	<div class="row">
-		<div>
+		<div class="col">
 			<h5>| 프로젝트</h5>
 		</div>
-		<div class="ml-auto" style="align-self: flex-end;">
+		<div class="col" style="text-align: right;">
 			<span>진행 ${projectCount[4]}건</span>
 			<span>| 기부 ${projectCount[5]}건</span>
 			<span>| 펀딩 ${projectCount[6]}건</span>
-			-->
 		</div>
 	</div>
 	<hr>
 
-	<div class="d-flex">
+	<div class="row">
 		<!-- Filter -->
-		<div>
+		<div class="col">
 			<select class="btn btn-light filter" name="proState" id="state" onchange="filtering()">
 				<option value="전체">상태(전체)</option>
 				<option value="진행">진행</option>
@@ -60,7 +59,7 @@
 		</div>
 
 		<!-- Sort -->
-		<div class="ml-auto" style="align-self: center;">
+		<div class="col" style="text-align: right;">
 			<select class="btn btn-light filter" id="sort" onchange="filtering()">
 				<option value="proStart" selected>최근등록순</option>
 				<option value="proHit">참여인원순</option>

@@ -4,18 +4,19 @@
 if (contentPage == null)
 	contentPage = "ecofunMain.jsp";
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>친환경 프로젝트 에코펀!</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="/img/ecofun.ico" />
-<link rel="stylesheet" href="/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="/css/ecofun.css">
-<script src="/js/jquery-3.5.1.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
-<script src="/js/custom.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/ecofun.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"></script>
 
 <script>
 	function changeView(value) {
@@ -30,7 +31,7 @@ if (contentPage == null)
 		} else if (value == "5") {
 			location.href = "/admin/memberList";
 		} else if (value == "6") {
-			location.href = "logout"; // 로그아웃 버튼 클릭 시, 로그아웃&메인 이동
+			location.href = "/member/logout"; // 로그아웃 버튼 클릭 시, 로그아웃&메인 이동
 		}
 	}
 </script>

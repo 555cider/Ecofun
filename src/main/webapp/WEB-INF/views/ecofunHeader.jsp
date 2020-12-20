@@ -4,7 +4,8 @@
 	String memId = (String) session.getAttribute("memId");
 String memName = (String) session.getAttribute("memName");
 %>
-
+<script src="https://kit.fontawesome.com/739d6ca544.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 /* 페이지네이션 스타일 */
 .pagination {
@@ -24,19 +25,8 @@ String memName = (String) session.getAttribute("memName");
 }
 
 /* 로그인폼 회원가입 버튼설정 */
-.pc_join_button {
-	width: 100%;
-	box-sizing: border-box;
-	padding: 16px;
-	border: none;
-	font-weight: bold;
-	font-size: 1.2rem;
-	color: black;
-	/* 	margin-top: 0px; */
-	background: #e9e7e7;
-	/* margin-top: 2px; */
-}
 </style>
+
 <script>
 	$(function() {
 		$(".project-search").keyup(function() {
@@ -59,41 +49,34 @@ String memName = (String) session.getAttribute("memName");
 	});
 </script>
 
-<!-- 모바일 -->
-<!-- <div class="menu_mobile white txt-center"> -->
+
 <div class="navbar fixed-top navbar-light bg-light" style="padding: 10px 10%;">
 	<div class="container-fluid">
-		<!-- 좌측 사이드메뉴 버튼 -->
+		<!-- 좌측 메뉴 버튼 -->
 		<div style="padding: 0;">
-			<button class="btn" type="button" data-toggle="modal" data-target="#navLeft">
-				<span class="navbar-toggler-icon"></span>
+			<button class="btn" id="navLeft-show" type="button" data-toggle="modal" data-target="#navLeft">
+				<i class="fas fa-bars" style="font-size: x-large"></i>
 			</button>
 		</div>
 
-		<!-- 로고 -->
-		<!-- 모바일로고 -->
-		<div class="navbar-brand menu_mobile white txt-center" style="width: 58%; left: 21%; margin: 0px; position: absolute; margin-top: 5px;">
-			<h5>
-				<a href="/main"><img src="/img/ecofunproject.png" alt=" "></a>
-			</h5>
-		</div>
-		<!-- PC로고 -->
-		<div class="navbar-brand menu_pc" style="width: 30%; left: 35%; position: absolute;">
-			<h5>
-				<a href="/main"><img src="/img/ecofunproject.png" alt=" "></a>
-			</h5>
+		<!-- 로고 (모바일) -->
+		<div class="navbar-brand mobile-menu text-center" style="width: 58%; left: 21%; position: absolute; font-size: xx-large; margin-top: 5px;">
+			<a href="/main"><b class="RymanEco">Ecofun Project</b></a>
 		</div>
 
-		<!-- 우측 사이드메뉴 버튼 -->
+		<!-- 로고 (PC) -->
+		<div class="navbar-brand pc-menu text-center" style="width: 30%; left: 35%; position: absolute; font-size: xx-large;">
+			<a href="/main"><b class="RymanEco">Ecofun Project</b></a>
+		</div>
+
+		<!-- 우측 메뉴 버튼 -->
 		<%-- 로그인 전: 로그인 화면 이동 --%>
 		<%
 			if (memId == null) {
 		%>
 		<div class="btn-group">
 			<button onclick="changeView(1)" class="navbar-toggler" type="button" aria-expanded="false" style="border: 0">
-				<span>
-					<img src="/img/account_circle-black-36dp.svg" alt="">
-				</span>
+				<i class="far fa-user-circle" style="font-size: xx-large"></i>
 			</button>
 		</div>
 
@@ -107,9 +90,7 @@ String memName = (String) session.getAttribute("memName");
 				<span class="d-none d-lg-inline">환영합니다.</span>
 			</div>
 			<button class="navbar-toggler" type="button" data-toggle="dropdown" aria-expanded="false" style="border: 0">
-				<span>
-					<img src="/img/account_circle-black-36dp.svg" alt="">
-				</span>
+				<i class="far fa-user-circle" style="font-size: xx-large"></i>
 			</button>
 			<div class="dropdown-menu" style="right: 0; left: auto;">
 				<ul style="list-style: none; padding-left: 10px;">
@@ -182,7 +163,7 @@ String memName = (String) session.getAttribute("memName");
 	</div>
 </div>
 
-<!-- 좌측 사이드 메뉴 (Modal) -->
+<!-- 좌측 메뉴 (Modal) -->
 <div class="modal fade" id="navLeft" tabindex="-1" role="dialog" aria-labelledby="navLeft" aria-hidden="true">
 	<div class="modal-dialog " role="document" style="max-width: 100%; margin: 0;">
 		<div class="modal-content" style="min-height: 100vh;">
@@ -191,8 +172,8 @@ String memName = (String) session.getAttribute("memName");
 				<h5 class="modal-title" id="modalTitle">EcoFun Project</h5>
 
 				<!-- left_닫기 버튼 -->
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true" style="font-size: 36px;">&times;</span>
+				<button type="button" class="close" id="navLeft-hide" data-dismiss="modal" aria-label="Close">
+					<i class="fas fa-times"></i>
 				</button>
 			</div>
 			<br>

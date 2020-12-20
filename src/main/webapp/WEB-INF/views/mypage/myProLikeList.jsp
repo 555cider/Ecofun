@@ -135,7 +135,7 @@
 	</div>
 
 	<!-- Content -->
-	<ul class="form-inline">
+	<ul class="row">
 		<c:forEach items="${likeList.content}" var="pList">
 			<li class="col-sm-6 col-lg-4 project-item">
 				<a href="/projectDetail?proNo=${pList.projectDto.proNo}"> <c:set var="urlSize" value="${fn:length(pList.projectDto.imgDto.imgUrl)}" /> <c:set

@@ -2,11 +2,11 @@
 
 <script>
 	$(function() {
-		$(".pc_login_button").click(function() {
+		$(".pc-login-button").click(function() {
 			loginSubmit($(this.form).serialize());
 		});
 
-		$(".login_button").click(function() {
+		$(".login-button").click(function() {
 			loginSubmit($(this.form).serialize());
 		});
 	});
@@ -35,7 +35,7 @@
 	<div class="wrap_container">
 		<div class="login center">
 			<form>
-				<ul class="login_contain pc_login">
+				<ul class="login_contain pc-login">
 					<li>
 						<h2>로그인 하세요</h2>
 					</li>
@@ -53,17 +53,17 @@
 						<a class="find_account" href="/member/pwFind">아이디/비밀번호 찾기 &#187;</a>
 					</li>
 					<li>
-						<button class="pc_login_button hover auto">로그인</button>
+						<button class="pc-login-button hover auto">로그인</button>
 					</li>
 					<li class="login_line"></li>
 					<li>
-						<a onclick="changeView(2)"><button class="pc_join_button hover auto">회원가입</button></a>
+						<a onclick="changeView(2)"><button class="pc-join-button hover auto">회원가입</button></a>
 					</li>
 
 				</ul>
 			</form>
 			<form>
-				<ul class="login_contain mobile_login">
+				<ul class="login_contain mobile-login">
 					<li class="login_area">
 						<input class="login_form email" type="text" name="memId" placeholder="아이디" maxlength="25" required>
 					</li>
@@ -78,11 +78,11 @@
 						<a class="find_account" href="/member/pwFind">아이디/비밀번호 찾기 &#187;</a>
 					</li>
 					<li>
-						<button class="login_button hover auto">로그인</button>
+						<button class="login-button hover auto">로그인</button>
 					</li>
 					<li class="login_line"></li>
 					<li>
-						<button class="signin hover auto" onclick="changeView(3)">회원가입</button>
+						<button class="join-button hover auto" onclick="changeView(3)">회원가입</button>
 					</li>
 				</ul>
 			</form>

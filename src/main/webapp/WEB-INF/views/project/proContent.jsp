@@ -18,7 +18,7 @@
 
 <!-- Content -->
 <div>
-	<ul class="form-inline" style="padding: 0;">
+	<ul class="row" style="padding: 0;">
 		<c:forEach var="project" items="${projectList.content}">
 			<li class="col-sm-6 col-lg-4 project-item">
 				<a href="/project/detail?proNo=${project.proNo}" class="d-inline">

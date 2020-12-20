@@ -34,11 +34,13 @@
 <div class="container" id="projectContent">
 	<!-- Content-Header (프로젝트) -->
 	<div class="row">
-		<div>
+		<div class="col">
 			<h3>| 프로젝트 관리</h3>
 		</div>
-		<div class="ml-auto" style="align-self: flex-end;">
-			<span>총 ${projectCount[0]}건</span> <span>| 예정 ${projectCount[1]}건</span> <span>| 진행 ${projectCount[4]}건</span>
+		<div class="col text-end" style="align-self: flex-end;">
+			<span>총 ${projectCount[0]}건</span>
+			<span>| 예정 ${projectCount[1]}건</span>
+			<span>| 진행 ${projectCount[4]}건</span>
 		</div>
 	</div>
 	<hr>
@@ -83,7 +85,7 @@
 				</tr>
 				<tr>
 					<td>조회 : ${project.proHit} 명</td>
-					<td>참여인원 : </td>
+					<td>참여인원 :</td>
 					<td colspan="2" style="text-align: center;">${project.proNow}원/${project.proTarget}원</td>
 				</tr>
 				<tr>
@@ -105,8 +107,12 @@
 	<div>
 		<ul class="pagination justify-center" style="justify-content: center; margin: 1% auto 0 auto;">
 			<c:if test="${!projectList.first}">
-				<li class="page-item"><a href="?sort=proNo,desc" class="page-link">&laquo;</a></li>
-				<li class="page-item"><a href="?sort=proNo,desc&page=${projectList.number - 1}" class="page-link">&lt;</a></li>
+				<li class="page-item">
+					<a href="?sort=proNo,desc" class="page-link">&laquo;</a>
+				</li>
+				<li class="page-item">
+					<a href="?sort=proNo,desc&page=${projectList.number - 1}" class="page-link">&lt;</a>
+				</li>
 			</c:if>
 			<c:set var="pageRange" scope="session" value="5" />
 			<f:parseNumber var="pageIndex" integerOnly="true" value="${projectList.number div pageRange}" />
@@ -121,16 +127,24 @@
 			<c:forEach var="i" begin="${pageIndex * pageRange + 1}" end="${lastPage}">
 				<c:choose>
 					<c:when test="${projectList.number + 1 == i}">
-						<li class="page-item active"><a href="#" class="page-link"><c:out value="${i}" /></a></li>
+						<li class="page-item active">
+							<a href="#" class="page-link"><c:out value="${i}" /></a>
+						</li>
 					</c:when>
 					<c:otherwise>
-						<li class="page-item"><a href="?sort=proNo,desc&page=${i - 1}" class="page-link"><c:out value="${i}" /></a></li>
+						<li class="page-item">
+							<a href="?sort=proNo,desc&page=${i - 1}" class="page-link"><c:out value="${i}" /></a>
+						</li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${!projectList.last}">
-				<li class="page-item"><a href="?sort=proNo,desc&page=${projectList.number + 1}" class="page-link">&gt;</a></li>
-				<li class="page-item"><a href="?sort=proNo,desc&page=${projectList.totalPages - 1}" class="page-link">&raquo;</a></li>
+				<li class="page-item">
+					<a href="?sort=proNo,desc&page=${projectList.number + 1}" class="page-link">&gt;</a>
+				</li>
+				<li class="page-item">
+					<a href="?sort=proNo,desc&page=${projectList.totalPages - 1}" class="page-link">&raquo;</a>
+				</li>
 			</c:if>
 		</ul>
 		<!-- 등록 -->
