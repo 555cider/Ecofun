@@ -6,10 +6,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class ProjectBbsApplication {
+public class EcofunApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectBbsApplication.class, args);
+		SpringApplication.run(EcofunApplication.class, args);
 	}
 
 }
