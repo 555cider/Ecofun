@@ -7,7 +7,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
 	String path = request.getSession().getServletContext().getRealPath("/") + "se2\\upload"; // 이미지가 저장될 주소
-String filename = "";
+String fileName = "";
 
 if (request.getContentLength() > 10 * 1024 * 1024) {
 %>
@@ -21,26 +21,26 @@ if (request.getContentLength() > 10 * 1024 * 1024) {
 try {
 	MultipartRequest multi = new MultipartRequest(request, path, 15 * 1024 * 1024, "UTF-8",
 	new DefaultFileRenamePolicy());
-	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyy_MM_dd_HHmmss", java.util.Locale.KOREA);
+	java.text.SimpleDateFormat formatter = new java.text.SimpleDateFormat("yyyyMMddHHmmss", java.util.Locale.KOREA);
 	String upfile = (multi.getFilesystemName("Filedata"));
 	if (!upfile.equals("")) {
-		String dateString = formatter.format(new java.util.Date()); // 날짜(년년년년_월월_일일_시시분분초초)
-		String extName = upfile.substring(upfile.lastIndexOf(".")); // 확장자(예: .jpg)
-		String fileName = dateString + extName; // 날짜.확장자
+		String dateString = formatter.format(new java.util.Date()); // 년년년년월월일일시시분분초초
+		String extName = upfile.substring(upfile.lastIndexOf(".")); // .확장자
+		fileName = dateString + extName; // 년년년년월월일일시시분분초초.확장자
 
 		File sourceFile = new File(path + File.separator + upfile); // File(경로\원본)
-		File targetFile = new File(path + File.separator + fileName); // File(경로\날짜.확장자) 
+		File targetFile = new File(path + File.separator + fileName); // File(경로\년년년년월월일일시시분분초초.확장자) 
 
 		sourceFile.renameTo(targetFile); // what????
 
 		System.out.println("upfile : " + upfile);
-		System.out.println("filename : " + filename);
+		System.out.println("fileName : " + fileName);
 		System.out.println("targetFile : " + targetFile);
 
 		sourceFile.delete();
 %>
 <form id="fileform" name="fileform" method="post">
-	<input type="hidden" name="filename" value="<%=filename%>">
+	<input type="hidden" name="fileName" value="<%=fileName%>">
 	<input type="hidden" name="path" value="<%=path%>">
 	<input type="hidden" name="fcode" value="<%=path%>">
 </form>
@@ -56,7 +56,7 @@ System.out.println("e : " + e.getMessage());
 	function fileAttach() {
 		f = document.fileform;
 		fpath = f.path.value;
-		fname = f.filename.value;
+		fname = f.fileName.value;
 		fcode = fpath + fname;
 
 		try {
