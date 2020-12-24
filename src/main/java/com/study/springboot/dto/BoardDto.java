@@ -1,6 +1,7 @@
 package com.study.springboot.dto;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +31,7 @@ public class BoardDto {
 	private Long memNo;
 
 	@Column(name = "b_type")
-	private String bbsType; // bType으로 하게되면 쿼리문 작성할 때 BType으로 들어가게됨. 대문자+대문자 오류가 나버림.(대문자 연달아서인진 모르겠지만 소문자 껴주면 오류X)
+	private String bbsType;
 
 	@Column(name = "b_title")
 	private String bbsTitle;
@@ -55,4 +56,12 @@ public class BoardDto {
 
 	@Column(name = "b_end", columnDefinition = "date")
 	private Date bbsEnd;
+
+	private LocalDate getBbsStart(Date bbsStart) {
+		return bbsStart.toLocalDate();
+	}
+
+	private LocalDate getBbsEnd(Date bbsEnd) {
+		return bbsEnd.toLocalDate();
+	}
 }

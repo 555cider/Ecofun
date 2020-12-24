@@ -9,7 +9,7 @@ import com.study.springboot.dto.BoardDto;
 @Repository
 public interface BoardRepository extends JpaRepository<BoardDto, Long> {
 
-	public Page<BoardDto> findAllByBbsType(String bType, Pageable pageable);
+	public Page<BoardDto> findAllByBbsType(String bbsType, Pageable pageable);
 
 	public BoardDto findByBbsNo(Long bbsNo);
 

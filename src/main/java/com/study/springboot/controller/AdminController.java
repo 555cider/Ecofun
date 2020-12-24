@@ -148,7 +148,7 @@ public class AdminController {
 		if (pageable.getSort().toString() == "UNSORTED") {
 			pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("memNo").descending());
 		}
-		// model.addAttribute("todayCount", memberService.countByMemJoinDateBetween());
+		model.addAttribute("todayCount", memberService.countByMemJoinDateBetween());
 		model.addAttribute("list", memberService.findAll(pageable));
 		System.out.println("회원 관리 - 목록");
 		return "index.jsp?contentPage=admin/adMemList";
@@ -173,26 +173,26 @@ public class AdminController {
 	@GetMapping("/boardInsert")
 	public String adBoardInsertForm() {
 		System.out.println("게시판 관리 - 입력(폼 이동)");
-		return "index.jsp?contentPage=admin/adInfoBoardInsert";
+		return "index.jsp?contentPage=admin/adBoardInsert";
 	}
 
 	// 게시판 관리 - 입력 - 실행
 	@PostMapping("/boardInsert")
 	public String adBoardInsert(BoardDto boardDto, HttpServletRequest request, Model model, @RequestParam("fileName") MultipartFile file, ImgDto imgDto) {
-		if (file == null) { // null로 들어오는 경우를 배제할 수 없기 때문에 한번 감싸줌
+		if (file == null) {
 			boardService.save(boardDto, request);
 		} else {
-			if (file.getSize() > 0) { // 값이 있음. (null이 아니라 객체로 들어와서 사이즈로 두번 체크)
+			if (file.getSize() > 0) {
 				boardService.save(boardDto, request);
 				imgService.restore(boardDto, imgDto, file);
-				boardService.save(boardDto, request);// 두번 해주는 이유는 restore에서 bbsNo를 사용하고, Dto.setImgUrl을 저장해서 최종Dto를 repository에 다시 한번 저장해주기 위함.
-			} else { // null이면 사이즈 0으로 찍힘.
+				boardService.save(boardDto, request);
+			} else {
 				boardService.save(boardDto, request);
 			}
 		}
 		model.addAttribute("boardList", boardDto);
 
 		System.out.println("게시판 작성 - 입력(실행)");
-		return "redirect:board/list";
+		return "redirect:/board/list";
 	}
 }

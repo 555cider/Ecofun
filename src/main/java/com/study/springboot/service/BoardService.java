@@ -24,8 +24,8 @@ public class BoardService {
 	}
 
 	// 공지사항 리스트
-	public Page<BoardDto> noticeList(String btype, Pageable pageable) {
-		return boardRepository.findAllByBbsType(btype, pageable);
+	public Page<BoardDto> noticeList(String bbsType, Pageable pageable) {
+		return boardRepository.findAllByBbsType(bbsType, pageable);
 	}
 
 	// 공지사항 카운트
@@ -34,8 +34,8 @@ public class BoardService {
 	}
 
 	// 이벤트 리스트
-	public Page<BoardDto> eventList(String btype, Pageable pageable) {
-		return boardRepository.findAllByBbsType(btype, pageable);
+	public Page<BoardDto> eventList(String bbsType, Pageable pageable) {
+		return boardRepository.findAllByBbsType(bbsType, pageable);
 	}
 
 	// 이벤트 카운트

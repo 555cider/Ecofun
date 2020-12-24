@@ -120,7 +120,7 @@ public class InfoController {
 
 	// 게시판 - 상세
 	@GetMapping("/board/detail")
-	public String noDetail(Long bbsNo, Model model) {
+	public String boardDetail(Long bbsNo, Model model) {
 		System.out.println("게시판 상세 (bbsNo: " + bbsNo + ")");
 		model.addAttribute("bbsNo", boardService.findByBbsNo(bbsNo));
 		return "index.jsp?contentPage=info/boardDetail";
