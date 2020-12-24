@@ -34,7 +34,7 @@ public class MemberController {
 	AddressService addressService;
 
 	@Autowired
-	MemberAccountService accountInfoService;
+	MemberAccountService accountService;
 
 	@Autowired
 	MailService mailService;
@@ -91,7 +91,7 @@ public class MemberController {
 					addressService.save(memberDto, address);
 				}
 				if (!accountInfo.getBankName().equals("") && !accountInfo.getAccountName().equals("") && accountInfo.getAccountNumber() > 0) {
-					accountInfoService.save(memberDto, accountInfo);
+					accountService.save(memberDto, accountInfo);
 				}
 			}
 		}
@@ -106,7 +106,7 @@ public class MemberController {
 		Long memNo = (Long) session.getAttribute("memNo");
 		member = memberService.findByMemNo(memNo);
 		address = addressService.findByMemNo(memNo);
-		account = accountInfoService.findByMemNo(memNo);
+		account = accountService.findByMemNo(memNo);
 		model.addAttribute("member", member);
 		model.addAttribute("address", address);
 		model.addAttribute("account", account);
@@ -118,7 +118,7 @@ public class MemberController {
 	public String update(MemberDto member, AddressDto address, MemberAccountDto account, HttpSession session) {
 		Long memNo = (Long) session.getAttribute("memNo");
 		addressService.update(memNo, member.getMemName(), address);
-		accountInfoService.update(memNo, account);
+		accountService.update(memNo, account);
 		memberService.memUpdate(memNo, member.getMemTel());
 		return "redirect:/main";
 	}
@@ -135,8 +135,8 @@ public class MemberController {
 	@DeleteMapping("/withdraw")
 	public ResponseEntity<Long> delete(HttpSession session) {
 		Long memNo = (Long) session.getAttribute("memNo");
-		addressService.deleteByMemNo(memNo); // 탈퇴 회원의 모든 주소 삭제
-		accountInfoService.deleteByMemNo(memNo); // 탈퇴 회원의 모든 계좌 삭제
+		addressService.deleteByMemNo(memNo);
+		accountService.deleteByMemNo(memNo); // 탈퇴 회원의 모든 계좌 삭제
 		Long deleteCount = memberService.deleteByMemNo(memNo); // 회원탈퇴
 		session.invalidate(); // 세션 해제하여 로그아웃 처리
 		return new ResponseEntity<Long>(deleteCount, HttpStatus.OK); // 탈퇴 성공시 deleteCount > 0 true

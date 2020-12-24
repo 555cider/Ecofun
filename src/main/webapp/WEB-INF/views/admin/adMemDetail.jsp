@@ -1,26 +1,25 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script>
-$(function() {
-	$(".close").click(function(e) {
-		e.preventDefault();
-		$(".layer-background, .member-detail").hide();
+	$(function() {
+		$(".close").click(function(e) {
+			e.preventDefault();
+			$(".layer-background, .member-detail").hide();
+		});
+		$("#withdraw").click(function(e) {
+			if (confirm("탈퇴시키시겠습니까?")) {
+				//탈퇴
+			}
+		});
 	});
-	$("#withdraw").click(function(e){
-		if(confirm("탈퇴시키시겠습니까?")){
-			//탈퇴
-		}
-	});
-});
-
 </script>
 <div class="container">
 	<!-- 기본정보 -->
 	<div>
 		<div class="row">
 			<div>
-				<h5>| 기본정보</h5>
+				<h4>| 기본정보</h4>
 			</div>
 			<div class="ml-auto">
 				<button type="button" class="close" aria-label="Close">
@@ -33,24 +32,35 @@ $(function() {
 		<div>
 			<table class="table-bordered table-striped" border="1" style="width: 100%; text-align: center;">
 				<tr>
-					<th style="width: 15%;"><b>아이디</b></th>
+					<th style="width: 15%;">
+						<b>아이디</b>
+					</th>
 					<td style="width: 35%;">${data.memId}</td>
-					<th style="width: 15%;"><b>비밀번호</b></th>
+					<th style="width: 15%;">
+						<b>비밀번호</b>
+					</th>
 					<td style="width: 35%;">숨김처리</td>
 					<%-- <td style="width: 35%;">${data.memPw}</td> --%>
 				</tr>
 				<tr>
-					<th><b>성함</b></th>
+					<th>
+						<b>성함</b>
+					</th>
 					<td>${data.memName}</td>
-					<th><b>연락처</b></th>
+					<th>
+						<b>연락처</b>
+					</th>
 					<td>${data.memTel}</td>
 				</tr>
 				<c:choose>
 					<c:when test="${not empty addressList}">
 						<c:forEach items="${addressList}" var="addressDto">
 							<tr>
-								<th rowspan="2"><b>주소</b></th>
-								<td colspan="3">${addressDto.postalCode} &nbsp; ${addressDto.address1} &nbsp;${addressDto.address2}&nbsp; ${addressDto.address3}&nbsp; ${addressDto.address4}</td>
+								<th rowspan="2">
+									<b>주소</b>
+								</th>
+								<td colspan="3">${addressDto.postalCode}&nbsp;${addressDto.address1} &nbsp;${addressDto.address2}&nbsp; ${addressDto.address3}&nbsp;
+									${addressDto.address4}</td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -58,7 +68,7 @@ $(function() {
 			</table>
 		</div>
 	</div>
-	<br><br>
+	<br> <br>
 
 	<!-- 참여내역 -->
 	<div>
@@ -71,14 +81,31 @@ $(function() {
 
 		<div class="table-wrapper-scroll-y my-custom-scrollbar">
 			<table class="table-bordered table-striped" style="text-align: center; width: 100%;">
-				<thead>
-					<th style="width: 15%;"><b>날짜</b></th>
-					<th style="width: 45%;"><b>프로젝트</b></th>
-					<th style="width: 10%;"><b>참여인원</b></th>
-					<th style="width: 15%;"><b>참여금액<b></th>
-					<th style="width: 15%;"><b>상태</b></th>
-				</thead>
-
+				<tr>
+					<th style="width: 15%;">
+						<b>날짜</b>
+					</th>
+				</tr>
+				<tr>
+					<th style="width: 45%;">
+						<b>프로젝트</b>
+					</th>
+				</tr>
+				<tr>
+					<th style="width: 10%;">
+						<b>참여인원</b>
+					</th>
+				</tr>
+				<tr>
+					<th style="width: 15%;">
+						<b>참여금액</b>
+					</th>
+				</tr>
+				<tr>
+					<th style="width: 15%;">
+						<b>상태</b>
+					</th>
+				</tr>
 				<tbody>
 					<c:choose>
 						<c:when test="${empty orderList.content}">
@@ -90,7 +117,9 @@ $(function() {
 							<c:forEach items="${orderList.content}" var="orderDto">
 								<fmt:parseDate value="${orderDto.orderDate}" var="dateValue" pattern="yyyy-MM-dd'T'HH:mm" />
 								<tr>
-									<td><fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd" /></td>
+									<td>
+										<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd" />
+									</td>
 									<td>${orderDto.projectDto.proTitle}</td>
 									<td>${orderDto.count}</td>
 									<td>${orderDto.projectDto.proTarget}</td>
@@ -103,10 +132,12 @@ $(function() {
 			</table>
 		</div>
 	</div>
-	<br><br>
+	<br> <br>
 
 	<!-- 탈퇴 -->
-	<div style="text-align: center;margin-bottom: 50px;">
-		<button type="button" id="withdraw" class="btn btn-secondary"><b>강제 탈퇴</b></button>
+	<div style="text-align: center; margin-bottom: 50px;">
+		<button type="button" id="withdraw" class="btn btn-secondary">
+			<b>강제 탈퇴</b>
+		</button>
 	</div>
 </div>

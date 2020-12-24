@@ -2,99 +2,22 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%
 	String memId = (String) session.getAttribute("memId");
+String proState = (String) request.getAttribute("proState");
 %>
 
-<style>
-table {
-	width: 100%;
-}
-
-th,td {
-	padding: 5px 0;
-	text-align: center;
-}
-
-.mid-nav-list {
-	margin: 0 auto;
-	text-align: center;
-	width: 97%;
-	height: 50%;
-}
-
-.mid-nav-item {
-	width: 50%;
-	background-color: gray;
-	margin-bottom: 0;
-}
-
-.mid-nav-item li {
-	color: black;
-	font-weight: 500;
-}
-
-.progress {
-	margin: 0 auto;
-}
-
-.pro-content {
-	width: 100%;
-	padding: 7%;
-	border: 3px solid lightgray;
-	margin: 1px auto;
-	text-align: center;
-	border-radius: 15px;
-}
-
-.pro-content>div>h2 {
-	color: white;
-	line-height: 2;
-}
-
-#COMMENT {
-	padding-bottom: 10px;
-}
-
-.sub-wrap {
-	margin-bottom: 1%;
-}
-
-.btn {
-	background-color: lightgray;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-}
-</style>
-
 <script type="text/javascript">
-function price() {
-	$.ajax({
-		url: "/detail.price",
-        type: "POST",
-        data: {
-            opNo: $('#opNo').val()
-        },
-        datatype : 'json',
-        success: function (data) {
-	        document.getElementById('totalPrice').value = document.getElementById('count').value * data.price;
-        },
-        error: function(){
-        	alert("에러 발생");
-        }
-	});
-}
-
 const countDownTimer = function (id, date) {
-	var _vDate = new Date(date); // 전달 받은 일자
+	var _vDate = new Date(date);
 	var _second = 1000; var _minute = _second * 60; var _hour = _minute * 60; var _day = _hour * 24; var timer;
 	function showRemaining() {
 		var now = new Date(); var distDt = _vDate - now;
 		if (distDt < 0) {
 			clearInterval(timer); document.getElementById(id).textContent = '해당 프로젝트는 종료 되었습니다!'; return;
 		}
-		var days = Math.floor(distDt / _day); var hours = Math.floor((distDt % _day) / _hour); var minutes = Math.floor((distDt % _hour) / _minute); var seconds = Math.floor((distDt % _minute) / _second);
-		//document.getElementById(id).textContent = date.toLocaleString() + "까지 : "; 
+		var days = Math.floor(distDt / _day); var hours = Math.floor((distDt % _day) / _hour); var minutes = Math.floor((distDt % _hour) / _minute); var seconds = Math.floor((distDt % _minute) / _second); 
 		document.getElementById(id).textContent = days + '일 '; 
 		document.getElementById(id).textContent += hours + '시간 '; 
 		document.getElementById(id).textContent += minutes + '분 '; 
@@ -104,12 +27,28 @@ const countDownTimer = function (id, date) {
 }
 var dateObj = new Date();
 dateObj.setDate(dateObj.getDate() + 1);
-
 countDownTimer('remain', '${project.proEnd}');
+
+function price() {
+	$.ajax({
+		url: "detail/price",
+        type: "POST",
+        data: {
+            opNo: $('#opNo').val()
+        },
+        datatype : 'json',
+        success: function (result) {
+        	document.getElementById('totalPrice').value = $('#count').val() * result.price;
+        },
+        error: function(){
+        	alert("에러 발생");
+        }
+	});
+}
 
 function saveLike() {
 	$.ajax({
-		url: "/detail.like",
+		url: "detail/like",
 		type: "POST",
 		dataType: "json",
 		data: {
@@ -130,7 +69,7 @@ function saveLike() {
 
 function deleteLike() {
 	$.ajax({
-		url: "/detail.unlike",
+		url: "detail/unlike",
 		type: "POST",
 		dataType: "text",
 		data: {
@@ -162,43 +101,53 @@ function orderCheck() {
 <div class="container">
 	<br>
 	<div>
-		<h5>
-			| <a href="/project/list">프로젝트</a> > 상세
-		</h5>
+		<h4>
+			|
+			<a href="/project/list">프로젝트</a>
+			> 상세
+		</h4>
 	</div>
 	<hr>
+	<br>
 
 	<div>
-		<div class="sub-wrap" style="display: flex;">
+		<div class="d-flex flex-wrap">
 			<!-- 대표 이미지 -->
-			<div class="col-xs-12 col-lg-6" style="background-image: url(${project.proThumb}); background-size: 100% 100%;"></div>
+			<div class="col-12 col-lg-6 border" style="background-image: url('${project.proThumb}'); background-size: 100% 100%;">
+				<img src="https://place-hold.it/588x341/FFFFFF/C0C0C0.png&text=Ecofun&fontsize=10" alt="이미지" class="hidden" />
+			</div>
 
 			<!-- 표 -->
-			<div class="col-xs-12 col-lg-6">
+			<div class="col-12 col-lg-6">
 				<form action="/project/orderForm" method="post" id="orderDetails">
-					<input hidden="hidden" name="proType" value="${project.proType}" /> <input hidden="hidden" name="proNo" value="${project.proNo}" />
+					<input hidden="hidden" name="proType" value="${project.proType}" />
+					<input hidden="hidden" name="proNo" value="${project.proNo}" />
 					<table class="table-bordered">
 						<tr>
-							<td colspan="3">
-								<h4 style="margin-top: 0">${project.proTitle}</h4>
+							<td colspan="3" class="fs-5">
+								<b>${project.proTitle}</b>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
-								<a href="/project/list?type=${project.proType}"><label class="badge">${project.proType}</label></a> <a><label class="badge">${project.proState}</label></a>
+								<a href="/project/list?type=${project.proType}">
+									<label class="badge">${project.proType}</label>
+								</a>
+								<a>
+									<label class="badge">${project.proState}</label>
+								</a>
 							</td>
 						</tr>
 						<tr>
-							<th>
+							<th class="col-3">
 								<span>진행률</span>
 							</th>
 							<td colspan="2">
 								<p class="progress" style="width: 90%;">
 									<span class="progress-bar" role="progressbar" aria-valuenow="${project.proceed}" aria-valuemin="0" aria-valuemax="100"
 										style="width: ${project.proceed}%"
-									>
-										<span class="sm-only">${project.proceed}%</span>
-									</span>
+									> </span>
+									${project.proceed}%
 								</p>
 							</td>
 						</tr>
@@ -217,11 +166,11 @@ function orderCheck() {
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<th>
 								<span>옵션</span>
-							</td>
+							</th>
 							<td>
-								<select class="select" ID="opNo" name="opNo">
+								<select class="select" ID="opNo" name="opNo" style="width: 90%;">
 									<c:forEach var="option" items="${optionList}">
 										<option value="${option.opNo}">${option.opName}(${option.price}원)</option>
 									</c:forEach>
@@ -229,33 +178,49 @@ function orderCheck() {
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<th>
 								<span>수량</span>
-							</td>
+							</th>
 							<td>
-								<input type="number" id="count" name="count" onchange="price()" value="0" min="0">
+								<input type="number" id="count" name="count" onchange="price()" value="0" min="0" />
+								개
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<th>
 								<span>총액</span>
-							</td>
+							</th>
 							<td>
-								<input type="number" id="totalPrice" name="totalPrice" value="0" readonly="readonly" /> 원
+								<input type="number" id="totalPrice" name="totalPrice" value="0" readonly="readonly" />
+								원
 							</td>
 						</tr>
 
 						<tr>
-							<%
+							<td colspan="2">
+								<%
+									if (proState.equals("종료")) {
+								%>
+								<button type="button" style="width: 100%;">종료</button>
+								<%
+									} else if (proState.equals("예정")) {
+								%>
+								<c:choose>
+									<c:when test="${like == 0}">
+										<button id="like" type="button" style="width: 100%;" onclick="saveLike()">즐겨찾기</button>
+									</c:when>
+									<c:otherwise>
+										<button id="like" type="button" style="width: 100%;" onclick="deleteLike()">즐겨찾기 취소</button>
+									</c:otherwise>
+								</c:choose>
+								<%
+									} else {
 								if (memId == null) {
-							%>
-							<td colspan="2">
-								<button type="button" style="width: 100%;" onclick="location.href='/member/login'">로그인</button>
-							</td>
-							<%
-								} else {
-							%>
-							<td colspan="2">
+								%>
+								<button type="button" style="width: 100%;" onclick="changeView(1)">로그인</button>
+								<%
+									} else {
+								%>
 								<c:choose>
 									<c:when test="${like == 0}">
 										<button id="like" type="button" style="width: 40%;" onclick="saveLike()">즐겨찾기</button>
@@ -265,10 +230,11 @@ function orderCheck() {
 									</c:otherwise>
 								</c:choose>
 								<button type="button" style="width: 40%;" onclick="orderCheck()">결제하기</button>
-							</td>
-							<%
+								<%
+									}
 								}
-							%>
+								%>
+							</td>
 						</tr>
 					</table>
 				</form>
@@ -277,13 +243,14 @@ function orderCheck() {
 	</div>
 	<br>
 
-
 	<!-- 중간 탭(STORY|COMMENT) -->
-	<nav class="row">
-		<ul class="list-group list-group-horizontal mid-nav-list">
-			<a class="list-group-item mid-nav-item" href="#STORY"><li>DETAIL</li></a>
-			<a class="list-group-item mid-nav-item" href="#COMMENT"><li>COMMENT</li></a>
-		</ul>
+	<nav class="navbar navbar-dark bg-dark">
+		<div class="navbar-nav" style="width: 50%; border-right: 1px solid white;">
+			<a class="nav-link" href="#STORY">STORY</a>
+		</div>
+		<div class="navbar-nav" style="width: 50%; border-left: 1px solid white;">
+			<a class="nav-link" href="#COMMENT">COMMENT</a>
+		</div>
 	</nav>
 	<br>
 
@@ -327,7 +294,7 @@ function orderCheck() {
 					<input hidden="hidden" name="proNo" value=${project.proNo } />
 					<div style="border: 1px solid lightgray; border-radius: 5px; display: flex; vertical-align: middle;">
 						<textarea name="proCmt" rows="2" style="width: 80%; border: none; resize: none;"></textarea>
-						<button type="submit" class="btn" style="width: 20%;">등록</button>
+						<button type="submit" class="button" style="width: 20%;">등록</button>
 					</div>
 				</form>
 			</div>

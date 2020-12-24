@@ -25,9 +25,9 @@
 <div class="container">
 	<!-- title -->
 	<div>
-		<h1>| 비밀번호 변경</h1>
-		<hr>
+		<h4>| 비밀번호 변경</h4>
 	</div>
+	<hr>
 	<br>
 
 	<!-- 변경 폼 -->
@@ -39,7 +39,9 @@
 					<!-- <label class="register-label" for="memPw"><span class="red">*</span>비밀번호</label> -->
 					<div class="register-content-none-border">
 						<label style="width: 100%;">
-							<input type="password" id="memPw" name="memPw" class="form-control input password_check" placeholder="비밀번호*" pattern=".{6,20}" title="6 to 20 characters" required>
+							<input type="password" id="memPw" name="memPw" class="form-control input password_check" placeholder="비밀번호*" pattern=".{6,20}"
+								title="6 to 20 characters" required
+							>
 						</label>
 						<!-- <p class="help-block">비밀번호는 6자리 이상이어야 합니다</p> -->
 					</div>
@@ -49,7 +51,9 @@
 					<!-- <label class="register-label" for="memPw_re"><span class="red">*</span>비밀번호 확인</label> -->
 					<div class="register-content-none-border">
 						<label class="memPwLabel" style="width: 100%;">
-							<input type="password" id="memPw_re" name="memPw_re" class="form-control input password_check" placeholder="비밀번호*" pattern=".{6,20}" title="6 to 20 characters" required>
+							<input type="password" id="memPw_re" name="memPw_re" class="form-control input password_check" placeholder="비밀번호*" pattern=".{6,20}"
+								title="6 to 20 characters" required
+							>
 						</label>
 					</div>
 				</div>

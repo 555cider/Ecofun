@@ -2,20 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<style>
-.project-item {
-	margin-bottom: 3%;
-}
-
-.project-item-title {
-	width: 100%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	text-align: center;
-}
-</style>
-
 <script>
 	window.onload = function() {
 		$('#main-banner').carousel({

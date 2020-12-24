@@ -1,137 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<style>
-.sub-wrap {
-	border-top: 1px darkgray solid;
-	border-bottom: 1px darkgray solid;
-	margin-top: 5%;
-	margin-bottom: 5%;
-	width: 100%;
-}
-
-table {
-	width: 100%;
-}
-
-th,td {
-	vertical-align: middle !Important;
-	padding: 0 10px;
-}
-
-th {
-	text-align: center;
-	border-right: darkgray 3px solid;
-	background-color: lightgray;
-	border-right: darkgray 3px solid;
-	width: 25%;
-	line-height: 20px;
-}
-
-.name {
-	width: 25%;
-	height: 20%;
-}
-
-button {
-	width: 25%;
-	font-size: 25px;
-	line-height: 50px;
-}
-
-input {
-	display: inline !Important;
-}
-
-.responsive {
-	float: left;
-	padding: 0;
-}
-
-@media ( min-width :992px) {
-	.col-lg-3 {
-		width: 25%;
-	}
-	.col-lg-9 {
-		width: 75%;
-	}
-}
-</style>
-
 <div class="container">
-	<!-- title -->
-	<br>
 	<div>
-		<h6>주문 및 결제</h6>
+		<h4>주문 및 결제</h4>
 	</div>
 	<hr>
 	<br>
 
 	<div>
-		<!-- 프로젝트 정보 -->
-		<h5>| 참여정보</h5>
-		<div class="sub-wrap" style="display: inline-block;">
-			<div class="responsive col-lg-3" style="background-image: url('/${project.proThumb}'); background-size:100% 100%;">
-				<img src="http://placehold.it/1240x930" alt="1240x930" style="max-width: 100%; visibility: hidden;">
-			</div>
-			<div class="responsive col-lg-9" style="float: right;">
+		<h5>| 참여 정보</h5>
+		<div class="d-flex border">
+			<div class="col-8">
 				<table>
 					<tr>
-						<td>
-							<h3 style="margin: inherit;">${project.proTitle}</h3>
+						<th class="col-3">프로젝트</th>
+						<td colspan="2">
+							<b class="fs-4">${project.proTitle}</b>
 						</td>
 					</tr>
 					<tr>
-						<td>
-							<h4>
-								옵션: <strong>${option.opName}</strong>
-								<span style="float: right;">${option.price}원</span>
-								<span style="float: right;">${order.count}개</span>
-							</h4>
-						</td>
+						<th>옵션</th>
+						<td>${option.opName}</td>
+						<td class="text-end">${option.price}원*${order.count}개</td>
 					</tr>
 					<tr>
-						<td>
-							<h4>
-								총액
-								<span style="float: right; vertical-align: middle;">${order.totalPrice}원</span>
-							</h4>
+						<th>총액</th>
+						<td colspan="2" class="text-end">
+							<strong>${order.totalPrice}원</strong>
 						</td>
 					</tr>
 				</table>
 			</div>
+			<div class="col-4" style="background-image: url('${project.proThumb}'); background-size:100% 100%;">
+				<img src="https://place-hold.it/294x114/FFFFFF/C0C0C0.png&text=Ecofun&fontsize=10" alt="이미지" class="hidden">
+			</div>
 		</div>
+		<br> <br>
 
 		<form action="/order" method="POST">
-			<input type="text" hidden="hidden" name="proType" value="펀딩"> <input type="number" hidden="hidden" name="memNo" value="${member.memNo}">
-			<input type="number" hidden="hidden" name="proNo" value="${project.proNo}"> <input type="number" hidden="hidden" name="opNo"
-				value="${option.opNo}"
-			> <input type="number" hidden="hidden" name="count" value="${order.count}">
+			<input type="text" hidden="hidden" name="proType" value="펀딩">
+			<input type="number" hidden="hidden" name="memNo" value="${member.memNo}">
+			<input type="number" hidden="hidden" name="proNo" value="${project.proNo}">
+			<input type="number" hidden="hidden" name="opNo" value="${option.opNo}">
+			<input type="number" hidden="hidden" name="count" value="${order.count}">
 
-			<!-- 주문자 정보 -->
-			<h5>| 주문자 정보</h5>
-			<div class="sub-wrap">
-				<table border="1">
+			<h5>| 참여자 정보</h5>
+			<div>
+				<table class="border">
 					<tr>
-						<th style="width: 20%;">이름</th>
+						<th class="col-2">이름</th>
 						<td>
-							<input class="form-control name" type="text" name="memName" value="${member.memName}" readonly>
+							<input type="text" name="none" maxlength="8" value="${member.memName}">
 						</td>
 					</tr>
 					<tr>
 						<th>연락처</th>
 						<td>
-							<input class="form-control" type="text" name="memTel" value="${member.memTel}" readonly>
+							<input type="text" name="memTel" maxlength="11" value="${member.memTel}" placeholder="'-' 없이 숫자만 입력해주세요." oninput="maxLengthCheck(this)">
 						</td>
 					</tr>
 				</table>
 			</div>
+			<br> <br>
 
-			<!-- 배송지 정보 -->
 			<h5>| 배송지 정보</h5>
-			<div class="sub-wrap">
+			<div>
 				<table>
 					<tr>
-						<th>이름</th>
+						<th class="col-2">이름</th>
 						<td>
 							<input type="text" class="form-control name" name="toName" value="${member.memName}" maxlength="10">
 						</td>
@@ -146,35 +82,39 @@ input {
 						<th>주소</th>
 						<td>
 							<label style="width: 70%;">
-								<input type="number" class="form-control input" name="postalCode" id="postalCode" placeholder="우편번호" readonly="readonly" />
+								<input type="number" name="postalCode" id="postalCode" placeholder="우편번호" readonly="readonly" />
 							</label>
 							<label style="width: 20%">
-								<button type="button" class="button_postnumber" onclick="sample4_execDaumPostcode();" style="width: 75%; padding: 0; margin: 0;">주소
-									검색</button>
+								<button type="button" class="button_postnumber" onclick="sample4_execDaumPostcode();" style="width: 75%;">주소 검색</button>
 							</label>
-							<br> <input type="text" class="form-control input" name="address1" id="address1" placeholder="도로명주소" style="margin-top: 20px;"><br>
-							<input type="text" class="form-control input" name="address2" id="address2" placeholder="기본주소"><br> <input type="text"
-								class="form-control input" name="address3" id="address3" placeholder="상세주소"
-							><br> <input type="text" class="form-control input" name="address4" id="address4" readonly placeholder="참고항목">
+							<br>
+							<input type="text" class="form-control input" name="address1" id="address1" placeholder="도로명주소" style="margin-top: 20px;">
+							<br>
+							<input type="text" class="form-control input" name="address2" id="address2" placeholder="기본주소">
+							<br>
+							<input type="text" class="form-control input" name="address3" id="address3" placeholder="상세주소">
+							<br>
+							<input type="text" class="form-control input" name="address4" id="address4" readonly placeholder="참고항목">
 						</td>
 					</tr>
 					<tr>
-						<th style="width: 120;">요청사항</th>
+						<th>요청사항</th>
 						<td>
-							<input type="text" class="form-control" name="request" placeholder="20자 이내">
+							<input type="text" name="request" placeholder="20자 이내">
 						</td>
 					</tr>
 				</table>
 			</div>
+			<br> <br>
 
-			<!-- 결제 수단 -->
 			<h5>| 결제금액 / 결제방법</h5>
-			<div class="sub-wrap">
-				<table>
+			<div>
+				<table class="border">
 					<tr>
-						<th>결제금액</th>
+						<th class="col-2">결제금액</th>
 						<td>
-							<input class="form-control" type="text" name="totalPrice" value="${order.totalPrice}" style="width: 20%;" readonly>원
+							<input type="text" name="totalPrice" value="${order.totalPrice}" style="width: 20%;" readonly>
+							원
 						</td>
 					</tr>
 					<tr>
@@ -188,6 +128,7 @@ input {
 					</tr>
 				</table>
 			</div>
+			<br> <br>
 
 			<!-- 하단 확인 버튼 -->
 			<div style="text-align: center;">
@@ -197,6 +138,7 @@ input {
 		</form>
 	</div>
 </div>
+
 <script>
 	function sample4_execDaumPostcode() {
 		new daum.Postcode({

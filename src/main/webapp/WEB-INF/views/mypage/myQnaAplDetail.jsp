@@ -7,23 +7,26 @@
 %>
 
 <div class="container">
-	<!-- Content-Header (문의 및 신청 > 프로젝트 신청 상세) -->
 	<div class="row">
 		<%
 			if (memId != null && memId.equals("admin")) {
 		%>
 		<div class="col">
-			<h6>
-				| <a href="/admin/qnaList">문의 및 신청</a> > 프로그램 신청 상세
-			</h6>
+			<h4>
+				|
+				<a href="/admin/qnaList">문의및신청 관리</a>
+				> 프로그램 신청 상세
+			</h4>
 		</div>
 		<%
 			} else {
 		%>
 		<div class="col">
-			<h6>
-				| <a href="/mypage/qnaList">문의 및 신청</a> > 프로그램 신청 상세
-			</h6>
+			<h4>
+				|
+				<a href="/mypage/qnaList">문의 및 신청</a>
+				> 프로그램 신청 상세
+			</h4>
 		</div>
 		<%
 			}
@@ -50,18 +53,22 @@
 	</div>
 	<br>
 
-	<div class="row" style="text-align: center;">
+	<div class="row text-center">
 		<%
 			if (memId != null && memId.equals("admin")) {
 		%>
 		<div class="col">
-			<a href="/admin/qnaList"><input type="button" value="목록으로"></a>
+			<a href="/admin/qnaList">
+				<input type="button" value="목록으로" />
+			</a>
 		</div>
 		<%
 			} else {
 		%>
 		<div class="col">
-			<a href="/mypage/qnaList"><input type="button" value="목록으로"></a>
+			<a href="/mypage/qnaList">
+				<input type="button" value="목록으로" />
+			</a>
 		</div>
 		<%
 			}

@@ -1,66 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <script type="text/javascript" src="../../../se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="../../../se2/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 
 <style>
-.table {
-	width: 100%;
-	border-bottom: 0.5px lightgray solid;
-}
-
 th {
 	width: 20%;
 	background: #f7f7f7;
 	text-align: center;
 	padding: 10px 15px;
 }
-
-#option_table {
-	border: none;
-}
-
-.date {
-	display: inline;
-	width: 46%;
-}
-
-.category {
-	margin-left: 2%;
-}
 </style>
-
-
 
 <div class="container">
 	<div>
-		<h6>| 프로젝트 신청</h6>
+		<h4>| 프로젝트 신청</h4>
 	</div>
 	<hr>
 	<br>
 
 	<div>
-		<form action="/myProRequest" id="frm" class="fileUploadForm" enctype="multipart/form-data" method="post">
+		<form action="/mypage/applyInsert" class="fileUploadForm" enctype="multipart/form-data" method="post">
 			<!-- 기본 정보 -->
-			<div style="margin-bottom: 5%;">
+			<div>
 				<div>
 					<h5>기본 정보</h5>
 				</div>
 				<div>
-					<table class="table">
+					<table>
 						<tr>
 							<th>
 								<strong>프로젝트 제목</strong>
 							</th>
 							<td>
-								<input type="text" name="req_title" id="title" style="width: 100%;">
+								<input type="text" name="aplTitle" id="title" style="width: 100%;">
 							</td>
 						</tr>
 					</table>
 				</div>
 			</div>
+			<br>
 
 			<!-- 에디터 -->
-			<div style="margin-bottom: 5%;">
+			<div>
 				<div>
 					<h5>상세 설명</h5>
 				</div>
@@ -68,14 +50,15 @@ th {
 					<textarea name="textAreaContent" id="textAreaContent" style="width: 100%; height: 350px;" required></textarea>
 				</div>
 			</div>
+			<br>
 
 			<!-- 이미지 -->
-			<div style="margin-bottom: 5%;">
+			<div>
 				<div>
 					<h5>이미지</h5>
 				</div>
 				<div>
-					<table class="table">
+					<table>
 						<tr>
 							<th>
 								<span style="color: red">*</span>
@@ -97,9 +80,10 @@ th {
 					</table>
 				</div>
 			</div>
+			<br>
 
 			<!-- 신청/취소 -->
-			<div style="text-align: center; font-size: 1em; margin-bottom: 5%;">
+			<div style="text-align: center;">
 				<button type="button" style="width: 15%;" onclick="history.back()">취소</button>
 				<button type="button" style="width: 15%;" onclick="submitContents(this)">신청</button>
 			</div>
@@ -177,10 +161,5 @@ th {
 				input.value = null;
 			}
 		}
-	}
-
-	function pasteHTML(filepath) {
-		var sHTML = '<img src="../../../se2/upload/' + filepath + '">';
-		oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
 	}
 </script>

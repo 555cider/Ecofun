@@ -4,20 +4,6 @@
 <script type="text/javascript" src="../../../se2/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
 
 <style>
-.table {
-	width: 100%;
-	border-bottom: 0.5px lightgray solid;
-}
-
-th {
-	background: #f7f7f7;
-}
-
-th,td {
-	text-align: center;
-	vertical-align: middle !important;
-}
-
 input {
 	display: inline !important;
 }
@@ -26,24 +12,24 @@ input {
 	border: none;
 }
 
-.date {
-	width: 44%;
-}
-
 .category {
 	margin-left: 10%;
 	margin-right: 10%;
 }
 
 .opt_price {
-	width: 85%;
-	margin-right: 10px;
+	width: 75%;
+	margin-right: 5px;
 }
 </style>
 
 <div class="container">
 	<div>
-		<h5>| 프로젝트 게시</h5>
+		<h4>
+			|
+			<a href="/admin/projectList">프로젝트 관리</a>
+			> 게시
+		</h4>
 		<hr>
 	</div>
 	<br>
@@ -54,7 +40,7 @@ input {
 			<input hidden="hidden" name="proHit" value="0" />
 
 			<!-- 기본 정보 -->
-			<div style="margin-bottom: 5%;">
+			<div>
 				<div>
 					<h5>기본 정보</h5>
 				</div>
@@ -140,9 +126,10 @@ input {
 					</table>
 				</div>
 			</div>
+			<br>
 
 			<!-- 에디터 -->
-			<div style="margin-bottom: 5%;">
+			<div>
 				<div>
 					<h5>상세 설명</h5>
 				</div>
@@ -150,9 +137,10 @@ input {
 					<textarea name="proContent" id="textAreaContent" style="width: 100%; height: 350px;"></textarea>
 				</div>
 			</div>
+			<br>
 
 			<!-- 신청/취소 -->
-			<div style="text-align: center; font-size: 1em; margin-bottom: 5%;">
+			<div style="text-align: center;">
 				<button type="button" style="width: 15%;" onclick="history.back()">취소</button>
 				<button type="button" style="width: 15%;" onclick="submitContents(this)">게시</button>
 			</div>
@@ -214,8 +202,7 @@ input {
 		if (re.rows.length < 5) {
 			var count = (re.rows.length) + 1;
 			$('#item_option_wrap')
-				.append(
-					'<tr><td>' + count + '</td><td><input type="text" class="form-control" name="opName"></td><td><input type="number" class="form-control opt_price" name="price">원</td><td><span><a href="javascript:;" onclick="add_option();">+</a></span><span style="float: right;"><a href="javascript:;" onclick="remove_option();">-</a></span></td></tr> ');
+				.append('<tr><td>' + count + '</td><td><input type="text" class="form-control" name="opName"></td><td><input type="number" class="form-control opt_price" name="price">원</td><td><span><a href="javascript:;" onclick="add_option();">+</a></span><span style="float: right;"><a href="javascript:;" onclick="remove_option();">-</a></span></td></tr> ');
 		} else {
 			alert("옵션은 최대 5개까지 추가 가능합니다.")
 		}
@@ -245,7 +232,8 @@ input {
 		fCreator : "createSEditor2"
 	});
 
-	function pasteHTML(filepath) {
+	function 
+	pasteHTML(filepath) {
 		var sHTML = '<img src= "../../../se2/upload/' + filepath + '">';
 		oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
 	}

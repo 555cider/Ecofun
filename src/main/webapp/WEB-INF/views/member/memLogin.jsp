@@ -47,7 +47,8 @@
 					</li>
 					<li class="login_sub">
 						<label class="payment_agree_contain auto_login">
-							자동로그인 <input type="checkbox" name="payment_agree" required="required">
+							자동로그인
+							<input type="checkbox" name="payment_agree" required="required">
 							<span class="payment_agree_checkmark auto_login_chk"></span>
 						</label>
 						<a class="find_account" href="/member/pwFind">아이디/비밀번호 찾기 &#187;</a>
@@ -57,7 +58,9 @@
 					</li>
 					<li class="login_line"></li>
 					<li>
-						<a onclick="changeView(2)"><button class="pc-join-button hover auto">회원가입</button></a>
+						<a onclick="changeView(2)">
+							<button class="pc-join-button hover auto">회원가입</button>
+						</a>
 					</li>
 
 				</ul>
@@ -72,7 +75,8 @@
 					</li>
 					<li class="login_sub">
 						<label class="payment_agree_contain auto_login">
-							자동로그인 <input type="checkbox" name="payment_agree" required="required">
+							자동로그인
+							<input type="checkbox" name="payment_agree" required="required">
 							<span class="payment_agree_checkmark auto_login_chk"></span>
 						</label>
 						<a class="find_account" href="/member/pwFind">아이디/비밀번호 찾기 &#187;</a>

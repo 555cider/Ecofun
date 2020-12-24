@@ -71,7 +71,7 @@ public class ProjectController {
 	}
 
 	// 프로젝트 목록 - 필터
-	@PostMapping("/list.filter")
+	@PostMapping("/list/filter")
 	public String filtering(Model model, String state, String type, String sort, Pageable pageable) {
 		if (pageable.getSort().toString() == "UNSORTED") {
 			pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by(sort).descending());
@@ -94,25 +94,26 @@ public class ProjectController {
 		model.addAttribute("project", projectService.findByProNo(proNo));
 		model.addAttribute("optionList", optionService.findAllByProNo(proNo));
 		model.addAttribute("like", likeService.countByMemNoAndProNo(proNo, request));
+		request.setAttribute("proState", (String) (projectService.findByProNo(proNo).getProState()));
 		// model.addAttribute("commentList", commentService.getCommentList(proNo));
 		return "index.jsp?contentPage=project/proDetail";
 	}
 
 	// 프로젝트 상세 - 가격 호출
 	@ResponseBody
-	@PostMapping("/detail.price")
+	@PostMapping("/detail/price")
 	public ProjectOptionDto price(Long opNo) {
 		return optionService.findByOpNo(opNo);
 	}
 
 	// 프로젝트 상세 - 좋아한 프로젝트 입력
-	@PostMapping("/detail.like")
+	@PostMapping("/detail/like")
 	public ResponseEntity<ProjectLikeDto> likeInsert(ProjectLikeDto likeDto, HttpServletRequest request) {
 		return new ResponseEntity<ProjectLikeDto>(likeService.save(likeDto, request), HttpStatus.OK);
 	}
 
 	// 프로젝트 상세 - 좋아한 프로젝트 삭제
-	@PostMapping("/detail.unlike")
+	@PostMapping("/detail/unlike")
 	public ResponseEntity<Long> likeDelete(ProjectLikeDto likeDto, HttpServletRequest request) {
 		return new ResponseEntity<Long>(likeService.delete(likeDto, request), HttpStatus.OK);
 	}

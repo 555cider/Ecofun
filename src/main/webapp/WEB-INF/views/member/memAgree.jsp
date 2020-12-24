@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div class="section auto">
 	<div class="product_top">
-		<div class="txt-center">
+		<div class="text-center">
 			<div class="center account_agree_wrap">
 				<form action="join" class="form-horizontal" name="fregisterform" id="fregisterform" accept-charset="utf-8">
 					<input type="hidden" name="register" value="1" />
 					<ul class="account_agree_contain">
-						<li class="login_title txt-center nanum-square" style="margin-top: 0px;">회원가입</li>
-						<li class="txt-left nanum-gothic">회원가입약관</li>
-						<li class="txt-left nanum-gothic">
+						<li class="login_title text-center" style="margin-top: 0px;">회원가입</li>
+						<li class="text-start">회원가입약관</li>
+						<li class="text-start">
 							<textarea class="agreearea" rows="5" readonly="readonly">
 제1조(목적)
 이 약관은 에코펀(전자상거래 사업자)가 운영하는 에코펀 프로젝트(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
@@ -147,18 +147,17 @@
 제24조(재판권 및 준거법)
 ① “몰”과 이용자 간에 발생한 전자상거래 분쟁에 관한 소송은 제소 당시의 이용자의 주소에 의하고, 주소가 없는 경우에는 거소를 관할하는 지방법원의 전속관할로 합니다. 다만, 제소 당시 이용자의 주소 또는 거소가 분명하지 않거나 외국 거주자의 경우에는 민사소송법상의 관할법원에 제기합니다.
 ② “몰”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
-부 칙(시행일) 이 약관은 2020년 11월 15일부터 시행합니다.
-						
+부 칙(시행일) 이 약관은 2020년 11월 15일부터 시행합니다.						
 						</textarea>
 						</li>
-						<li class="txt-left nanum-gothic">
+						<li class="text-start">
 							<label class="payment_agree_contain">
 								회원가입약관의 내용에 동의합니다. <input type="checkbox" name="agree" id="agree" />
 								<span class="payment_agree_checkmark auto_login_chk"></span>
 							</label>
 						</li>
-						<li class="txt-left nanum-gothic">개인정보취급방침안내</li>
-						<li class="txt-left nanum-gothic">
+						<li class="text-start">개인정보취급방침안내</li>
+						<li class="text-start">
 							<textarea class="agreearea" rows="5" readonly="readonly">
 1. 개인정보 수집목적 및 이용목적
 
@@ -209,20 +208,20 @@ o 로그 기록
 ※ 동의를 거부할 수 있으나 거부시 회원 가입이 불가능합니다.						
 						</textarea>
 						</li>
-						<li class="txt-left nanum-gothic">
+						<li class="text-start">
 							<label class="payment_agree_contain">
 								개인정보취급방침안내의 내용에 동의합니다. <input type="checkbox" name="agree2" id="agree2" />
 								<span class="payment_agree_checkmark auto_login_chk"></span>
 							</label>
 						</li>
-						<li class="txt-left nanum-gothic  agreetitle">
+						<li class="text-start agreetitle">
 							<label class="payment_agree_contain">
 								회원가입약관, 개인정보취급방침안내의 내용에 모두 동의합니다. <input type="checkbox" name="agree_all" id="agree_all" />
 								<span class="payment_agree_checkmark auto_login_chk agree_all"></span>
 							</label>
 						</li>
 						<li>
-							<button type="button" id="nextBtn" class="login_button hover nanum-square auto">회원가입</button>
+							<button type="button" id="nextBtn" class="login button hover auto">회원가입</button>
 						</li>
 					</ul>
 				</form>
@@ -231,7 +230,6 @@ o 로그 기록
 	</div>
 </div>
 <script type="text/javascript">
-	//<![CDATA[
 	$(function() {
 		$('#fregisterform').validate({
 			rules : {
@@ -244,10 +242,8 @@ o 로그 기록
 			}
 		});
 	});
-	//]]>
 </script>
 <script type="text/javascript">
-	//<![CDATA[
 	$(function() {
 		$('#agree_all').on('click', function() {
 			if ($("#agree_all").prop("checked")) {
@@ -256,7 +252,6 @@ o 로그 기록
 			}
 		})
 	});
-	//]]>
 </script>
 <script>
 	$(document).ready(function() {

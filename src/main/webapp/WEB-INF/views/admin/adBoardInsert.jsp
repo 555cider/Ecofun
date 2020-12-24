@@ -1,18 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<script type="text/javascript"
-	src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
-<style>
-.table {
-	width: 100%;
-	border-bottom: 0.5px lightgray solid;
-}
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<script type="text/javascript" src="../../../se2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../../se2/photo_uploader/plugin/hp_SE2M_AttachQuickPhoto.js" charset="utf-8"></script>
+
+<style>
 th {
 	width: 20%;
-	background: #f7f7f7;
-	text-align: center;
 	padding: 10px 15px;
 }
 
@@ -25,181 +18,123 @@ td {
 	margin-left: 2%;
 }
 
-.date {
-
-	display: inline;
-	width: 46%;
-}
 </style>
-
-<div class="container">
+<div class="container" id="container">
 	<div>
-		<h6>| 게시판 작성</h6>
-		<hr>
+		<h4>
+			|
+			<a href="/board/list">게시판</a>
+			> 작성
+		</h4>
 	</div>
+	<hr>
 	<br>
-
 	<div>
-		<form action="/adBoardAction" name="" id="frm" enctype="multipart/form-data" method="post">
+		<form action="/admin/boardInsert" id="frm" enctype="multipart/form-data" method="post">
 			<!-- 기본 정보 -->
-			<div style="margin-bottom: 5%;">
+			<div>
 				<div>
-					<h6>기본 정보</h6>
+					<h5>기본 정보</h5>
 				</div>
 				<div>
-					<table class="table" id="first_table">
+					<table>
 						<tr>
-							<th><strong>카테고리</strong></th>
+							<th>
+								<strong>카테고리</strong>
+							</th>
 							<td>
-								<label class="category"><input type="radio" name="bbsType" value="공지사항" id="radio"> 공지사항</label> 
-								<label class="category"><input type="radio" name="bbsType" value="이벤트">이벤트</label>
+								<label class="category">
+									<input type="radio" name="bbsType" value="공지사항" id="radio">
+									공지사항
+								</label>
+								<label class="category">
+									<input type="radio" name="bbsType" value="이벤트">
+									이벤트
+								</label>
 							</td>
 						</tr>
 						<tr>
-							<th><strong>제목</strong></th>
-							<td><input type="text" id="title" name="bbsTitle" class="form-control"></td>
+							<th>
+								<strong>제목</strong>
+							</th>
+							<td>
+								<input type="text" id="title" name="bbsTitle" class="form-control">
+							</td>
 						</tr>
 						<tr id="hidden" style="display: none;">
-							<th><strong>기간</strong></th>
+							<th>
+								<strong>기간</strong>
+							</th>
 							<td>
 								<input type="date" id="Date1" class="date form-control" name="bbsStart" value="" onchange="check_date1();" />
-								<label style="margin-left: 2%; margin-right: 2%;">~</label> 
+								<label style="margin-left: 2%; margin-right: 2%;">~</label>
 								<input type="date" id="Date2" class="date form-control" name="bbsEnd" value="" onchange="check_date2();" />
 							</td>
 						</tr>
 					</table>
 				</div>
 			</div>
-
+			<br> <br>
 
 			<!-- 에디터 -->
-			<div style="margin-bottom: 5%;">
+			<div>
 				<div>
 					<h5>상세 설명</h5>
 				</div>
 				<div>
-					<textarea name="textAreaContent" id="textAreaContent"
-						style="width: 100%; height: 350px;"></textarea>
+					<textarea name="textAreaContent" id="textAreaContent" style="width: 100%; height: 350px;"></textarea>
 				</div>
 			</div>
-
+			<br> <br>
 
 			<!-- 이미지 -->
-			<div style="margin-bottom: 5%;">
+			<div>
 				<div>
 					<h5>이미지</h5>
 				</div>
 				<div>
-					<table class="table">
+					<table>
 						<tr>
-						<th>썸네일(선택)</th>
-							<td><input type="file" name="fileName" id="upload/thumbnails" onchange="Check1(this)" accept="image/*" />
+							<th>썸네일(선택)</th>
+							<td>
+								<input type="file" name="fileName" onchange="checkEx(this)" accept="image/*" />
 							</td>
-						
 						</tr>
 					</table>
 				</div>
 			</div>
-
+			<br> <br>
 
 			<!-- 신청/취소 -->
-			<div style="text-align: center; font-size: 1em; margin-bottom: 5%;">
-				<input type="button" value="취소" style="width: 15%;" /> <input
-					type="button" value="신청" onclick="save(this)" style="width: 15%;" />
+			<div class="text-center">
+				<button type="button" style="width: 15%;" onclick="history.back()">취소</button>
+				<button type="button" style="width: 15%;" onclick="submitContents(this)">게시</button>
 			</div>
 		</form>
 	</div>
 </div>
 
-<script type="text/javascript" src="../../../se2/js/HuskyEZCreator.js"
-	charset="utf-8"></script>
 <script type="text/javascript">
-	var oEditors = [];
-	nhn.husky.EZCreator.createInIFrame({
-		oAppRef : oEditors,
-		elPlaceHolder : "textAreaContent",
-		sSkinURI : "../../../se2/SmartEditor2Skin.html",
-		htParams : {
-			bUseToolbar : true,
-			bUseVerticalResizer : true,
-			bUseModeChanger : true
-		},
-		fCreator : "createSEditor2"
-	});
-
-	//에디터 이미지저장 
-	function pasteHTML(filepath) {
-		var sHTML = '<img src="../../../se2/upload/' + filepath + '">';
-		oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
-	}
-
-
-	function Check1(input) { //이미지 파일 확장자 검사
-		var file = input.value;
-		file = file.slice(file.indexOf(".") + 1).toLowerCase();
-		if (!(file == "jpg" || file == "jpeg" || file == "png" || file == "svg" || file == "vnb")) {
-			alert("이미지 파일만 선택해주세요.");
-			input.value = null;
-		}
-	}
-
-</script>
-
-<script type="text/javascript">
-	//저장버튼 클릭시 form 전송
-	function save(elClickedObj) {
-		
-		oEditors.getById["textAreaContent"].exec("UPDATE_CONTENTS_FIELD", []);
-		var content = document.getElementById("textAreaContent").value;
-		var radio = $('input:radio[name=bbsType]').is(':checked'); //Boolean
-		var radio_val = $('input:radio[name=bbsType]').value;
-		var title = document.getElementById('title').value;
-		
-		if (!radio) {//라디오를 선택하지 않았을 경우
-			alert("카테고리를 선택하세요.");
-			$("#radio").focus();
-			//이벤트일경우 기간설정 검사는 안만들어줌.
-		}else if (title == "") {
-			alert("프로젝트 제목을 작성하세요.");
-			$("#title").focus();
-		} else if (content == "" || content == null || content == '&nbsp;'
-				|| content == '<br>' || content == '<br />'
-				|| content == '<p>&nbsp;</p>') {
-			alert("프로젝트 상세내용을 입력하세요.");
-			oEditors.getById["textAreaContent"].exec("FOCUS"); //포커싱 return;
-		} else {
-			$("#frm").submit(); //폼id로 전송
-			alert("신청완료 되었습니다.");
-		}
-	}
-</script>
-
-<script type="text/javascript">
-	// 카테고리에 따라 기간row 생기기.
-	$(document).ready(function() {
+	// 카테고리에 따라 기간 row 생성
+	window.onload = function() {
 		$("input:radio[name=bbsType]").click(function() {
 			var check = $(this).val();
 			status = $("#hidden").css("display");
 			if (check == "공지사항") {
-				// alert("notice="+status);
 				if (status == "table-row") {
 					$("#hidden").css("display", "none");
 				}
 			} else if (check == "이벤트") {
-				// alert("event"+status);
 				if (status == "none") {
 					$("#hidden").css("display", "table-row");
 				}
 			}
 		})
-	});
-
-	// <!-- 날짜 설정 -->
-	document.getElementById('Date1').value = new Date().toISOString().substring(0, 10);
-	document.getElementById('Date2').value = new Date().toISOString().substring(0, 10);
-	// ISO Standard() 형식으로 변환(YYYY-MM-dd HH:mm:ss) .substring(0, 10) 0부터 10까지 표시
+	}
 </script>
 
+
+<!-- 기간 -->
 <script type="text/javascript">
 	function check_date1() {
 		var today = new Date().toISOString().substring(0, 10);
@@ -218,6 +153,58 @@ td {
 		if (startDate > endDate) {
 			alert("종료기간은 시작기간보다 커야합니다.");
 			document.getElementById('Date2').value = new Date().toISOString().substring(0, 10);
+		}
+	}
+</script>
+
+<!-- 에디터 -->
+<script type="text/javascript">
+	var oEditors = [];
+	nhn.husky.EZCreator.createInIFrame({
+		oAppRef : oEditors,
+		elPlaceHolder : "textAreaContent",
+		sSkinURI : "../../../se2/SmartEditor2Skin.html",
+		htParams : {
+			bUseToolbar : true,
+			bUseVerticalResizer : true,
+			bUseModeChanger : true
+		},
+		fCreator : "createSEditor2"
+	});
+
+	function pasteHTML(filepath) {
+		var sHTML = '<img src="../../../se2/upload/' + filepath + '">';
+		oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
+	}
+
+	function checkEx(input) { //이미지 파일 확장자 검사
+		var file = input.value;
+		file = file.slice(file.indexOf(".") + 1).toLowerCase();
+		if (!(file == "jpg" || file == "jpeg" || file == "png" || file == "svg" || file == "vnb")) {
+			alert("이미지 파일만 선택해주세요.");
+			input.value = null;
+		}
+	}
+
+	function submitContents(elClickedObj) {
+		oEditors.getById["textAreaContent"].exec("UPDATE_CONTENTS_FIELD", []);
+		var radio = $('input:radio[name=bbsType]').is(':checked');
+		var radio_val = $('input:radio[name=bbsType]').val();
+		var title = $('#title').val();
+		var content = $('#textAreaContent').val();
+
+		if (!radio) {
+			alert("카테고리를 선택하세요.");
+			$("#radio").focus();
+		} else if (title == "") {
+			alert("기본 정보를 입력하세요.");
+			$("#title").focus();
+		} else if (content == "" || content == null || content == '&nbsp;' || content == '<br>' || content == '<br />' || content == '<p>&nbsp;</p>') {
+			alert("상세 설명을 입력하세요.");
+			oEditors.getById["textAreaContent"].exec("FOCUS");
+		} else {
+			$("#frm").submit();
+			alert("게시글을 등록하였습니다.");
 		}
 	}
 </script>

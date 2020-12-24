@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="org.springframework.ui.Model"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<script type="text/javascript"
-	src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> -->
+
 <style>
-/*  *{
- border: red solid 1px;
-        } */
 table {
 	border-bottom: solid darkgray 1px;
 	border-top: solid darkgray 1px;
@@ -66,11 +61,10 @@ tr {
 </style>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-
-<div class="container" style="margin-top: 5%">
+<div class="container">
 	<!-- title -->
-	<div style="margin-bottom: 5%;">
-		<h2>| 개인정보 수정</h2>
+	<div>
+		<h4>| 개인정보 수정</h4>
 	</div>
 	<hr>
 
@@ -117,10 +111,14 @@ tr {
 						<label>
 							<button type="button" class="button_postnumber" onclick="sample4_execDaumPostcode();" style="padding-left: 9px; left: 0px;">주소 검색</button>
 						</label>
-						<br> <input type="text" name="address1" id="address1" class="form-control input" value="${address.address1}" style="margin-top: 20px;">
-						<br> <input type="text" name="address2" id="address2" class="form-control input" value="${address.address2}"> <br> <input
-							type="text" name="address3" id="address3" class="form-control input" value="${address.address3}"
-						> <br> <input type="text" name="address4" id="address4" class="form-control input" readonly="readonly" value="${address.address4}">
+						<br>
+						<input type="text" name="address1" id="address1" class="form-control input" value="${address.address1}" style="margin-top: 20px;">
+						<br>
+						<input type="text" name="address2" id="address2" class="form-control input" value="${address.address2}">
+						<br>
+						<input type="text" name="address3" id="address3" class="form-control input" value="${address.address3}">
+						<br>
+						<input type="text" name="address4" id="address4" class="form-control input" readonly="readonly" value="${address.address4}">
 						<input type="hidden" name="mem_address4">
 					</td>
 				</tr>
@@ -138,12 +136,11 @@ tr {
 							<option value="신한은행">신한은행</option>
 							<option value="농협은행">농협은행</option>
 							<option value="카카오뱅크">카카오뱅크</option>
-						</select> <br> <input type="text" id="accountName" name="accountName" class="form-control input" value="${account.accountName}"> <br> <input
-							type="text" id="accountNumber" name="accountNumber" class="form-control input" value="${account.accountNumber}"
-						>
+						</select> <br>
+						<input type="text" id="accountName" name="accountName" class="form-control input" value="${account.accountName}">
+						<br>
+						<input type="text" id="accountNumber" name="accountNumber" class="form-control input" value="${account.accountNumber}">
 				</tr>
-
-
 			</table>
 
 			<!-- table end -->
@@ -155,16 +152,12 @@ tr {
 				<hr>
 			</div>
 
-
-
 			<div class="upButtonWrap" role="group" aria-label="..." style="margin: 0 auto;">
 
 				<a href="/main"><input type="button" class="uploadButton" value="취소하기"></a> <a href="/main"><input type="button" class="uploadButton"
-					onclick="update(this)" value="저장하기"
-				></a>
-
+						onclick="update(this)" value="저장하기"
+					></a>
 			</div>
-
 		</form>
 	</div>
 </div>
@@ -236,8 +229,8 @@ tr {
 				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
 					addr = data.roadAddress;
 				} /* else { // 사용자가 지번 주소를 선택했을 경우(J)
-				               addr = data.jibunAddress;
-				           } */
+																               addr = data.jibunAddress;
+																           } */
 
 				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
 				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.

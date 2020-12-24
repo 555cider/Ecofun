@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div>
-		<h6>| 문의하기</h6>
+		<h4>| 문의하기</h4>
 	</div>
 	<hr>
 	<br>

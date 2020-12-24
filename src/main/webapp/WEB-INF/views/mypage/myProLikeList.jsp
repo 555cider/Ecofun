@@ -4,7 +4,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script>
 	var proState = '<%=request.getParameter("proState") == null ? "" : request.getParameter("proState")%>';
-	var proType = '<%=request.getParameter("proType") == null ? "" : request.getParameter("proType")%>';
+	var proType = '<%=request.getParameter("proType") == null ? "" : request.getParameter("proType")%>
+	';
 	var strAppend = '';
 
 	if (proState != '') {
@@ -103,24 +104,21 @@
 <div class="container">
 	<!-- Content-Header (좋아한 프로젝트) -->
 	<div class="row">
-		<div>
-			<h6>| 좋아한 프로젝트</h6>
-		</div>
-		<div class="ml-auto" style="align-self: flex-end;">
-			<span>총 ${likeListCount}건</span>
-		</div>
+		<h4>| 좋아한 프로젝트</h4>
 	</div>
 	<hr>
 
 	<div class="d-flex">
 		<!-- Filter -->
-		<div>
+		<div class="col">
 			<div class="btn-group">
 				<button class="btn dropdown-toggle pro-state" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">상태(전체)</button>
 				<div class="dropdown-menu pro-state" style="min-width: auto;">
 					<a class="dropdown-item active" href="#">전체</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">진행</a> <a class="dropdown-item" href="#">종료</a> <a class="dropdown-item" href="#">예정</a>
+					<a class="dropdown-item" href="#">진행</a>
+					<a class="dropdown-item" href="#">종료</a>
+					<a class="dropdown-item" href="#">예정</a>
 				</div>
 			</div>
 			<div class="btn-group">
@@ -128,9 +126,13 @@
 				<div class="dropdown-menu pro-type" style="min-width: auto;">
 					<a class="dropdown-item active" href="#">전체</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">기부</a> <a class="dropdown-item" href="#">펀딩</a>
+					<a class="dropdown-item" href="#">기부</a>
+					<a class="dropdown-item" href="#">펀딩</a>
 				</div>
 			</div>
+		</div>
+		<div class="col text-end">
+			<span>총 ${likeListCount}건</span>
 		</div>
 	</div>
 
@@ -138,11 +140,13 @@
 	<ul class="row">
 		<c:forEach items="${likeList.content}" var="pList">
 			<li class="col-sm-6 col-lg-4 project-item">
-				<a href="/projectDetail?proNo=${pList.projectDto.proNo}"> <c:set var="urlSize" value="${fn:length(pList.projectDto.imgDto.imgUrl)}" /> <c:set
-						var="urlSub" value="${fn:substring(pList.projectDto.imgDto.imgUrl, 1, urlSize)}"
-					/> <c:set var="roundBefore" value="${pList.projectDto.proNow / pList.projectDto.proTarget * 100}" /> <c:set var="roundAfter"
-						value="${roundBefore+((roundBefore%1>0.5)?(1-(roundBefore%1))%1:-(roundBefore%1))}"
-					/> <img src="${urlSub}" alt="썸네일" style="width: 100%;"> <c:choose>
+				<a href="/projectDetail?proNo=${pList.projectDto.proNo}">
+					<c:set var="urlSize" value="${fn:length(pList.projectDto.imgDto.imgUrl)}" />
+					<c:set var="urlSub" value="${fn:substring(pList.projectDto.imgDto.imgUrl, 1, urlSize)}" />
+					<c:set var="roundBefore" value="${pList.projectDto.proNow / pList.projectDto.proTarget * 100}" />
+					<c:set var="roundAfter" value="${roundBefore+((roundBefore%1>0.5)?(1-(roundBefore%1))%1:-(roundBefore%1))}" />
+					<img src="${urlSub}" alt="썸네일" style="width: 100%;">
+					<c:choose>
 						<c:when test="${roundAfter >= 100}">
 							<c:set var="roundAfter2" scope="session" value="100" />
 						</c:when>
@@ -152,11 +156,11 @@
 					</c:choose>
 					<div class="progress-bar" role="progressbar" style="width: ${roundAfter2}%;" aria-valuenow="${roundAfter2}" aria-valuemin="0" aria-valuemax="100">${roundAfter2}%</div>
 					${pList.projectDto.proTitle}<br> ${pList.projectDto.proStart} ~ ${pList.projectDto.proEnd}<br>
-				</a> <input type="button" class="deleteLike" data-pro-no="${pList.projectDto.proNo}" value="해제하기">
+				</a>
+				<input type="button" class="deleteLike" data-pro-no="${pList.projectDto.proNo}" value="해제하기">
 			</li>
 		</c:forEach>
-	</ul>
-	<br>
+	</ul> <br>
 
 	<div style="text-align: center;">
 		<ul class="pagination justify-center" style="justify-content: center;">
@@ -182,12 +186,16 @@
 				<c:choose>
 					<c:when test="${likeList.number + 1 == i}">
 						<li class="page-item active">
-							<a href="#" class="page-link"><c:out value="${i}" /></a>
+							<a href="#" class="page-link">
+								<c:out value="${i}" />
+							</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item">
-							<a href="?page=${i - 1}" class="page-link"><c:out value="${i}" /></a>
+							<a href="?page=${i - 1}" class="page-link">
+								<c:out value="${i}" />
+							</a>
 						</li>
 					</c:otherwise>
 				</c:choose>

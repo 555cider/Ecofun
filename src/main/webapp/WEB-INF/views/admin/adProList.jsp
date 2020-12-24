@@ -35,7 +35,7 @@
 	<!-- Content-Header (프로젝트) -->
 	<div class="row">
 		<div class="col">
-			<h3>| 프로젝트 관리</h3>
+			<h4>| 프로젝트 관리</h4>
 		</div>
 		<div class="col text-end" style="align-self: flex-end;">
 			<span>총 ${projectCount[0]}건</span>
@@ -128,12 +128,16 @@
 				<c:choose>
 					<c:when test="${projectList.number + 1 == i}">
 						<li class="page-item active">
-							<a href="#" class="page-link"><c:out value="${i}" /></a>
+							<a href="#" class="page-link">
+								<c:out value="${i}" />
+							</a>
 						</li>
 					</c:when>
 					<c:otherwise>
 						<li class="page-item">
-							<a href="?sort=proNo,desc&page=${i - 1}" class="page-link"><c:out value="${i}" /></a>
+							<a href="?sort=proNo,desc&page=${i - 1}" class="page-link">
+								<c:out value="${i}" />
+							</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -149,7 +153,9 @@
 		</ul>
 		<!-- 등록 -->
 		<div style="text-align: right;">
-			<a href="/admin/projectInsert"><button class="btn btn-dark" type="button">등록</button></a>
+			<a href="/admin/projectInsert">
+				<button class="btn btn-dark" type="button">등록</button>
+			</a>
 		</div>
 	</div>
 </div>

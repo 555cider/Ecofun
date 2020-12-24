@@ -1,20 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<style>
-.findPw-input {
-	height: 50px;
-	margin: 10px auto;
-	border: lightgray solid 1px;
-}
-</style>
-
 <script>
 	function mail() {
 		$.ajax({
-			url : "pwFind.mail?",
+			url : "pwFind.mail",
 			data : {
-				memName : document.getElementById('memName').value,
-				memId : document.getElementById('memId').value
+				memName : $('#memName').val(),
+				memId : $('#memId').val()
 			},
 			type : "POST",
 			dataType : "text",
@@ -35,10 +27,10 @@
 
 	function check() {
 		$.ajax({
-			url : "pwFind.check?",
+			url : "pwFind.check",
 			data : {
-				check : document.getElementById('check').value,
-				memId : document.getElementById('memId').value
+				check : $('#check').val(),
+				memId : $('#memId').val()
 			},
 			type : "POST",
 			dataType : "text",
@@ -58,7 +50,7 @@
 
 <div class="container" style="margin-top: 30px;">
 	<div>
-		<h6>비밀번호 찾기</h6>
+		<h4>비밀번호 찾기</h4>
 		<hr>
 	</div>
 	<br>

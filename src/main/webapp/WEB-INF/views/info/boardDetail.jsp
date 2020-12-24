@@ -3,11 +3,11 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col">
-			<h3>
-				| <a href="">게시판</a> > ${bbsNo.bbsType}
-			</h3>
-		</div>
+		<h4>
+			|
+			<a href="">게시판</a>
+			> ${bbsNo.bbsType}
+		</h4>
 	</div>
 	<hr>
 
@@ -41,7 +41,9 @@
             <button>이전</button>
         </div> -->
 		<div class="col">
-			<a href="/boardList"><input type="Button" value="목록"></a>
+			<a href="/boardList">
+				<input type="Button" value="목록">
+			</a>
 		</div>
 		<!-- <div class="col">
             <button>다음</button>

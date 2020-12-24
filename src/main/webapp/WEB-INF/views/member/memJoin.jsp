@@ -5,23 +5,16 @@
 			idCheck(this.form);
 		});
 
-		$(".password_check")
-				.keyup(
-						function() {
-							$(".pw_check_result").remove();
-							if ($("#memPw").val().length > 0
-									&& $("#memPw_re").val().length > 0) {
-								if ($("#memPw").val() == $("#memPw_re").val()) {
-									$(".memPwLabel")
-											.after(
-													'<span class="pw_check_result id_check_sucess">비밀번호 일치</span>');
-								} else {
-									$(".memPwLabel")
-											.after(
-													'<span class="pw_check_result id_check_fail">비밀번호 불일치</span>');
-								}
-							}
-						});
+		$(".password_check").keyup(function() {
+			$(".pw_check_result").remove();
+			if ($("#memPw").val().length > 0 && $("#memPw_re").val().length > 0) {
+				if ($("#memPw").val() == $("#memPw_re").val()) {
+					$(".memPwLabel").after('<span class="pw_check_result id_check_sucess">비밀번호 일치</span>');
+				} else {
+					$(".memPwLabel").after('<span class="pw_check_result id_check_fail">비밀번호 불일치</span>');
+				}
+			}
+		});
 
 		$('#memTel').keyup(function() {
 			this.value = $('#memTel').val().replace(/[^0-9]/g, '');
@@ -63,26 +56,21 @@
 		}
 
 		$(".id_check_result").remove();
-		$
-				.ajax({
-					type : "post",
-					url : "idCheck",
-					data : $(form).serialize(),
-					success : function(data) {
-						if (data == 0) {
-							isIdCheck.flag = 0;
-							isIdCheck.id = form.memId.value;
-							$(".button_id_check")
-									.after(
-											'<br><span class="id_check_result id_check_sucess">사용 가능한 아이디</span>');
-						} else {
-							$(".button_id_check")
-									.after(
-											'<br><span class="id_check_result id_check_fail">중복된 아이디</span>');
-						}
-					},
-					dataType : "text"
-				});
+		$.ajax({
+			type : "post",
+			url : "idCheck",
+			data : $(form).serialize(),
+			success : function(data) {
+				if (data == 0) {
+					isIdCheck.flag = 0;
+					isIdCheck.id = form.memId.value;
+					$(".button_id_check").after('<br><span class="id_check_result id_check_sucess">사용 가능한 아이디</span>');
+				} else {
+					$(".button_id_check").after('<br><span class="id_check_result id_check_fail">중복된 아이디</span>');
+				}
+			},
+			dataType : "text"
+		});
 	}
 </script>
 
@@ -102,7 +90,8 @@
 						<div class="" id="memId_div">
 							<!-- <label class="register-label" for="memId"><span class="red">*</span>아이디</label> -->
 							<div class="register-content-none-border">
-								<label style="width: 77%;"> <input type="text" id="memId" name="memId" class="form-control input" placeholder="아이디*" required>
+								<label style="width: 77%;">
+									<input type="text" id="memId" name="memId" class="form-control input" placeholder="아이디*" required>
 								</label>
 								<button type="button" class="button_id_check">중복체크</button>
 								<!-- <p class="help-block">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요</p> -->
@@ -112,9 +101,8 @@
 						<!-- 비밀번호입력 -->
 						<div class="" id="memPw_div">
 							<div class="register-content-none-border">
-								<label class="memPwLabel" style="width: 77%;"> <input type="password" id="memPw" name="memPw"
-									class="form-control input password_check" maxlength="20" placeholder="비밀번호*"
-								/>
+								<label class="memPwLabel" style="width: 77%;">
+									<input type="password" id="memPw" name="memPw" class="form-control input password_check" maxlength="20" placeholder="비밀번호*" />
 								</label>
 								<!-- <p class="help-block">비밀번호는 6자리 이상이어야 합니다</p> -->
 							</div>
@@ -123,9 +111,8 @@
 						<!-- 비밀번호 확인 -->
 						<div id="memPw_re_div">
 							<div class="register-content-none-border">
-								<label style="width: 77%;"> <input type="password" id="memPw_re" name="memPw_re" class="form-control input password_check"
-									placeholder="비밀번호 확인*"
-								/>
+								<label style="width: 77%;">
+									<input type="password" id="memPw_re" name="memPw_re" class="form-control input password_check" placeholder="비밀번호 확인*" />
 								</label>
 							</div>
 						</div>
@@ -145,22 +132,28 @@
 						</div>
 						<div class="" id="mem_address_div">
 							<div class="register-content-none-border">
-								<label style="width: 77%;"> <input type="text" name="postalCode" id="postalCode" class="form-control input" placeholder="우편번호*"
-									readonly="readonly"
-								/>
-								</label> <label>
+								<label style="width: 77%;">
+									<input type="text" name="postalCode" id="postalCode" class="form-control input" placeholder="우편번호*" readonly="readonly" />
+								</label>
+								<label>
 									<button type="button" class="button_postnumber" onclick="sample4_execDaumPostcode();" style="padding-left: 9px; left: 0px;">주소 검색</button>
-								</label><br> <input type="text" name="address1" id="address1" class="form-control input" placeholder="도로명주소*" style="margin-top: 20px;"><br>
-								<input type="text" name="address2" id="address2" class="form-control input" placeholder="기본주소*"><br> <input type="text"
-									name="address3" id="address3" class="form-control input" placeholder="상세주소*" required
-								><br> <input type="text" name="address4" id="address4" class="form-control input" readonly="readonly" placeholder="참고항목"> <input
-									type="hidden" name="mem_address4"
-								>
+								</label>
+								<br>
+								<input type="text" name="address1" id="address1" class="form-control input" placeholder="도로명주소*" style="margin-top: 20px;">
+								<br>
+								<input type="text" name="address2" id="address2" class="form-control input" placeholder="기본주소*">
+								<br>
+								<input type="text" name="address3" id="address3" class="form-control input" placeholder="상세주소*" required>
+								<br>
+								<input type="text" name="address4" id="address4" class="form-control input" readonly="readonly" placeholder="참고항목">
+								<input type="hidden" name="mem_address4">
 							</div>
 						</div>
 
 						<div id="bankName_div">
-							<label class="register-label" for="bankName"> <span class="red">*</span>계좌
+							<label class="register-label" for="bankName">
+								<span class="red">*</span>
+								계좌
 							</label>
 							<div class="register-content-none-border">
 								<select name="bankName" class="form-control input" required>
@@ -170,7 +163,9 @@
 									<option value="신한은행">신한은행</option>
 									<option value="농협은행">농협은행</option>
 									<option value="카카오뱅크">카카오뱅크</option>
-								</select><br> <input type="text" id="accountName" name="accountName" class="form-control input" maxlength="10" placeholder="계좌주입력*" required><br>
+								</select><br>
+								<input type="text" id="accountName" name="accountName" class="form-control input" maxlength="10" placeholder="계좌주입력*" required>
+								<br>
 								<input type="text" id="accountNumber" name="accountNumber" class="form-control input" maxlength="14" placeholder="계좌번호 입력*" required>
 							</div>
 						</div>
@@ -201,8 +196,7 @@
 				}
 				// 건물명이 있고, 공동주택일 경우 추가한다.
 				if (data.buildingName !== '' && data.apartment === 'Y') {
-					extraRoadAddr += (extraRoadAddr !== '' ? ', '
-							+ data.buildingName : data.buildingName);
+					extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
 				}
 				// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
 				if (extraRoadAddr !== '') {
@@ -225,14 +219,12 @@
 				// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
 				if (data.autoRoadAddress) {
 					var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-					guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr
-							+ ')';
+					guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
 					guideTextBox.style.display = 'block';
 
 				} else if (data.autoJibunAddress) {
 					var expJibunAddr = data.autoJibunAddress;
-					guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr
-							+ ')';
+					guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
 					guideTextBox.style.display = 'block';
 				} else {
 					guideTextBox.innerHTML = '';

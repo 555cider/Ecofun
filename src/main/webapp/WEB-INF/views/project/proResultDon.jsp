@@ -3,13 +3,6 @@
 <%@ page import="com.study.springboot.dto.MemberDto"%>
 
 <style>
-.sub-wrap {
-	border-top: 1px darkgray solid;
-	border-bottom: 1px darkgray solid;
-	margin-bottom: 5%;
-	width: 100%;
-}
-
 th,td {
 	vertical-align: middle !Important;
 	padding: 5px;
@@ -37,7 +30,7 @@ alert("잘못된 경로로 접근하셨습니다."); window.location = '/main';
 <div class="container">
 	<br>
 	<div>
-		<h6>주문 및 결제</h6>
+		<h4>주문 및 결제</h4>
 	</div>
 	<hr>
 
@@ -102,11 +95,15 @@ alert("잘못된 경로로 접근하셨습니다."); window.location = '/main';
 				</tr>
 				<tr>
 					<th>결제계좌</th>
-					<td><label class="payLabel">${order.bankName} / ${order.accountNumber}</label></td>
+					<td>
+						<label class="payLabel">${order.bankName} / ${order.accountNumber}</label>
+					</td>
 				</tr>
 				<tr>
 					<th>결제일시</th>
-					<td><label class="payLabel">${order.orderDate}</label></td>
+					<td>
+						<label class="payLabel">${order.orderDate}</label>
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -114,6 +111,6 @@ alert("잘못된 경로로 접근하셨습니다."); window.location = '/main';
 
 	<!-- 하단 확인 버튼 -->
 	<div class="upButtonWrap" role="group" aria-label="..." style="text-align: center;">
-		<button type="button" onclick="changeView(0)">확인</button>
+		<button type="button" onclick="location.href='/main'">확인</button>
 	</div>
 </div>

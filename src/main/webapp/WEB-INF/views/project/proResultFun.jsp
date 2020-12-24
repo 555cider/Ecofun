@@ -70,17 +70,26 @@ alert("잘못된 경로로 접근하셨습니다."); window.location = '/main';
 			<div class="responsive col-lg-9" style="text-align: left;">
 				<table>
 					<tr>
-						<td><h3 style="margin: inherit;">${project.proTitle}</h3></td>
+						<td>
+							<h3 style="margin: inherit;">${project.proTitle}</h3>
+						</td>
 					</tr>
 					<tr>
-						<td><h4>
-								옵션: <strong>${option.opName}</strong> <span style="float: right;">${option.price}원</span> <span style="float: right;">${order.count}개</span>
-							</h4></td>
+						<td>
+							<h4>
+								옵션: <strong>${option.opName}</strong>
+								<span style="float: right;">${option.price}원</span>
+								<span style="float: right;">${order.count}개</span>
+							</h4>
+						</td>
 					</tr>
 					<tr>
-						<td><h4>
-								총액 <span style="float: right; vertical-align: middle;">${order.totalPrice}원</span>
-							</h4></td>
+						<td>
+							<h4>
+								총액
+								<span style="float: right; vertical-align: middle;">${order.totalPrice}원</span>
+							</h4>
+						</td>
 					</tr>
 				</table>
 			</div>
@@ -140,11 +149,15 @@ alert("잘못된 경로로 접근하셨습니다."); window.location = '/main';
 					</tr>
 					<tr>
 						<th>결제방법</th>
-						<td><label class="payLabel">{ 신용카드/페이 }</label></td>
+						<td>
+							<label class="payLabel">{ 신용카드/페이 }</label>
+						</td>
 					</tr>
 					<tr>
 						<th>결제일시</th>
-						<td><label class="payLabel">${order.orderDate}</label></td>
+						<td>
+							<label class="payLabel">${order.orderDate}</label>
+						</td>
 					</tr>
 				</table>
 			</div>

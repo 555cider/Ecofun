@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <div class="container">
-	<div class="section section_footer fp-auto-height">
+	<div class="section">
 		<footer class="kbfooter auto white">
 			<ul class="pc-footer">
 				<li class="pc-footer-contain2">
@@ -38,7 +39,7 @@
 					</label>
 				</li>
 				<li class="footer-contain2">
-					<p class="footer-txt txt-left" style="color: gray;">
+					<p class="footer-text text-start" style="color: gray;">
 						사업자 등록번호 안내: [123-45-12345] 통신판매업 신고<br>Contact for more information. <br>2020 Ecofun All rights reserved.
 					</p>
 				</li>

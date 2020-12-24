@@ -53,8 +53,8 @@ public class MypageController {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 참여한 프로젝트 목록
-	@GetMapping({"/projectList", "/projectList/{proType}"})
-	public String myProList(@PathVariable(name = "proType", required = false) String proType, HttpServletRequest request, Model model, Pageable pageable) {
+	@GetMapping("/projectList")
+	public String myProList(String proType, HttpServletRequest request, Model model, Pageable pageable) {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 

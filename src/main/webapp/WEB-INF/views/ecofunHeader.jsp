@@ -6,26 +6,6 @@ String memName = (String) session.getAttribute("memName");
 %>
 <script src="https://kit.fontawesome.com/739d6ca544.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-/* 페이지네이션 스타일 */
-.pagination {
-	display: -ms-flexbox;
-	display: flex;
-	padding-left: 0;
-	list-style: none;
-	border-radius: 0.25rem;
-}
-
-.sub-wrap {
-	border-top: 1px darkgray solid;
-	border-bottom: 1px darkgray solid;
-	margin-top: 5%;
-	margin-bottom: 5%;
-	width: 100%;
-}
-
-/* 로그인폼 회원가입 버튼설정 */
-</style>
 
 <script>
 	$(function() {
@@ -61,12 +41,16 @@ String memName = (String) session.getAttribute("memName");
 
 		<!-- 로고 (모바일) -->
 		<div class="navbar-brand mobile-menu text-center" style="width: 58%; left: 21%; position: absolute; font-size: xx-large; margin-top: 5px;">
-			<a href="/main"><b class="RymanEco">Ecofun Project</b></a>
+			<a href="/main">
+				<b class="RymanEco">Ecofun Project</b>
+			</a>
 		</div>
 
 		<!-- 로고 (PC) -->
 		<div class="navbar-brand pc-menu text-center" style="width: 30%; left: 35%; position: absolute; font-size: xx-large;">
-			<a href="/main"><b class="RymanEco">Ecofun Project</b></a>
+			<a href="/main">
+				<b class="RymanEco">Ecofun Project</b>
+			</a>
 		</div>
 
 		<!-- 우측 메뉴 버튼 -->
@@ -192,33 +176,51 @@ String memName = (String) session.getAttribute("memName");
 
 				<!-- left_프로젝트 -->
 				<div>
-					<a data-toggle="collapse" href="#project" role="button" aria-expanded="false" aria-controls="project"><label style="font-size: large;">프로젝트</label></a>
+					<a data-toggle="collapse" href="#project" role="button" aria-expanded="false" aria-controls="project">
+						<label style="font-size: large;">프로젝트</label>
+					</a>
 					<ul class="collapse" id="project">
-						<a class="dropdown-item" href="/project/list?type=기부"><li>기부</li></a>
-						<a class="dropdown-item" href="/project/list?type=펀딩"><li>펀딩</li></a>
+						<li>
+							<a class="dropdown-item" href="/project/list?type=기부">기부</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="/project/list?type=펀딩">펀딩</a>
+						</li>
 					</ul>
 				</div>
 				<br> <br>
 
 				<!-- left_게시판 -->
 				<div>
-					<a data-toggle="collapse" href="#boardList" role="button" aria-expanded="false" aria-controls="boardList"><label style="font-size: large;">게시판</label>
+					<a data-toggle="collapse" href="#boardList" role="button" aria-expanded="false" aria-controls="boardList">
+						<label style="font-size: large;">게시판</label>
 					</a>
 					<ul class="collapse" id="boardList">
-						<a class="dropdown-item" href="/board/list"><li>공지사항</li></a>
-						<a class="dropdown-item" href="/board/list"><li>이벤트</li></a>
+						<li>
+							<a class="dropdown-item" href="/board/list">공지사항</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="/board/list">이벤트</a>
+						</li>
 					</ul>
 				</div>
 				<br> <br>
 
 				<!-- left_소개 -->
 				<div>
-					<a data-toggle="collapse" href="#about" role="button" aria-expanded="false" aria-controls="about"> <label style="font-size: large;">소개</label>
+					<a data-toggle="collapse" href="#about" role="button" aria-expanded="false" aria-controls="about">
+						<label style="font-size: large;">소개</label>
 					</a>
 					<ul class="collapse" id="about">
-						<a class="dropdown-item" href="/about/company"><li>회사소개</li></a>
-						<a class="dropdown-item" href="/about/cooperation"><li>제휴단체</li></a>
-						<a class="dropdown-item" href="/about/map"><li>오시는길</li></a>
+						<li>
+							<a class="dropdown-item" href="/about/company">회사소개</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="/about/cooperation">제휴단체</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="/about/map">오시는길</a>
+						</li>
 					</ul>
 				</div>
 			</div>

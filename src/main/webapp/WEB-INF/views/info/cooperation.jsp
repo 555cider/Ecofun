@@ -5,29 +5,24 @@
 	margin: 0 auto;
 	height: 350px;
 }
-h5 {
-	font-size: 1.32875rem;
-	font-weight: 700;
-	line-height: 1.2;
-}
-.carousel-item div p,h5{
+
+.carousel-item div p,h5 {
 	text-align: right;
 	color: black;
 }
-a:link{
+
+a:link {
 	display: flex;
 }
 </style>
 <div class="container">
-	<br>
-	<br>
 	<div>
 		<h6>| 제휴단체</h6>
-		<hr>
 	</div>
+	<hr>
 
 	<div class="row" style="justify-content: center;">
-		<h5>EcoFun Project와 함께하는 단체들을 소개합니다.</h5>
+		<h5>EcoFun Project와 함께하는 단체들을 소개합니다.(예시)</h5>
 	</div>
 	<br>
 
@@ -62,10 +57,12 @@ a:link{
 			</div>
 		</div>
 		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="false"></span> <span class="sr-only">Previous</span>
-		</a> <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next"> <span class="carousel-control-next-icon"
-			aria-hidden="false" style="background-color:green;"
-		></span> <span class="sr-only">Next</span>
+			<span class="carousel-control-prev-icon" aria-hidden="false"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="false" style="background-color: green;"></span>
+			<span class="sr-only">Next</span>
 		</a>
 	</div>
 </div>

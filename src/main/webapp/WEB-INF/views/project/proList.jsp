@@ -7,7 +7,7 @@
 		var sort = $('#sort').val();
 
 		$.ajax({
-			url : "list.filter",
+			url : "list/filter",
 			data : {
 				state : state,
 				type : type,
@@ -35,7 +35,7 @@
 		<div class="col">
 			<h5>| 프로젝트</h5>
 		</div>
-		<div class="col" style="text-align: right;">
+		<div class="col text-end">
 			<span>진행 ${projectCount[4]}건</span>
 			<span>| 기부 ${projectCount[5]}건</span>
 			<span>| 펀딩 ${projectCount[6]}건</span>

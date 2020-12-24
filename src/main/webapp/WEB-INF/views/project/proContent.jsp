@@ -2,20 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<style>
-.project-item {
-	margin-bottom: 3%;
-}
-
-.project-item-title {
-	width: 100%;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	text-align: center;
-}
-</style>
-
 <!-- Content -->
 <div>
 	<ul class="row" style="padding: 0;">
@@ -65,12 +51,16 @@
 			<c:choose>
 				<c:when test="${projectList.number + 1 == i}">
 					<li class="page-item active">
-						<a href="#" class="page-link"><c:out value="${i}" /></a>
+						<a href="#" class="page-link">
+							<c:out value="${i}" />
+						</a>
 					</li>
 				</c:when>
 				<c:otherwise>
 					<li class="page-item">
-						<a href="?sort=proNo,desc&page=${i - 1}" class="page-link"><c:out value="${i}" /></a>
+						<a href="?sort=proNo,desc&page=${i - 1}" class="page-link">
+							<c:out value="${i}" />
+						</a>
 					</li>
 				</c:otherwise>
 			</c:choose>

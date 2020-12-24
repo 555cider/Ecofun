@@ -7,22 +7,22 @@ mark {
 </style>
 
 <div class="container">
-	<br> <br>
 	<div>
-		<h3>찾아오시는 길</h3>
-		<hr>
+		<h4>찾아오시는 길</h4>
 	</div>
+	<hr>
 	<br>
 
 	<div style="width: 100%; text-align: center;">
 		<div>
-			<a href="https://map.kakao.com/?urlX=524105&urlY=1114521&urlLevel=3&map_type=TYPE_MAP&map_hybrid=false" target="_blank"> <img width="100%"
-				height="100%" src="https://map2.daum.net/map/mapservice?FORMAT=PNG&SCALE=2.5&MX=524105&MY=1114521&S=0&IW=504&IH=310&LANG=0&COORDSTM=WCONGNAMUL"
-				style="border: 1px solid #ccc"
-			>
+			<a href="https://map.kakao.com/?urlX=524105&urlY=1114521&urlLevel=3&map_type=TYPE_MAP&map_hybrid=false" target="_blank">
+				<img width="100%" height="100%"
+					src="https://map2.daum.net/map/mapservice?FORMAT=PNG&SCALE=2.5&MX=524105&MY=1114521&S=0&IW=504&IH=310&LANG=0&COORDSTM=WCONGNAMUL"
+					style="border: 1px solid #ccc"
+				>
 			</a>
 		</div>
-		<p style="margin-top: 20px;">지도를 클릭하시면 카카오맵으로 이동합니다. </p>
+		<p style="margin-top: 20px;">지도를 클릭하시면 카카오맵으로 이동합니다.</p>
 	</div>
 	<br>
 
