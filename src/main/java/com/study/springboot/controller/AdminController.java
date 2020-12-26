@@ -164,7 +164,7 @@ public class AdminController {
 			model.addAttribute("addressList", addressService.findAllByMemNo(memNo));
 		});
 		System.out.println("회원 관리 - 상세");
-		return "admin/memberDetail";
+		return "admin/adMemDetail";
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -21,7 +21,7 @@
 			<div>
 				<h4>| 기본정보</h4>
 			</div>
-			<div class="ml-auto">
+			<div>
 				<button type="button" class="close" aria-label="Close">
 					<span aria-hidden="true" style="font-size: xxx-large;">&times;</span>
 				</button>
