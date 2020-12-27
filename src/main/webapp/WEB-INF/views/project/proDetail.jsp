@@ -201,23 +201,23 @@ function orderCheck() {
 								<%
 									if (proState.equals("종료")) {
 								%>
-								<button type="button" style="width: 100%;">종료</button>
+								<button type="button" style="width: 90%;">종료</button>
 								<%
 									} else if (proState.equals("예정")) {
 								%>
 								<c:choose>
 									<c:when test="${like == 0}">
-										<button id="like" type="button" style="width: 100%;" onclick="saveLike()">즐겨찾기</button>
+										<button id="like" type="button" style="width: 90%;" onclick="saveLike()">즐겨찾기</button>
 									</c:when>
 									<c:otherwise>
-										<button id="like" type="button" style="width: 100%;" onclick="deleteLike()">즐겨찾기 취소</button>
+										<button id="like" type="button" style="width: 90%;" onclick="deleteLike()">즐겨찾기 취소</button>
 									</c:otherwise>
 								</c:choose>
 								<%
 									} else {
 								if (memId == null) {
 								%>
-								<button type="button" style="width: 100%;" onclick="changeView(1)">로그인</button>
+								<button type="button" style="width: 90%;" onclick="changeView(1)">로그인</button>
 								<%
 									} else {
 								%>

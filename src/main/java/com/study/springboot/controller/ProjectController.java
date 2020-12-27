@@ -20,7 +20,7 @@ import com.study.springboot.dto.ProjectLikeDto;
 import com.study.springboot.dto.ProjectOptionDto;
 import com.study.springboot.service.ImgService;
 import com.study.springboot.service.MemberService;
-import com.study.springboot.service.OrderService;
+import com.study.springboot.service.OrdersService;
 import com.study.springboot.service.ProjectCmtService;
 import com.study.springboot.service.ProjectLikeService;
 import com.study.springboot.service.ProjectOptionService;
@@ -37,7 +37,7 @@ public class ProjectController {
 	ProjectOptionService optionService;
 
 	@Autowired
-	OrderService orderService;
+	OrdersService orderService;
 
 	@Autowired
 	MemberService memberService;
@@ -147,11 +147,11 @@ public class ProjectController {
 	public String orderInsert(Long memNo, Long proNo, Long opNo, OrdersDto order, String proType, Model model) {
 		model.addAttribute("member", memberService.findByMemNo(memNo));
 		model.addAttribute("option", optionService.findByOpNo(opNo));
-		model.addAttribute("order", orderService.setOrder(order));
+		model.addAttribute("order", orderService.save(order));
 
 		ProjectDto project = projectService.findByProNo(proNo);
 		project.setProHit(orderService.countByProNo(proNo));
-		project.setProNow(orderService.getTotalPriceByProNo(proNo));
+		project.setProNow(orderService.sumTotalPriceByProNo(proNo));
 		project.setProceed(project.getProNow() * 100 / project.getProTarget());
 		projectService.save(project);
 		model.addAttribute("project", project);

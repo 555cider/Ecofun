@@ -12,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +24,7 @@ import com.study.springboot.service.ApplyService;
 import com.study.springboot.service.AskService;
 import com.study.springboot.service.FilesService;
 import com.study.springboot.service.ImgService;
-import com.study.springboot.service.OrderService;
+import com.study.springboot.service.OrdersService;
 import com.study.springboot.service.ProjectLikeService;
 
 @Controller
@@ -45,7 +44,7 @@ public class MypageController {
 	FilesService fileUploadService;
 
 	@Autowired
-	OrderService orderService;
+	OrdersService orderService;
 
 	@Autowired
 	ProjectLikeService projectLikeService;
@@ -60,11 +59,11 @@ public class MypageController {
 
 		Long memNo = (Long) request.getSession().getAttribute("memNo");
 		if (proType != null) {
-			model.addAttribute("list", orderService.findAllByProType(memNo, proType, pageable, startDate, endDate));
-			model.addAttribute("total", orderService.findAllByProTypeSum(memNo, proType, startDate, endDate));
+			model.addAttribute("list", orderService.findAllByMemNoAndProTypeAndOrderDateBetween(memNo, proType, startDate, endDate, pageable));
+			model.addAttribute("total", orderService.sumTotalPriceByMemNoAndProTypeAndOrderDateBetween(memNo, proType, startDate, endDate));
 		} else {
-			model.addAttribute("list", orderService.findAll(memNo, pageable, startDate, endDate));
-			model.addAttribute("total", orderService.findAllSum(memNo, startDate, endDate));
+			model.addAttribute("list", orderService.findAllByMemNoAndOrderDateBetween(memNo, startDate, endDate, pageable));
+			model.addAttribute("total", orderService.sumTotalPriceByMemNoAndOrderDateBetween(memNo, startDate, endDate));
 		}
 
 		model.addAttribute("proType", proType);

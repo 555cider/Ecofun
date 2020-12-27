@@ -71,7 +71,7 @@ public class InfoController {
 	// 프로젝트 키워드 검색
 	@GetMapping("/keywordSearch/{keyword}")
 	public ResponseEntity<List<ProjectDto>> keywordSearch(@PathVariable(name = "keyword") String keyword, Model model) {
-		return new ResponseEntity<List<ProjectDto>>(projectService.findAllByproTitleLike(keyword), HttpStatus.OK);
+		return new ResponseEntity<List<ProjectDto>>(projectService.findAllByProTitleLike(keyword), HttpStatus.OK);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -42,5 +42,5 @@ public class MemberDto {
 	private LocalDateTime memJoinDate;
 
 	@Transient
-	private Long projectOrderCount; // 관리자 회원목록에서 프로젝트 참여 횟수를 담기 위한 변수
+	private int projectOrderCount; // 관리자 회원목록에서 프로젝트 참여 횟수를 담기 위한 변수
 }

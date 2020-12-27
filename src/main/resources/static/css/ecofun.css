@@ -94,10 +94,11 @@ td,th {
 
 .member-detail {
 	display: none;
-	position: absolute;
-	left: 100px;
-	top: 100px;
+	position: fixed;
 	z-index: 2001;
+	width: 90%;
+	left: 5%;
+	top: 10%;	
 	background-color: white;
 }
 
@@ -176,124 +177,11 @@ body,html {
 	width: 40%;
 }
 
-/*웹폰트설정*/
-.kbfooter {
-	width: 900px;
-}
-
 .pc-footer {
-	clear: both;
-	margin: 0px;
-	height: 130px;
-	padding-top: 20px;
-	box-sizing: border-box;
+	color: darkgray;
 }
 
-.mobile-footer {
-	padding-top: 35px;
-	margin: 0px;
-	width: 100%;
-	height: 130px;
-	display: none;
-	box-sizing: border-box;
-}
-
-footer>ul {
-	width: 100%;
-	box-sizing: border-box;
-	margin-top: 35px;
-}
-
-.footer-contain1 {
-	width: 25%;
-	text-align: left;
-	float: left;
-}
-
-.footer-contain2 {
-	width: 50%;
-	float: left;
-}
-
-.footer-contain3 {
-	width: 25%;
-	box-sizing: border-box;
-	float: left;
-}
-
-.footer-right {
-	box-sizing: border-box;
-	float: right;
-}
-
-.footer-sns {
-	width: 24px;
-	float: left;
-	margin-left: 25px;
-	margin-top: 15px;
-}
-
-.footer-sns img {
-	width: 100%;
-}
-
-.footer-logo {
-	font-size: 2em;
-}
-
-.beauty {
-	letter-spacing: .13em;
-}
-
-.footer-text {
-	font-size: 0.750em;
-	line-height: 1.8em;
-	color: #c7c7c7;
-}
-
-#facebook,#insta,#youtube,.footer-logo {
-	transition: 0.5s ease-in-out;
-	-webkit-transition: 0.5s ease-in-out;
-	-moz-transition: 0.5s ease-in-out;
-	-o-transition: 0.5s ease-in-out;
-	-ms-transition: 0.5s ease-in-out;
-}
-
-#facebook:hover,#insta:hover,#youtube:hover,.footer-logo:hover {
-	opacity: 0.3;
-	cursor: pointer;
-}
-
-.pc-footer-contain1 {
-	position: relative;
-	left: -24px;
-	top: -12px;
-}
-
-.pc-footer-contain2 {
-	text-align: left;
-	float: left;
-	width: 100%;
-	height: 40px;
-	margin-top: 0px;
-}
-
-.pc-footer-contain3 {
-	position: relative;
-	top: -40px;
-	font-size: .75rem;
-	line-height: 1.2rem;
-	color: #c7c7c7;
-	float: right;
-}
-
-.pc-footer-contain3 p {
-	display: inline-block;
-	text-align: left;
-	width: 300px;
-	box-sizing: border-box;
-}
-
+/* 푸터 2 - 정보 */
 p.pc-footer-text {
 	margin-bottom: 0px;
 	margin-left: 20px;
@@ -309,6 +197,50 @@ p.pc-footer-text:first-child {
 .pc-footer-logo {
 	font-size: 1.8rem;
 }
+
+.mobile-footer {
+	padding-top: 35px;
+	margin: 0px;
+	width: 100%;
+	height: 130px;
+	display: none;
+	box-sizing: border-box;
+	color: gray;
+}
+
+.footer-sns {
+	width: 24px;
+	float: left;
+	margin-left: 25px;
+}
+
+.footer-sns img {
+	width: 100%;
+}
+
+.footer-logo {
+	font-size: 2em;
+}
+
+.footer-text {
+	font-size: 0.750em;
+	line-height: 1.8em;
+	color: #c7c7c7;
+}
+
+#facebook,#instagram,#youtube,.footer-logo {
+	transition: 0.5s ease-in-out;
+	-webkit-transition: 0.5s ease-in-out;
+	-moz-transition: 0.5s ease-in-out;
+	-o-transition: 0.5s ease-in-out;
+	-ms-transition: 0.5s ease-in-out;
+}
+
+#facebook:hover,#instagram:hover,#youtube:hover,.footer-logo:hover {
+	opacity: 0.3;
+	cursor: pointer;
+}
+
 /*TOP MENU*/
 .tomato {
 	background: tomato;

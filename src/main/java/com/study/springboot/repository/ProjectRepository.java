@@ -21,10 +21,10 @@ public interface ProjectRepository extends JpaRepository<ProjectDto, Long> {
 	public Page<ProjectDto> findByProStartAfterAndProType(Date now, String proType, Pageable pageable);
 
 	public ProjectDto findByProNo(Long proNo);
-
+	
 	public List<ProjectDto> findAllByMemNo(Long memNo);
 	public List<ProjectDto> findAllByProTitleLike(String keyword);
-
+	
 	public int countByProState(String proState);
 	public int countByProStateAndProType(String proState, String proType);
 }

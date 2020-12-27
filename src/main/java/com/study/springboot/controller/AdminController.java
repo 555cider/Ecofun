@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.study.springboot.dto.BoardDto;
 import com.study.springboot.dto.ImgDto;
 import com.study.springboot.dto.MemberDto;
+import com.study.springboot.dto.OrdersDto;
 import com.study.springboot.dto.ProjectDto;
 import com.study.springboot.dto.ProjectOptionDto;
 import com.study.springboot.service.AddressService;
@@ -29,7 +31,7 @@ import com.study.springboot.service.AskService;
 import com.study.springboot.service.BoardService;
 import com.study.springboot.service.ImgService;
 import com.study.springboot.service.MemberService;
-import com.study.springboot.service.OrderService;
+import com.study.springboot.service.OrdersService;
 import com.study.springboot.service.ProjectOptionService;
 import com.study.springboot.service.ProjectService;
 
@@ -47,7 +49,7 @@ public class AdminController {
 	ProjectService projectService;
 
 	@Autowired
-	OrderService orderService;
+	OrdersService ordersService;
 
 	@Autowired
 	ProjectOptionService optionService;
@@ -158,10 +160,11 @@ public class AdminController {
 	@GetMapping("/memberDetail/{id}")
 	public String adMemDetail(@PathVariable("id") Long memNo, Model model, Pageable pageable) {
 		Optional<MemberDto> memberOpt = memberService.findById(memNo);
-		memberOpt.ifPresent(data -> {
-			model.addAttribute("data", data);
-			model.addAttribute("orderList", orderService.findAll(memNo, pageable, null, null));
+		memberOpt.ifPresent(memberDto -> {
+			model.addAttribute("memberDto", memberDto);
+			model.addAttribute("orderList", ordersService.findAllByMemNoAndOrderDateBetween(memNo, null, null, pageable));
 			model.addAttribute("addressList", addressService.findAllByMemNo(memNo));
+			model.addAttribute("projectList", ordersService.findAllProjectByOrders(ordersService.findAllByMemNo(memNo)));
 		});
 		System.out.println("회원 관리 - 상세");
 		return "admin/adMemDetail";

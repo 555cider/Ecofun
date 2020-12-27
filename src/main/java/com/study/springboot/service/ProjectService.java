@@ -18,6 +18,14 @@ public class ProjectService {
 	@Autowired
 	private ProjectRepository projectRepository;
 
+	public ProjectDto findByProNo(Long proNo) {
+		return projectRepository.findByProNo(proNo);
+	}
+
+	public List<ProjectDto> findAllByProTitleLike(String keyword) {
+		return projectRepository.findAllByProTitleLike("%" + keyword + "%");
+	}
+
 	// 목록
 	@Transactional
 	public Page<ProjectDto> getProjectList(String state, String type, Pageable pageable) {
@@ -45,15 +53,6 @@ public class ProjectService {
 		}
 	}
 
-	// 상세
-	public ProjectDto findByProNo(Long proNo) {
-		return projectRepository.findByProNo(proNo);
-	}
-
-	public List<ProjectDto> findAllByproTitleLike(String keyword) {
-		return projectRepository.findAllByProTitleLike("%" + keyword + "%");
-	}
-
 	public Page<ProjectDto> getMainList(String state, Pageable pageable) {
 		Date now = Date.valueOf(LocalDate.now());
 		// List<ProjectDto> list = projectRepository.findAll();
@@ -66,26 +65,19 @@ public class ProjectService {
 		}
 	}
 
-	public void stateUpdateScheduler() {
-		LocalDate nowDate = LocalDate.now();
-
-		projectRepository.findAll().forEach(e -> {
-			Date proStart = e.getProStart();
-			Date proEnd = e.getProEnd();
-
-			LocalDate startDate = proStart.toLocalDate();
-			LocalDate endDate = proEnd.toLocalDate();
-
-			if (nowDate.isBefore(startDate)) {
-				e.setProState("예정");
-			} else if (nowDate.isBefore(endDate.plusDays(1))) {
-				e.setProState("진행");
-			} else if (nowDate.isAfter(endDate)) {
-				e.setProState("종료");
-			}
-
-			projectRepository.save(e);
-		});
+	public List<Integer> countProject() {
+		List<Integer> counts = new ArrayList<Integer>();
+		counts.add(Long.valueOf(projectRepository.count()).intValue()); // [0]: 전체, 전체
+		counts.add(projectRepository.countByProState("예정")); // [1]: 예정, 전체
+		counts.add(projectRepository.countByProStateAndProType("예정", "기부")); // [2]: 예정, 기부
+		counts.add(projectRepository.countByProStateAndProType("예정", "펀딩")); // [3]: 예정, 펀딩
+		counts.add(projectRepository.countByProState("진행")); // [4]: 진행, 전체
+		counts.add(projectRepository.countByProStateAndProType("진행", "기부")); // [5]: 진행, 기부
+		counts.add(projectRepository.countByProStateAndProType("진행", "펀딩")); // [6]: 진행, 펀딩
+		counts.add(projectRepository.countByProState("종료")); // [7]: 종료, 전체
+		counts.add(projectRepository.countByProStateAndProType("종료", "기부")); // [8]: 종료, 기부
+		counts.add(projectRepository.countByProStateAndProType("종료", "펀딩")); // [9]: 종료, 펀딩
+		return counts;
 	}
 
 	// 입력
@@ -109,18 +101,25 @@ public class ProjectService {
 		return projectRepository.save(projectDto);
 	}
 
-	public List<Integer> countProject() {
-		List<Integer> counts = new ArrayList<Integer>();
-		counts.add(Long.valueOf(projectRepository.count()).intValue()); // [0]: 전체, 전체
-		counts.add(projectRepository.countByProState("예정")); // [1]: 예정, 전체
-		counts.add(projectRepository.countByProStateAndProType("예정", "기부")); // [2]: 예정, 기부
-		counts.add(projectRepository.countByProStateAndProType("예정", "펀딩")); // [3]: 예정, 펀딩
-		counts.add(projectRepository.countByProState("진행")); // [4]: 진행, 전체
-		counts.add(projectRepository.countByProStateAndProType("진행", "기부")); // [5]: 진행, 기부
-		counts.add(projectRepository.countByProStateAndProType("진행", "펀딩")); // [6]: 진행, 펀딩
-		counts.add(projectRepository.countByProState("종료")); // [7]: 종료, 전체
-		counts.add(projectRepository.countByProStateAndProType("종료", "기부")); // [8]: 종료, 기부
-		counts.add(projectRepository.countByProStateAndProType("종료", "펀딩")); // [9]: 종료, 펀딩
-		return counts;
+	public void stateUpdateScheduler() {
+		LocalDate nowDate = LocalDate.now();
+
+		projectRepository.findAll().forEach(e -> {
+			Date proStart = e.getProStart();
+			Date proEnd = e.getProEnd();
+
+			LocalDate startDate = proStart.toLocalDate();
+			LocalDate endDate = proEnd.toLocalDate();
+
+			if (nowDate.isBefore(startDate)) {
+				e.setProState("예정");
+			} else if (nowDate.isBefore(endDate.plusDays(1))) {
+				e.setProState("진행");
+			} else if (nowDate.isAfter(endDate)) {
+				e.setProState("종료");
+			}
+
+			projectRepository.save(e);
+		});
 	}
 }
