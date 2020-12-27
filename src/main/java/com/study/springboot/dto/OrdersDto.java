@@ -1,5 +1,6 @@
 package com.study.springboot.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -89,4 +90,8 @@ public class OrdersDto {
 
 	@Column(name = "to_tel")
 	private String toTel;
+	
+	public LocalDate getOrderDate() {
+		return this.orderDate.toLocalDate();
+	}
 }
