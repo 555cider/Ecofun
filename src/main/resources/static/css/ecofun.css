@@ -17,12 +17,19 @@ table {
 
 th {
 	background: #dee2e6;
+	font-size: 1.1rem;
 }
 
 td,th {
 	padding: 5px;
 	border-top: 1px solid lightgray;
 	border-bottom: 1px solid lightgray;
+}
+
+@media ( max-width : 991px) {
+	.container {
+		max-width: 95%;
+	}
 }
 
 .hidden {
@@ -35,6 +42,10 @@ td,th {
 
 .border-r-1 {
 	border: red solid 1px;
+}
+
+.mg-auto {
+	margin: auto;
 }
 
 .content-center {
@@ -83,6 +94,7 @@ td,th {
 	margin: 0 auto;
 }
 
+/* 회원 관리 */
 .layer-background {
 	position: absolute;
 	z-index: 2000;
@@ -98,10 +110,33 @@ td,th {
 	z-index: 2001;
 	width: 90%;
 	left: 5%;
-	top: 10%;	
+	top: 10%;
 	background-color: white;
 }
 
+/* Project Order */
+.order-area td input {
+	margin: 5px auto;
+	background: #ececec;
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.address-area {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.zipCode-btn {
+	color: white;
+	background: #222;
+	border-radius: 3px;
+	border: none;
+	margin: 0 auto;
+}
+
+/* Project Order Result */
+.result-area /*  */ 
 .slick-slide:focus {
 	outline: none;
 }
@@ -121,7 +156,6 @@ body,html {
 }
 
 .wrap_container {
-	/* width:1200px; */
 	height: 100%;
 	box-sizing: border-box;
 	padding-top: 70px;
@@ -181,7 +215,6 @@ body,html {
 	color: darkgray;
 }
 
-/* 푸터 2 - 정보 */
 p.pc-footer-text {
 	margin-bottom: 0px;
 	margin-left: 20px;
@@ -1712,154 +1745,6 @@ ul.faq li input[type=checkbox]:checked ~ i:after {
 	user-select: none;
 }
 
-/*주문요약*/
-div.mobile-order {
-	display: none;
-}
-
-.order_wrap {
-	width: 900px;
-	margin: 0 auto;
-}
-
-.order_top {
-	margin: 120px auto 20px auto;
-	padding: 50px 0px;
-	font-size: 1.6em;
-	color: #222;
-	font-weight: bold;
-}
-
-table.order_table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-table.order_table th,table.order_table td {
-	text-align: center;
-	vertical-align: middle;
-	padding: 8px;
-}
-
-table.order_table th {
-	border-bottom: 1px solid #ebebeb;
-	color: #222;
-	font-size: 1.2em;
-	font-weight: bold;
-}
-
-table.order_table td {
-	color: #666;
-	padding: 28px;
-}
-
-table.order_table tr:nth-child(2) {
-	border-bottom: 1px solid #ebebeb;
-}
-
-table.order_table th:nth-child(1),table.order_table th:nth-child(3) {
-	width: 15%;
-}
-
-table.order_table th:nth-child(2) {
-	width: 50%;
-}
-
-table.order_table th:nth-child(4) {
-	width: 20%;
-}
-
-.order_result {
-	width: 100%;
-	text-align: right;
-}
-
-.order_result span {
-	padding: 28px;
-	color: #666;
-}
-
-.order_delivery {
-	display: block;
-}
-
-span.order_result {
-	color: #222;
-	font-size: 1.4em;
-	font-weight: bold;
-}
-
-.order_message {
-	display: block;
-	color: #666;
-	margin-top: 80px;
-	margin-bottom: 60px;
-}
-
-.order-button {
-	display: inline-block;
-	padding: 20px 100px;;
-	margin-bottom: 120px;
-	border-radius: 10px;
-	background: #000000ba;
-	color: white;
-	font-size: 1.2em;
-}
-
-.order_volume_mobile {
-	display: none;
-}
-
-.order_end {
-	margin-top: 70px;
-	margin-bottom: 10px;
-	font-size: 1.2rem;
-	line-height: 1.8rem;
-}
-
-.form_name,.form_phone {
-	font-size: .875rem;
-	margin-left: 8px;
-	border-radius: 3px;
-	color: #222;
-	box-sizing: border-box;
-	border: 1px solid #999;
-	padding: 8px;
-	width: 150px;
-}
-
-.form_phone {
-	width: 150px;
-}
-
-.form_phone {
-	margin-right: 0px;
-}
-
-.text_adress {
-	float: left;
-}
-
-.adress_ul {
-	float: left;
-	position: relative;
-	left: 4px;
-}
-
-.button_postnumber {
-	font-size: .875rem;
-	color: white;
-	background: #222;
-	padding: 9px;
-	position: relative;
-	top: -2px;
-	left: -8px;
-	border-radius: 3px;
-	box-sizing: border-box;
-	border: none;
-	cursor: pointer;
-}
-
 .button_id_check {
 	font-size: .875rem;
 	color: white;
@@ -1873,48 +1758,6 @@ span.order_result {
 	cursor: pointer;
 }
 
-.form_postnumber {
-	background: #ececec;
-}
-
-.form_postnumber,.form_adress1,.form_adress2 {
-	font-size: .875rem;
-	border-radius: 3px;
-	color: #222;
-	box-sizing: border-box;
-	border: 1px solid #999;
-	margin: 0px 8px 8px 8px;
-	padding: 8px;
-	box-sizing: border-box;
-}
-
-.form_postnumber {
-	width: 100px;
-	position: relative;
-}
-
-input.form_adress1,input.form_adress2 {
-	/*width: 226px;*/
-	width: 200px;
-}
-
-.adress_post {
-	position: relative;
-}
-
-.form_memo {
-	max-width: 226px;
-	min-width: 226px;
-	max-height: 300px;
-	min-height: 80px;
-	font-size: 1rem;
-	border-radius: 3px;
-	color: #222;
-	box-sizing: border-box;
-	border: 1px solid #999;
-	margin: 0px 8px 8px 8px;
-	padding: 8px;
-}
 /*결제정보*/
 .payment_wrap {
 	width: 480px;
@@ -2650,7 +2493,6 @@ a {
 	color: #222;
 	width: 60px;
 	height: 20px;
-	font-family: 'Nanum Barun Gothic';
 }
 
 .modify_post {
@@ -2747,108 +2589,6 @@ table.payment_inform tr:last-child {
 table.payment_inform tr:last-child td {
 	font-size: 1.2rem;
 	font-weight: bold;
-}
-/*마켓 제품 리스트*/
-.list_wrap {
-	width: 100%;
-	height: 100%;
-	clear: both;
-	box-sizing: border-box;
-	margin-top: 80px;
-}
-
-.list_wrap h1 {
-	font-size: 2rem;
-	font-weight: bold;
-}
-
-.list_flex {
-	width: 100%;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	align-content: space-between;
-	flex-flow: row wrap;
-	margin-top: 80px
-}
-
-.list_ul {
-	flex: 0 0 auto;
-	width: calc(25% - 20px);
-	text-align: left;
-	margin: 0px 10px 60px 10px;
-}
-
-.list_img {
-	position: relative;
-	border-bottom: 1px solid #999;
-}
-
-.list_img div {
-	position: absolute;
-	z-index: 3;
-	width: 100%;
-	height: 100%;
-	box-sizing: border-box;
-	border: 5px solid #222;
-	border-width: 6px 0px 6px 0px;
-	display: none;
-}
-
-.list_img div button {
-	position: absolute;
-	bottom: 20px;
-	box-sizing: border-box;
-	padding: 8px 18px;
-	background-color: rgba(255, 255, 255, 0.5);
-	border-style: none;
-	border: 1px solid #999;
-	font-size: 1rem;
-	transition: .2s linear;
-}
-
-.list_img div button:hover {
-	background-color: rgba(30, 144, 255, 1);
-	color: white;
-}
-
-.list_img img {
-	z-index: 1;
-	width: 100%;
-}
-
-.list_img:hover div {
-	display: block;
-	cursor: pointer;
-}
-
-.list_title {
-	text-align: left;
-	font-weight: bold;
-	line-height: 1.3rem;
-	margin-top: 20px;
-}
-
-.list_title span {
-	color: #999;
-}
-
-.list_star {
-	margin-top: 10px;
-}
-
-.list_text {
-	line-height: 1.1rem;
-	margin-top: 4px;
-	color: #444;
-}
-
-.list_price {
-	color: #444;
-	margin-top: 8px;
-	line-height: 1.1rem;
 }
 
 button.edit-button {
@@ -3014,11 +2754,6 @@ li.optionContent input {
 }
 
 /*deposit*/
-div.container {
-	width: 1200px;
-	margin: 2% auto;
-}
-
 div.container h3 {
 	font-weight: bold;
 	padding-left: 8px;
@@ -3047,45 +2782,4 @@ div#form-horizontal {
 	width: 1000px;
 	margin: 0px auto;
 	padding-left: 10px;
-}
-
-/* .wrap-div-table 관련 css 시작 */
-.wrap-div-table {
-	background: #f1f1f1;
-	border: 1px solid #666;
-}
-
-.div-table {
-	display: table;
-	width: 100%;
-}
-
-.div-table-row {
-	display: table-row;
-}
-
-.div-table>.div-table-row:first-child>.div-table-cell {
-	border-top: 0px;
-}
-
-.div-table>.div-table-row>.div-table-cell {
-	border-top: 2px solid #dcdcdc;
-}
-
-.div-table-cell {
-	display: table-cell;
-	height: 40px;
-}
-
-.div-table-cell-colspan {
-	max-width: 1px;
-	overflow: visible;
-}
-
-.div-table-head {
-	border-right: 2px solid #dcdcdc;
-	padding-left: 0px;
-	width: 150px;
-	font-size: 1.0rem;
-	font-weight: bold;
 }

@@ -43,7 +43,7 @@ public class MemberService {
 	public Page<MemberDto> findAll(Pageable pageable) {
 		Page<MemberDto> member = memberRepository.findAll(pageable);
 		member.forEach(e -> {
-			int count = orderRepository.countByMemNo(e.getMemNo());
+			Long count = orderRepository.countByMemNo(e.getMemNo());
 			e.setProjectOrderCount(count);
 		});
 		return member;

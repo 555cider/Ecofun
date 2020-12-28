@@ -37,15 +37,18 @@ if (contentPage == null)
 </script>
 </head>
 
-<body style="padding-top: 5%;">
+<body>
 	<header>
 		<jsp:include page="ecofunHeader.jsp" />
 	</header>
+	<br>
 
 	<section>
 		<jsp:include page="<%=contentPage%>" />
 	</section>
+	<br>
 	<hr>
+	<br>
 
 	<footer>
 		<jsp:include page="ecofunFooter.jsp" />

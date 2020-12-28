@@ -15,24 +15,24 @@ public class MemberAccountService {
 	@Autowired
 	private MemberAccountRepository accountRepository;
 
+	public MemberAccountDto findByMemNo(Long memNo) {
+		return accountRepository.findByMemNo(memNo);
+	}
+
+	public Long findAccountNoByMemNo(Long memNo) {
+		List<MemberAccountDto> list = accountRepository.findAllByMemNo(memNo);
+		MemberAccountDto accountDto = list.get(0);
+		return accountDto.getAccountNo();
+	}
+
 	public void save(MemberDto member, MemberAccountDto accountInfo) {
 		accountInfo.setMemNo(member.getMemNo());
-		accountInfo.setAccountDate(member.getMemJoinDate());
+		accountInfo.setAccountDate(LocalDateTime.now());
 		accountRepository.save(accountInfo);
 	}
 
 	public void deleteByMemNo(Long memNo) {
 		accountRepository.deleteByMemNo(memNo);
-	}
-
-	public MemberAccountDto findByMemNo(Long memNo) {
-		return accountRepository.findByMemNo(memNo);
-	}
-
-	public Long findAccountNoByMemNo(Long memNo) { // 어카운트넘버(키값) 있는지 없는지 알아보기 위한 쿼리.
-		List<MemberAccountDto> list = accountRepository.findAllByMemNo(memNo);
-		MemberAccountDto accountDto = list.get(0);
-		return accountDto.getAccountNo();
 	}
 
 	public void update(Long memNo, MemberAccountDto accountDto) {

@@ -209,8 +209,7 @@ input {
 	}
 	function remove_option() {
 		var re = document.getElementById('item_option_wrap');
-		if (re.rows.length < 1)
-			return;
+		if (re.rows.length < 1) return;
 		re.deleteRow(re.rows.length - 1);
 	}
 </script>
@@ -226,16 +225,16 @@ input {
 			bUseToolbar : true,
 			bUseVerticalResizer : true,
 			bUseModeChanger : true,
-			fOnBeforeUnload : function() {
-			}
+			fOnBeforeUnload : function() {}
 		},
 		fCreator : "createSEditor2"
 	});
 
-	function 
-	pasteHTML(filepath) {
+	function pasteHTML(filepath) {
 		var sHTML = '<img src= "../../../se2/upload/' + filepath + '">';
-		oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
+		oEditors.getById["textAreaContent"].exec("PASTE_HTML", [
+			sHTML
+		]);
 	}
 
 	function submitContents(elClickedObj) {
@@ -262,7 +261,6 @@ input {
 		try {
 			elClickedObj.form.submit();
 			alert("프로젝트를 등록하였습니다.");
-		} catch (e) {
-		}
+		} catch (e) {}
 	}
 </script>

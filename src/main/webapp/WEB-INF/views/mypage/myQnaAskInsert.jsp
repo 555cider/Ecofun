@@ -12,22 +12,25 @@
 	</div>
 
 	<div>
-		<form action="/askRequest" method="POST" style="width: 100%;">
+		<form action="/askRequest" method="POST" class="col-12">
 			<!-- 제목 -->
-			<div style="margin-bottom: 5%;">
-				<input class="form-control" type="text" id="title" name="askTitle" placeholder="제목을 입력해주세요!" style="width: 100%; padding: 5px;">
+			<div>
+				<input class="col-12" type="text" id="title" name="askTitle" placeholder="제목을 입력해주세요!" style="padding: 5px;">
 			</div>
+			<br>
 
 			<!-- 에디터 -->
-			<div style="width: 100%; margin-bottom: 5%;">
-				<textarea class="form-control" id="content" name="askContent" placeholder="내용을 입력해주세요!" style="width: 100%; resize: none;" rows="20;"></textarea>
+			<div>
+				<textarea class="col-12" id="content" name="askContent" placeholder="내용을 입력해주세요!" style="resize: none;" rows="20;"></textarea>
 			</div>
+			<br>
 
 			<!-- 등록/취소 -->
-			<div style="text-align: center; font-size: 1em; margin-bottom: 5%;">
+			<div class="text-center">
 				<button type="button" style="width: 15%;" onclick="history.back()">취소</button>
 				<button type="button" style="width: 15%;" onclick="submitContents(this)">문의</button>
 			</div>
+			<br>
 		</form>
 	</div>
 </div>

@@ -90,7 +90,7 @@ public class MypageController {
 		if (pageable1.getSort().toString() == "UNSORTED") {
 			pageable1 = PageRequest.of(pageable1.getPageNumber(), pageable1.getPageSize(), Sort.by("askNo").descending());
 		}
-		model.addAttribute("askList", askService.getAskListByMemId(memNo, pageable1));
+		model.addAttribute("askList", askService.findAllByMemNo(memNo, pageable1));
 		model.addAttribute("askCount", askService.countByMemNo(memNo));
 
 		if (pageable2.getSort().toString() == "UNSORTED") {
@@ -106,7 +106,7 @@ public class MypageController {
 	// 문의하기 - 상세
 	@GetMapping("/askDetail")
 	public String myAskDetail(Long askNo, Model model) {
-		model.addAttribute("ask", askService.getAsk(askNo));
+		model.addAttribute("ask", askService.findByAskNo(askNo));
 		System.out.println("문의하기 상세");
 		return "index.jsp?contentPage=mypage/myQnaAskDetail";
 	}

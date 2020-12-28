@@ -21,10 +21,10 @@
 	<!-- 기본정보 -->
 	<div>
 		<div class="row">
-			<div>
+			<div class="col">
 				<h5>| 기본정보</h5>
 			</div>
-			<div>
+			<div class="col">
 				<button type="button" class="close" aria-label="Close">
 					<span aria-hidden="true" style="font-size: xxx-large;">&times;</span>
 				</button>
@@ -32,7 +32,7 @@
 		</div>
 
 		<div>
-			<table class="table-bordered table-striped" border="1">
+			<table class="table-bordered table-striped">
 				<tr>
 					<th style="width: 15%;">
 						<b>아이디</b>
@@ -108,13 +108,13 @@
 							</tr>
 						</c:when>
 						<c:otherwise>
-							<c:forEach items="${orderList.content}" var="orderDto" varStatus="order">
+							<c:forEach items="${orderList.content}" var="ordersDto" varStatus="orders">
 								<tr>
-									<td>${orderDto.orderDate}</td>
-									<td>${projectList[order.index].proTitle}</td>
-									<td>${orderDto.count}</td>
-									<td>${orderDto.totalPrice}</td>
-									<td>${orderDto.state}</td>
+									<td>${ordersDto.orderDate}</td>
+									<td>${projectList[orders.index].proTitle}</td>
+									<td>${ordersDto.count}</td>
+									<td>${ordersDto.totalPrice}</td>
+									<td>${ordersDto.state}</td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -127,9 +127,10 @@
 	<br>
 
 	<!-- 탈퇴 -->
-	<div style="text-align: center; margin-bottom: 50px;">
+	<div class="text-center">
 		<button type="button" id="withdraw" class="btn btn-secondary">
 			<b>강제 탈퇴</b>
 		</button>
 	</div>
+	<br>
 </div>

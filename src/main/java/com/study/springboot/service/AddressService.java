@@ -15,10 +15,24 @@ public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
 
+	public AddressDto findByMemNo(Long memNo) {
+		return addressRepository.findByMemNo(memNo);
+	}
+
+	public List<AddressDto> findAllByMemNo(Long memNo) {
+		return addressRepository.findAllByMemNo(memNo);
+	}
+
+	public Long findDeliveryNoByMemNo(Long memNo) {
+		List<AddressDto> list = addressRepository.findAllByMemNo(memNo);
+		AddressDto deliveryDto = list.get(0);
+		return deliveryDto.getDeliveryNo();
+	}
+
 	public void save(MemberDto member, AddressDto address) {
 		address.setMemNo(member.getMemNo());
 		address.setAddressMemName(member.getMemName());
-		address.setAddressDate(member.getMemJoinDate());
+		address.setAddressDate(LocalDateTime.now());
 		addressRepository.save(address);
 	}
 
@@ -26,24 +40,8 @@ public class AddressService {
 		addressRepository.deleteByMemNo(memNo);
 	}
 
-	public List<AddressDto> findAllByMemNo(Long memNo) {
-		return addressRepository.findAllByMemNo(memNo);
-	}
-
-	public AddressDto findByMemNo(Long memNo) {
-		return addressRepository.findByMemNo(memNo);
-	}
-
-	public Long findByMemNoD(Long memNo) { // 딜리버리넘버 구하기.
-		List<AddressDto> list = addressRepository.findAllByMemNo(memNo);
-		AddressDto deliveryDto = list.get(0);
-		return deliveryDto.getDeliveryNo();
-	}
-
 	public void update(Long memNo, String memName, AddressDto addressDto) {
-
-		Long deliveryNo = findByMemNoD(memNo);
-
+		Long deliveryNo = findDeliveryNoByMemNo(memNo);
 		if (deliveryNo == null) { // 지금은 필요없는 로직. 키값이 없을 때(회원가입 시 저장안했을때) 새로 만들어주는 로직
 			addressDto.setAddressDate(LocalDateTime.now());
 			addressDto.setMemNo(memNo);
@@ -59,14 +57,8 @@ public class AddressService {
 				address.setAddress3(addressDto.getAddress3());
 				address.setAddress4(addressDto.getAddress4());
 				address.setPostalCode(address.getPostalCode());
-
 				addressRepository.save(address);
 			});
 		}
 	}
-
-	public void setAddress(AddressDto address) {
-		addressRepository.save(address);
-	}
-
 }

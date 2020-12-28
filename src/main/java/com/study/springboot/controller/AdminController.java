@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.jaxb.SpringDataJaxb.OrderDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.study.springboot.dto.BoardDto;
 import com.study.springboot.dto.ImgDto;
 import com.study.springboot.dto.MemberDto;
-import com.study.springboot.dto.OrdersDto;
 import com.study.springboot.dto.ProjectDto;
 import com.study.springboot.dto.ProjectOptionDto;
 import com.study.springboot.service.AddressService;
@@ -66,7 +64,7 @@ public class AdminController {
 	@Autowired
 	ImgService imgService;
 
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 프로젝트 관리 - 목록
 	@GetMapping("/projectList")
@@ -121,7 +119,7 @@ public class AdminController {
 		return "redirect:/main";
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 문의및신청 관리 - 목록
 	@GetMapping("/qnaList")
@@ -129,8 +127,8 @@ public class AdminController {
 		if (pageable1.getSort().toString() == "UNSORTED") {
 			pageable1 = PageRequest.of(pageable1.getPageNumber(), pageable1.getPageSize(), Sort.by("askNo").descending());
 		}
-		model.addAttribute("askList", askService.getAllAskList(pageable1));
-		model.addAttribute("askCount", askService.countAsk());
+		model.addAttribute("askList", askService.findAll(pageable1));
+		model.addAttribute("askCount", askService.count());
 
 		if (pageable2.getSort().toString() == "UNSORTED") {
 			pageable2 = PageRequest.of(pageable2.getPageNumber(), pageable2.getPageSize(), Sort.by("aplNo").descending());
@@ -142,7 +140,7 @@ public class AdminController {
 		return "index.jsp?contentPage=admin/adQnaList";
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 회원 관리 - 목록
 	@GetMapping("/memberList")
@@ -170,7 +168,7 @@ public class AdminController {
 		return "admin/adMemDetail";
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 게시판 관리 - 입력 - 폼 이동
 	@GetMapping("/boardInsert")

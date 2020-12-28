@@ -25,22 +25,22 @@ public class AskService {
 	}
 
 	// 문의 목록 (관리자용)
-	public Page<AskDto> getAllAskList(Pageable page) {
+	public Page<AskDto> findAll(Pageable page) {
 		return askRepository.findAll(page);
 	}
 
 	// 문의 목록 (사용자용)
-	public Page<AskDto> getAskListByMemId(Long memNo, Pageable pageable) {
+	public Page<AskDto> findAllByMemNo(Long memNo, Pageable pageable) {
 		return askRepository.findByMemNo(memNo, pageable);
 	}
 
 	// 문의 상세
-	public AskDto getAsk(Long askNo) {
+	public AskDto findByAskNo(Long askNo) {
 		return askRepository.findByAskNo(askNo);
 	}
 
 	// 문의 카운트 (관리자용)
-	public int countAsk() {
+	public int count() {
 		return Long.valueOf(askRepository.count()).intValue();
 	}
 

@@ -16,7 +16,7 @@ import com.study.springboot.repository.ImgRepository;
 @Service
 public class ImgService {
 
-	private static String SAVE_PATH = "/upload/thumbnails/"; // 디폴트는 C:/upload폴더에 생성됨.
+	private static String SAVE_PATH = "/upload/thumbnails/";
 	private static String PREFIX_URL = "/upload/thumbnails/";
 
 	@Autowired

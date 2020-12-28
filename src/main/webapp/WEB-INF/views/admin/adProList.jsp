@@ -45,9 +45,9 @@
 	</div>
 	<hr>
 
-	<div class="d-flex">
+	<div class="row">
 		<!-- Filter -->
-		<div>
+		<div class="col">
 			<select class="btn btn-light" name="proState" id="state" onchange="filtering()">
 				<option value="전체">상태(전체)</option>
 				<option value="진행">진행</option>
@@ -61,7 +61,7 @@
 		</div>
 
 		<!-- Sort -->
-		<div class="ml-auto" style="align-self: center;">
+		<div class="col text-end">
 			<select class="btn btn-light" id="sort" onchange="filtering()">
 				<option value="proStart">최근등록순</option>
 				<option value="proHit">조회순</option>

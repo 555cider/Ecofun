@@ -30,7 +30,7 @@ String memName = (String) session.getAttribute("memName");
 </script>
 
 
-<div class="navbar fixed-top navbar-light bg-light" style="padding: 10px 10%;">
+<div class="navbar fixed-top navbar-light bg-light" style="padding: 10px 5%;">
 	<div class="container-fluid">
 		<!-- 좌측 메뉴 버튼 -->
 		<div style="padding: 0;">

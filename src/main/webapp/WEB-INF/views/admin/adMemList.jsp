@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <script>
 	// 상세 관련
@@ -104,7 +102,7 @@
 	<div>
 		<input type="hidden" id="headerSortParam" value="${list.sort}">
 		<input type="hidden" id="headerPageParam" value="${list.number}">
-		<table class="table table-striped col-12">
+		<table class="table table-striped table-hover">
 			<tr>
 				<th style="width: 10%;">no</th>
 				<th style="width: 20%;">
@@ -120,14 +118,11 @@
 				<th style="width: 10%;">더보기</th>
 			</tr>
 			<c:forEach items="${list.content}" var="memberDto" varStatus="status">
-				<fmt:parseDate value="${memberDto.memJoinDate}" var="dateValue" pattern="yyyy-MM-dd'T'HH:mm" />
 				<tr>
 					<td>${list.totalElements - status.index - (list.size * list.number)}</td>
 					<td>${memberDto.memId}</td>
 					<td>${memberDto.memName}</td>
-					<td>
-						<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd" />
-					</td>
+					<td>${memberDto.memJoinDate}</td>
 					<td>${memberDto.projectOrderCount}</td>
 					<td>
 						<a href="#" class="open-member-detail" data-mem-no="${memberDto.memNo}">

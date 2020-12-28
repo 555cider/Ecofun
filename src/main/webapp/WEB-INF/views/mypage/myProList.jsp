@@ -63,24 +63,18 @@
 			<tr>
 				<th class="col-6">
 					<h5>총 참여 금액</h5>
-					<label>
-						<fmt:formatNumber value="${sum}" pattern="#,##0" />
-						원
-					</label>
+					<fmt:formatNumber value="${sum}" pattern="#,##0" />
+					원
 				</th>
 				<th class="col-6">
 					<h5>총 참여 횟수</h5>
-					<label>
-						<c:out value="${orderList.totalElements}" />
-						회
-					</label>
+					<c:out value="${orderList.totalElements}" />
+					회
 				</th>
 			</tr>
 
 			<!-- 옵션선택 -->
-
 			<tr>
-
 				<td colspan="2">
 					<form action="/mypage/projectList" method="get" onsubmit="return formCheck(this)">
 						<input type="radio" name="projectType" id="" value="">
@@ -111,12 +105,12 @@
 	<!-- 테이블 영역 -->
 	<div>
 		<c:forEach items="${orderList.content}" var="ordersDto" varStatus="order">
-			<div class="row col-10 content-center" style="padding: 10px;">
+			<div class="row col-12 content-center">
 				<!-- 월 표시 -->
-				<div class="col-2">${ordersDto.orderDate}</div>
-				<div class="col-10" style="display: flex;">
-					<img src="${projectList[order.index].proThumb}" alt="이미지" style="width: 100px; height: 60px; margin: 0 auto;">
-					<div class="col-lg-9" style="margin: 10px auto; display: flex;">
+				<div class="col-2 col-lg-1">${ordersDto.orderDate}</div>
+				<div class="col-10 col-lg-11 d-flex">
+					<img src="${projectList[order.index].proThumb}" alt="이미지" class="content-center" style="width: 100px; height: 60px;">
+					<div class="col-lg-9 d-flex content-center">
 						<div class="col-9">
 							<div>${projectList[order.index].proTitle}</div>
 							<div>${ordersDto.projectMemberName}</div>
@@ -133,22 +127,20 @@
 
 				<!-- 상세(드롭다운) -->
 				<div class="col-12" style="border-bottom: lightgray solid 1px;">
-					<details style="text-align: center;">
-						<summary style="margin-bottom: 15px;">상세</summary>
-						<div class="col-6" style="margin: 0 auto; text-align: left;">
-							<div class="col-10" style="margin: 0 auto; display: flex;">
-								<div class="col-6" style="padding: 0">
-									<div>참여일시</div>
-									<div>프로젝트 마감일</div>
-									<div>결제상태</div>
-									<div>결제일</div>
-								</div>
-								<div class="col-6">
-									<div class="col-2">${ordersDto.orderDate}</div>
-									<div>${projectDto[order.index].proEnd}</div>
-									<div>${orderDto.orderState}</div>
-									<div>${orderDto.orderDate}</div>
-								</div>
+					<details class="text-center">
+						<summary>상세</summary>
+						<div class="col-10 content-center d-flex">
+							<div class="col-6">
+								<div>참여일시</div>
+								<div>프로젝트 마감일</div>
+								<div>결제상태</div>
+								<div>결제일</div>
+							</div>
+							<div class="col-6">
+								<div>${ordersDto.orderDate}</div>
+								<div>${projectDto[order.index].proEnd}</div>
+								<div>${orderDto.orderState}</div>
+								<div>${orderDto.orderDate}</div>
 							</div>
 						</div>
 					</details>
@@ -158,8 +150,8 @@
 	</div>
 
 	<!-- Pagination -->
-	<div style="text-align: center;">
-		<ul class="pagination justify-center" style="justify-content: center;">
+	<div class="text-center">
+		<ul class="pagination justify-center">
 			<c:if test="${!orderList.first}">
 				<li class="page-item">
 					<a href="?" class="page-link">&laquo;</a>
