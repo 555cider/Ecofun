@@ -78,18 +78,18 @@ public class OrdersDto {
 	@Column(name = "order_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private LocalDateTime orderDate;
 
-	// @Transient DB와 매핑시키지 않음
-	@Transient
-	private ProjectDto projectDto; // #26 참여리스트에서 #27 참여 상세 정보를 담기 위한 객체
-
-	@Transient
-	private String projectMemberName; // #26 프로젝트 주최자 이름을 담기 위한 변수
-
 	@Column(name = "to_name")
 	private String toName;
 
 	@Column(name = "to_tel")
 	private String toTel;
+	
+	// @Transient DB와 매핑시키지 않음
+	@Transient
+	private ProjectDto projectDto; // 참여리스트에서 참여 상세 정보를 담기 위한 객체
+
+	@Transient
+	private String projectMemberName; // 프로젝트 주최자 이름을 담기 위한 변수
 	
 	public LocalDate getOrderDate() {
 		return this.orderDate.toLocalDate();

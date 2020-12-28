@@ -1,5 +1,6 @@
 package com.study.springboot.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,5 +43,9 @@ public class MemberDto {
 	private LocalDateTime memJoinDate;
 
 	@Transient
-	private int projectOrderCount; // 관리자 회원목록에서 프로젝트 참여 횟수를 담기 위한 변수
+	private Long projectOrderCount; // 관리자 회원목록에서 프로젝트 참여 횟수를 담기 위한 변수
+	
+	public LocalDate getMemJoinDate() {
+		return this.memJoinDate.toLocalDate();
+	}
 }

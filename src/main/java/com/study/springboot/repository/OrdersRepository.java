@@ -16,31 +16,34 @@ public interface OrdersRepository extends JpaRepository<OrdersDto, Long> {
 	public OrdersDto findByOrderNo(Long orderNo);
 
 	public List<OrdersDto> findAllByMemNo(Long memNo);
-	
+
 	public List<OrdersDto> findAllByProNo(Long proNo);
-	
-	public Page<OrdersDto> findAllByMemNoAndOrderDateBetween(Long memNo, LocalDateTime startDatetime, LocalDateTime endDatetime, Pageable pageable);
 
-	@Query(value = "SELECT " + "o.* " + "FROM " + "orders o, project p " + "WHERE " + "o.mem_no = :memNo " + "AND " + "o.pro_no = p.pro_no " + "AND " + "p.pro_type = :proType " + "AND " + "o.order_date BETWEEN :startDatetime AND :endDatetime", countQuery = "SELECT " // 네이티브
-		+ "COUNT(*) " + "FROM " + "orders o, project p " + "WHERE " + "o.mem_no = :memNo " + "AND " + "o.pro_no = p.pro_no " + "AND " + "p.pro_type = :proType " + "AND " + "o.order_date BETWEEN :startDatetime AND :endDatetime", nativeQuery = true)
-	public Page<OrdersDto> findAllByMemNoAndProTypeAndOrderDateBetween(@Param("memNo") Long memNo, @Param("proType") String proType, @Param("startDatetime") LocalDateTime startDatetime, @Param("endDatetime") LocalDateTime endDatetime, Pageable pageable);
+	public Page<OrdersDto> findAllByMemNoAndOrderDateBetween(Long memNo, LocalDateTime start, LocalDateTime end, Pageable pageable);
 
-	public int countByProNo(Long proNo);
+	@Query(value = "SELECT o.* FROM orders o, project p WHERE o.mem_no = :memNo AND o.pro_no = p.pro_no AND p.pro_type = :proType AND o.order_date BETWEEN :start AND :end", countQuery = "SELECT COUNT(*) FROM orders o, project p WHERE o.mem_no = :memNo AND o.pro_no = p.pro_no AND p.pro_type = :proType AND o.order_date BETWEEN :start AND :end", nativeQuery = true)
+	public Page<OrdersDto> findAllByMemNoAndProTypeAndOrderDateBetween(@Param("memNo") Long memNo, @Param("proType") String proType, @Param("start") LocalDateTime start, @Param("end") LocalDateTime end, Pageable pageable);
 
-	public int countByMemNo(Long memNo);
+	/**/
 
-	@Query(value = "SELECT " + "COUNT(*) " + "FROM " + "orders o, project p " + "WHERE " + "o.mem_no = :memNo " + "AND " + "o.pro_no = p.pro_no " + "AND " + "o.order_date BETWEEN :startDatetime AND :endDatetime", nativeQuery = true)
-	public Long countByMemNoAndOrderDateBetween(@Param("memNo") Long memNo, @Param("startDatetime") LocalDateTime startDatetime, @Param("endDatetime") LocalDateTime endDatetime);
+	public Long countByProNo(Long proNo);
 
-	@Query(value = "SELECT " + "COUNT(*) " + "FROM " + "orders o, project p " + "WHERE " + "o.mem_no = :memNo " + "AND " + "o.pro_no = p.pro_no " + "AND " + "p.pro_type = :proType " + "AND " + "o.order_date BETWEEN :startDatetime AND :endDatetime", nativeQuery = true)
-	public Long countByMemNoAndProTypeAndOrderDateBetween(@Param("memNo") Long memNo, @Param("proType") String proType, @Param("startDatetime") LocalDateTime startDatetime, @Param("endDatetime") LocalDateTime endDatetime);
+	public Long countByMemNo(Long memNo);
 
-	@Query(value = "SELECT " + "SUM(o.total_price) " + "FROM " + "orders o " + "WHERE " + "o.pro_no = :proNo ", nativeQuery = true)
-	public Long sumTotalPrice(@Param("proNo") Long proNo);
+	@Query(value = "SELECT COUNT(*) FROM orders o, project p WHERE o.mem_no = :memNo AND o.pro_no = p.pro_no AND o.order_date BETWEEN :start AND :end", nativeQuery = true)
+	public Long countByMemNoAndOrderDateBetween(@Param("memNo") Long memNo, @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 
-	@Query(value = "SELECT " + "SUM(o.total_price) " + "FROM " + "orders o, project p " + "WHERE " + "o.mem_no = :memNo " + "AND " + "o.pro_no = p.pro_no " + "AND " + "o.order_date BETWEEN :startDatetime AND :endDatetime", nativeQuery = true)
-	public int sumTotalPriceByMemNoAndOrderDateBetween(@Param("memNo") Long memNo, @Param("startDatetime") LocalDateTime startDatetime, @Param("endDatetime") LocalDateTime endDatetime);
+	@Query(value = "SELECT COUNT(*) FROM orders o, project p WHERE o.mem_no = :memNo AND o.pro_no = p.pro_no AND p.pro_type = :proType AND o.order_date BETWEEN :start AND :end", nativeQuery = true)
+	public Long countByMemNoAndProTypeAndOrderDateBetween(@Param("memNo") Long memNo, @Param("proType") String proType, @Param("start") LocalDateTime start, @Param("end") LocalDateTime end);
 
-	@Query(value = "SELECT " + "SUM(o.total_price) " + "FROM " + "orders o, project p " + "WHERE " + "o.mem_no = :memNo " + "AND " + "o.pro_no = p.pro_no " + "AND " + "p.pro_type = :proType " + "AND " + "o.order_date BETWEEN :startDatetime AND :endDatetime", nativeQuery = true)
-	public int sumTotalPriceByMemNoAndProTypeAndOrderDateBetween(@Param("memNo") Long memNo, @Param("proType") String proType, @Param("startDatetime") LocalDateTime startDatetime, @Param("endDatetime") LocalDateTime endDatetime);
+	/**/
+
+	@Query(value = "SELECT SUM(total_price) FROM orders WHERE pro_no = ?1 ", nativeQuery = true)
+	public Long sumTotalPrice(Long proNo);
+
+	@Query(value = "SELECT SUM(total_price) FROM orders WHERE mem_no = ?1 AND order_date BETWEEN ?2 AND ?3", nativeQuery = true)
+	public Long sumTotalPriceByMemNoAndOrderDateBetween(Long memNo, LocalDateTime start, LocalDateTime end);
+
+	@Query(value = "SELECT SUM(o.total_price) FROM orders o, project p WHERE o.mem_no = ?1 AND p.pro_type = ?2 AND o.order_date BETWEEN ?3 AND ?4", nativeQuery = true)
+	public Long sumTotalPriceByMemNoAndProTypeAndOrderDateBetween(Long memNo, String proType, LocalDateTime start, LocalDateTime end);
 }

@@ -44,7 +44,7 @@ public class MypageController {
 	FilesService fileUploadService;
 
 	@Autowired
-	OrdersService orderService;
+	OrdersService ordersService;
 
 	@Autowired
 	ProjectLikeService projectLikeService;
@@ -53,23 +53,22 @@ public class MypageController {
 
 	// 참여한 프로젝트 목록
 	@GetMapping("/projectList")
-	public String myProList(String proType, HttpServletRequest request, Model model, Pageable pageable) {
+	public String myProList(HttpServletRequest request, Model model, Pageable pageable) {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
-
+		String proType = request.getParameter("proType");
 		Long memNo = (Long) request.getSession().getAttribute("memNo");
-		if (proType != null) {
-			model.addAttribute("list", orderService.findAllByMemNoAndProTypeAndOrderDateBetween(memNo, proType, startDate, endDate, pageable));
-			model.addAttribute("total", orderService.sumTotalPriceByMemNoAndProTypeAndOrderDateBetween(memNo, proType, startDate, endDate));
+		if (proType == null) {
+		model.addAttribute("orderList", ordersService.findAllByMemNoAndOrderDateBetween(memNo, startDate, endDate, pageable));
+		model.addAttribute("projectList", ordersService.findAllProjectByOrders(ordersService.findAllByMemNo(memNo)));
+		model.addAttribute("sum", ordersService.sumTotalPriceByMemNoAndOrderDateBetween(memNo, startDate, endDate));
 		} else {
-			model.addAttribute("list", orderService.findAllByMemNoAndOrderDateBetween(memNo, startDate, endDate, pageable));
-			model.addAttribute("total", orderService.sumTotalPriceByMemNoAndOrderDateBetween(memNo, startDate, endDate));
+		model.addAttribute("orderList", ordersService.findAllByMemNoAndProTypeAndOrderDateBetween(memNo, proType, startDate, endDate, pageable));
+		model.addAttribute("sum", ordersService.sumTotalPriceByMemNoAndProTypeAndOrderDateBetween(memNo, proType, startDate, endDate));
 		}
-
-		model.addAttribute("proType", proType);
+		// model.addAttribute("proType", proType);
 		model.addAttribute("startDate", startDate);
 		model.addAttribute("endDate", endDate);
-
 		return "index.jsp?contentPage=mypage/myProList";
 	}
 
@@ -78,14 +77,12 @@ public class MypageController {
 	public String myProLikeList(HttpServletRequest request, Model model, Pageable pageable) {
 		model.addAttribute("likeList", projectLikeService.findAll(request, pageable));
 		model.addAttribute("likeListCount", projectLikeService.countByMemNo(request));
-		// model.addAttribute("countProLikePast", projectLikeService.countByMemNoAndProState(request));
-		// model.addAttribute("countProLikeNow", projectLikeService.countByMemNoAndProState(request));
-		// model.addAttribute("countProLikeFuture", projectLikeService.countByMemNoAndProState(request));
 		return "index.jsp?contentPage=mypage/myProLikeList";
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// 문의및신청 목록 (사용자용)
+
+	// 문의및신청 목록
 	@GetMapping("/qnaList")
 	public String myQnaList(Model model, @Qualifier("pageable1") Pageable pageable1, HttpSession session, @Qualifier("pageable2") Pageable pageable2) {
 		Long memNo = (Long) session.getAttribute("memNo");

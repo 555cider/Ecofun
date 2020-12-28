@@ -59,14 +59,14 @@ public class ProjectDto {
 	private int proTarget;
 
 	@Column(name = "pro_now")
-	private int proNow;
+	private Long proNow;
 
 	@Column(name = "proceed")
 	private int proceed;
 
 	@Column(name = "pro_hit")
-	private int proHit;
+	private Long proHit;
 
 	@Transient
-	private ImgDto imgDto; // #26 참여리스트에서 이미지를 불러오기 위한 객체
+	private ImgDto imgDto; // 참여리스트에서 이미지를 불러오기 위한 객체
 }
