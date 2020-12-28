@@ -37,7 +37,7 @@ public class ProjectController {
 	ProjectOptionService optionService;
 
 	@Autowired
-	OrdersService orderService;
+	OrdersService ordersService;
 
 	@Autowired
 	MemberService memberService;
@@ -129,10 +129,10 @@ public class ProjectController {
 
 	// 프로젝트 결제 - 폼 이동
 	@PostMapping("/orderForm")
-	public String orderForm(OrdersDto orderDto, HttpSession session, Long proNo, Long opNo, Model model) {
+	public String orderForm(OrdersDto ordersDto, HttpSession session, Long proNo, Long opNo, Model model) {
 		model.addAttribute("project", projectService.findByProNo(proNo));
 		model.addAttribute("option", optionService.findByOpNo(opNo));
-		model.addAttribute("order", orderDto);
+		model.addAttribute("orders", ordersDto);
 		model.addAttribute("member", memberService.findByMemNo((Long) session.getAttribute("memNo")));
 
 		if (projectService.findByProNo(proNo).getProType().equals("펀딩")) {
@@ -144,17 +144,18 @@ public class ProjectController {
 
 	// 프로젝트 결제 - 실행
 	@PostMapping("/order")
-	public String orderInsert(Long memNo, Long proNo, Long opNo, OrdersDto order, String proType, Model model) {
+	public String orderInsert(Long memNo, Long proNo, Long opNo, OrdersDto orders, String proType, Model model) {
 		model.addAttribute("member", memberService.findByMemNo(memNo));
 		model.addAttribute("option", optionService.findByOpNo(opNo));
-		model.addAttribute("order", orderService.save(order));
+		model.addAttribute("order", ordersService.save(orders));
 
 		ProjectDto project = projectService.findByProNo(proNo);
-		project.setProHit(orderService.countByProNo(proNo));
-		project.setProNow(orderService.sumTotalPriceByProNo(proNo));
-		project.setProceed(project.getProNow() * 100 / project.getProTarget());
+		project.setProHit(ordersService.countByProNo(proNo));
+		project.setProNow(ordersService.sumTotalPriceByProNo(proNo));
+		project.setProceed((int) (project.getProNow() * 100 / project.getProTarget()));
 		projectService.save(project);
 		model.addAttribute("project", project);
+		model.addAttribute("orders", orders);
 
 		if (proType.equals("펀딩")) {
 			return "index.jsp?contentPage=project/proResultFun";
