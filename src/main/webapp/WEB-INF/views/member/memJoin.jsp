@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <script type="text/javascript">
 	$(function() {
 		$(".button_id_check").click(function() {
@@ -46,7 +47,6 @@
 			return false;
 			//this.postalCode.value = 0; // java 타입에러 방지 (DB에 저장하지 않음)
 		}
-
 	}
 
 	function idCheck(form) {
@@ -163,7 +163,8 @@
 									<option value="신한은행">신한은행</option>
 									<option value="농협은행">농협은행</option>
 									<option value="카카오뱅크">카카오뱅크</option>
-								</select><br>
+								</select>
+								<br>
 								<input type="text" id="accountName" name="accountName" class="form-control input" maxlength="10" placeholder="계좌주입력*" required>
 								<br>
 								<input type="text" id="accountNumber" name="accountNumber" class="form-control input" maxlength="14" placeholder="계좌번호 입력*" required>

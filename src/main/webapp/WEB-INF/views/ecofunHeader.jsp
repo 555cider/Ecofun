@@ -4,6 +4,7 @@
 	String memId = (String) session.getAttribute("memId");
 String memName = (String) session.getAttribute("memName");
 %>
+
 <script src="https://kit.fontawesome.com/739d6ca544.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -41,15 +42,13 @@ String memName = (String) session.getAttribute("memName");
 
 		<!-- 로고 (모바일) -->
 		<div class="navbar-brand mobile-menu text-center" style="width: 58%; left: 21%; position: absolute; font-size: xx-large; margin-top: 5px;">
-			<a href="/main">
-				<b class="RymanEco">Ecofun Project</b>
+			<a href="/main"> <b class="RymanEco">Ecofun Project</b>
 			</a>
 		</div>
 
 		<!-- 로고 (PC) -->
 		<div class="navbar-brand pc-menu text-center" style="width: 30%; left: 35%; position: absolute; font-size: xx-large;">
-			<a href="/main">
-				<b class="RymanEco">Ecofun Project</b>
+			<a href="/main"> <b class="RymanEco">Ecofun Project</b>
 			</a>
 		</div>
 
@@ -176,8 +175,7 @@ String memName = (String) session.getAttribute("memName");
 
 				<!-- left_프로젝트 -->
 				<div>
-					<a data-toggle="collapse" href="#project" role="button" aria-expanded="false" aria-controls="project">
-						<label style="font-size: large;">프로젝트</label>
+					<a data-toggle="collapse" href="#project" role="button" aria-expanded="false" aria-controls="project"> <label style="font-size: large;">프로젝트</label>
 					</a>
 					<ul class="collapse" id="project">
 						<li>
@@ -188,12 +186,12 @@ String memName = (String) session.getAttribute("memName");
 						</li>
 					</ul>
 				</div>
-				<br> <br>
+				<br>
+				<br>
 
 				<!-- left_게시판 -->
 				<div>
-					<a data-toggle="collapse" href="#boardList" role="button" aria-expanded="false" aria-controls="boardList">
-						<label style="font-size: large;">게시판</label>
+					<a data-toggle="collapse" href="#boardList" role="button" aria-expanded="false" aria-controls="boardList"> <label style="font-size: large;">게시판</label>
 					</a>
 					<ul class="collapse" id="boardList">
 						<li>
@@ -204,12 +202,12 @@ String memName = (String) session.getAttribute("memName");
 						</li>
 					</ul>
 				</div>
-				<br> <br>
+				<br>
+				<br>
 
 				<!-- left_소개 -->
 				<div>
-					<a data-toggle="collapse" href="#about" role="button" aria-expanded="false" aria-controls="about">
-						<label style="font-size: large;">소개</label>
+					<a data-toggle="collapse" href="#about" role="button" aria-expanded="false" aria-controls="about"> <label style="font-size: large;">소개</label>
 					</a>
 					<ul class="collapse" id="about">
 						<li>
