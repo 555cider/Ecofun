@@ -137,7 +137,7 @@
 
 	<!-- Pagination -->
 	<div class="text-center">
-		<ul class="pagination justify-center">
+		<ul class="pagination">
 			<c:if test="${!list.first}">
 				<li class="page-item">
 					<a href="?" class="page-link">&laquo;</a>

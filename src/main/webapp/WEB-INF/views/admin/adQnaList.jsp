@@ -57,8 +57,8 @@
 			<br>
 
 			<!-- Pagination -->
-			<div style="position: relative;">
-				<ul class="pagination justify-center" style="justify-content: center;">
+			<div class="text-center">
+				<ul class="pagination">
 					<c:if test="${!askList.first}">
 						<li class="page-item">
 							<a href="?sort=askNo,desc$page=" class="page-link">&laquo;</a>
@@ -81,15 +81,13 @@
 						<c:choose>
 							<c:when test="${askList.number + 1 == i}">
 								<li class="page-item active">
-									<a href="#" class="page-link">
-										<c:out value="${i}" />
+									<a href="#" class="page-link"> <c:out value="${i}" />
 									</a>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item">
-									<a href="?sort=askNo,desc&page=${i}" class="page-link">
-										<c:out value="${i}" />
+									<a href="?sort=askNo,desc&page=${i}" class="page-link"> <c:out value="${i}" />
 									</a>
 								</li>
 							</c:otherwise>
@@ -160,15 +158,13 @@
 						<c:choose>
 							<c:when test="${aplList.number + 1 == k}">
 								<li class="page-item active">
-									<a href="#" class="page-link">
-										<c:out value="${k}" />
+									<a href="#" class="page-link"> <c:out value="${k}" />
 									</a>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item">
-									<a href="?sort=aplNo,desc&page=${k - 1}" class="page-link">
-										<c:out value="${k}" />
+									<a href="?sort=aplNo,desc&page=${k - 1}" class="page-link"> <c:out value="${k}" />
 									</a>
 								</li>
 							</c:otherwise>

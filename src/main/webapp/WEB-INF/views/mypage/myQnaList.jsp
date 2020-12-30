@@ -57,8 +57,8 @@
 			<br>
 
 			<!-- Pagination -->
-			<div style="position: relative;">
-				<ul class="pagination justify-center" style="justify-content: center;">
+			<div class="text-center">
+				<ul class="pagination">
 					<c:if test="${!askList.first}">
 						<li class="page-item">
 							<a href="?sort=askNo,desc$page=" class="page-link">&laquo;</a>
@@ -133,8 +133,8 @@
 			<br>
 
 			<!-- Pagination -->
-			<div>
-				<ul class="pagination justify-center" style="position: relative; justify-content: center;">
+			<div class="text-center">
+				<ul class="pagination">
 					<c:if test="${!aplList.first}">
 						<li class="page-item">
 							<a href="?sort=aplNo,desc" class="page-link">&laquo;</a>
@@ -179,5 +179,4 @@
 			</div>
 		</div>
 	</div>
-</div>
 </div>

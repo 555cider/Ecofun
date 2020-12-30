@@ -65,7 +65,7 @@
 
 			<!-- Pagination -->
 			<div class="text-center">
-				<ul class="pagination justify-center" style="justify-content: center;">
+				<ul class="pagination">
 					<c:if test="${!noticeList.first}">
 						<li class="page-item">
 							<a href="?sort=bbsNo,desc$page=" class="page-link">&laquo;</a>
@@ -88,15 +88,13 @@
 						<c:choose>
 							<c:when test="${noticeList.number + 1 == i}">
 								<li class="page-item active">
-									<a href="#" class="page-link">
-										<c:out value="${i}" />
+									<a href="#" class="page-link"> <c:out value="${i}" />
 									</a>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item">
-									<a href="?sort=bbsNo,desc&page=${i}" class="page-link">
-										<c:out value="${i}" />
+									<a href="?sort=bbsNo,desc&page=${i}" class="page-link"> <c:out value="${i}" />
 									</a>
 								</li>
 							</c:otherwise>
@@ -129,7 +127,7 @@
 							<td>
 								<a type="hidden" href="detail?bbsNo=${eList.bbsNo}">${eList.bbsTitle}</a>
 							</td>
-							<td>${eList.bbsEnd} ~ ${eList.bbsEnd}</td>
+							<td>${eList.bbsEnd}~ ${eList.bbsEnd}</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -138,7 +136,7 @@
 
 			<!-- Pagination -->
 			<div class="text-center">
-				<ul class="pagination justify-center" style="justify-content: center;">
+				<ul class="pagination">
 					<c:if test="${!eventList.first}">
 						<li class="page-item">
 							<a href="?sort=bbsNo,desc" class="page-link">&laquo;</a>
@@ -161,15 +159,13 @@
 						<c:choose>
 							<c:when test="${eventList.number + 1 == j}">
 								<li class="page-item active">
-									<a href="#" class="page-link">
-										<c:out value="${j}" />
+									<a href="#" class="page-link"> <c:out value="${j}" />
 									</a>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li class="page-item">
-									<a href="?sort=bbsNo,desc&page=${j - 1}" class="page-link">
-										<c:out value="${j}" />
+									<a href="?sort=bbsNo,desc&page=${j - 1}" class="page-link"> <c:out value="${j}" />
 									</a>
 								</li>
 							</c:otherwise>

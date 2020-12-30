@@ -27,8 +27,8 @@
 <br>
 
 <!-- Pagination -->
-<div>
-	<ul class="pagination justify-center" style="justify-content: center;">
+<div class="text-center">
+	<ul class="pagination">
 		<c:if test="${!projectList.first}">
 			<li class="page-item">
 				<a href="?sort=proNo,desc" class="page-link">&laquo;</a>
