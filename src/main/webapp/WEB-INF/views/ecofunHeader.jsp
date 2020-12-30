@@ -12,7 +12,7 @@ String memName = (String) session.getAttribute("memName");
 	$(function() {
 		$(".project-search").keyup(function() {
 			if ($(this).val().length > 1) {
-				$("#searchResult").empty();
+				$("#search-result").empty();
 				$.ajax({
 					type : "get",
 					url : "/keywordSearch/" + $(this).val(),
@@ -21,7 +21,7 @@ String memName = (String) session.getAttribute("memName");
 						$(data).each(function(index, item) {
 							appendTag += '<a href="/project/detail?proNo=' + item.proNo + '">' + item.proTitle + '</a><br>';
 						});
-						$("#searchResult").append(appendTag);
+						$("#search-result").append(appendTag);
 					},
 					dataType : "json"
 				});
@@ -165,8 +165,8 @@ String memName = (String) session.getAttribute("memName");
 				<!-- left_검색 -->
 				<div>
 					<nav class="navbar navbar-light bg-light">
-						<input class="form-control project-search" type="search" placeholder="프로젝트" style="width: 100%;">
-						<div id="searchResult"></div>
+						<input class="project-search" type="search" placeholder="프로젝트" style="width: 100%;">
+						<div id="search-result"></div>
 					</nav>
 				</div>
 				<br>

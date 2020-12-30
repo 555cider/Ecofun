@@ -3,21 +3,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script>
-	var proState = '<%=request.getParameter("proState") == null ? "" : request.getParameter("proState")%>';
-	var proType = '<%=request.getParameter("proType") == null ? "" : request.getParameter("proType")%>
+	var proState ='<%=request.getParameter("proState") == null ? "" : request.getParameter("proState")%>';
+	var proType ='<%=request.getParameter("proType") == null ? "" : request.getParameter("proType")%>
 	';
 	var strAppend = '';
 
 	if (proState != '') {
 		strAppend += '&proState=' + proState;
 	}
-
 	if (proType != '') {
 		strAppend += '&proType=' + proType;
 	}
 
 	$(function() {
-		// 페이징 처리 부분에 파라미터 추가
 		$(".page-item:not(.active) a").each(function(index, item) {
 			$(this).attr("href", $(this).attr("href") + strAppend);
 		});
@@ -51,29 +49,29 @@
 		});
 
 		$(".pro-state .dropdown-item").click(function() {
-			var activeStr = $(".pro-type a.active").html();
-			var thisActiveStr = $(this).html();
+			var proType = $(".pro-type a.active").html();
+			var proState = $(this).html();
 			var getParam = "";
-			if (activeStr != "전체") {
-				getParam += "&proType=" + activeStr;
+			if (proType != "전체") {
+				getParam += "&proType=" + proType;
 			}
-			if (thisActiveStr != "전체") {
-				getParam += "&proState=" + thisActiveStr;
+			if (proState != "전체") {
+				getParam += "&proState=" + proState;
 			}
-			$(location).attr("href", "/myProLikeList?" + getParam);
+			$(location).attr("href", "/mypage/projectLikeList?" + getParam);
 		});
 
 		$(".pro-type .dropdown-item").click(function() {
-			var activeStr = $(".pro-state a.active").html();
-			var thisActiveStr = $(this).html();
+			var proState = $(".pro-state a.active").html();
+			var proType = $(this).html();
 			var getParam = "";
-			if (activeStr != "전체") {
-				getParam += "&proState=" + activeStr;
+			if (proState != "전체") {
+				getParam += "&proState=" + proState;
 			}
-			if (thisActiveStr != "전체") {
-				getParam += "&proType=" + thisActiveStr;
+			if (proType != "전체") {
+				getParam += "&proType=" + proType;
 			}
-			$(location).attr("href", "/myProLikeList?" + getParam);
+			$(location).attr("href", "/mypage/projectLikeList?" + getParam);
 		});
 
 		$(".deleteLike").click(function() {
@@ -83,7 +81,7 @@
 
 	function deleteLike(proNo) {
 		$.ajax({
-			url : "/deleteLike",
+			url : "/project/detail/unlike",
 			type : "POST",
 			dataType : "text",
 			data : {
@@ -112,7 +110,7 @@
 		<!-- Filter -->
 		<div class="col">
 			<div class="btn-group">
-				<button class="btn dropdown-toggle pro-state" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">상태(전체)</button>
+				<button class="btn btn-light dropdown-toggle pro-state" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">상태(전체)</button>
 				<div class="dropdown-menu pro-state" style="min-width: auto;">
 					<a class="dropdown-item active" href="#">전체</a>
 					<div class="dropdown-divider"></div>
@@ -122,7 +120,7 @@
 				</div>
 			</div>
 			<div class="btn-group">
-				<button class="btn dropdown-toggle pro-type" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분류(전체)</button>
+				<button class="btn btn-light dropdown-toggle pro-type" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">분류(전체)</button>
 				<div class="dropdown-menu pro-type" style="min-width: auto;">
 					<a class="dropdown-item active" href="#">전체</a>
 					<div class="dropdown-divider"></div>
@@ -135,35 +133,30 @@
 			<span>총 ${likeListCount}건</span>
 		</div>
 	</div>
+	<br>
 
 	<!-- Content -->
 	<ul class="row">
-		<c:forEach items="${likeList.content}" var="pList">
+		<c:forEach items="${likeList.content}" var="likeDto" varStatus="like">
 			<li class="col-sm-6 col-lg-4 project-item">
-				<a href="/projectDetail?proNo=${pList.projectDto.proNo}">
-					<c:set var="urlSize" value="${fn:length(pList.projectDto.imgDto.imgUrl)}" />
-					<c:set var="urlSub" value="${fn:substring(pList.projectDto.imgDto.imgUrl, 1, urlSize)}" />
-					<c:set var="roundBefore" value="${pList.projectDto.proNow / pList.projectDto.proTarget * 100}" />
-					<c:set var="roundAfter" value="${roundBefore+((roundBefore%1>0.5)?(1-(roundBefore%1))%1:-(roundBefore%1))}" />
-					<img src="${urlSub}" alt="썸네일" style="width: 100%;">
-					<c:choose>
-						<c:when test="${roundAfter >= 100}">
-							<c:set var="roundAfter2" scope="session" value="100" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="roundAfter2" scope="session" value="${roundAfter}" />
-						</c:otherwise>
-					</c:choose>
-					<div class="progress-bar" role="progressbar" style="width: ${roundAfter2}%;" aria-valuenow="${roundAfter2}" aria-valuemin="0" aria-valuemax="100">${roundAfter2}%</div>
-					${pList.projectDto.proTitle}<br> ${pList.projectDto.proStart} ~ ${pList.projectDto.proEnd}<br>
+				<a href="/project/detail?proNo=${likeDto.proNo}">
+					<img src="${likeDto.projectDto.proThumb}" alt="이미지" style="width: 100%;">
+					<div class="progress-bar" role="progressbar" style="width: ${likeDto.projectDto.proceed}%;" aria-valuenow="${likeDto.projectDto.proceed}" aria-valuemin="0"
+						aria-valuemax="100"
+					>${likeDto.projectDto.proceed}%</div>
+					<span class="project-item-title">${likeDto.projectDto.proTitle}</span>
+					<br>
+					${likeDto.projectDto.proStart} ~ ${likeDto.projectDto.proEnd}
+					<br>
 				</a>
-				<input type="button" class="deleteLike" data-pro-no="${pList.projectDto.proNo}" value="해제하기">
+				<input type="button" class="deleteLike" data-pro-no="${likeDto.proNo}" value="해제하기">
 			</li>
 		</c:forEach>
-	</ul> <br>
+	</ul>
+	<br>
 
-	<div style="text-align: center;">
-		<ul class="pagination justify-center" style="justify-content: center;">
+	<div class="text-center">
+		<ul class="pagination">
 			<c:if test="${!likeList.first}">
 				<li class="page-item">
 					<a href="?" class="page-link">&laquo;</a>

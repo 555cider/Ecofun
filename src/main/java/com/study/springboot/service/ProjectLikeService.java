@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import com.study.springboot.dto.ImgDto;
 import com.study.springboot.dto.ProjectDto;
 import com.study.springboot.dto.ProjectLikeDto;
 import com.study.springboot.repository.ImgRepository;
@@ -25,17 +24,10 @@ public class ProjectLikeService {
 	@Autowired
 	private ProjectRepository projectRepository;
 
-	@Autowired
-	private ImgRepository imgRepository;
-
 	public ProjectLikeDto save(ProjectLikeDto likeDto, HttpServletRequest request) {
 		likeDto.setLikeDate(LocalDateTime.now());
 		likeDto.setMemNo((Long) request.getSession().getAttribute("memNo"));
 		return projectLikeRepository.save(likeDto);
-	}
-
-	public Long countByMemNoAndProNo(Long proNo, HttpServletRequest request) {
-		return projectLikeRepository.countByMemNoAndProNo((Long) request.getSession().getAttribute("memNo"), proNo);
 	}
 
 	public Long delete(ProjectLikeDto likeDto, HttpServletRequest request) {
@@ -43,11 +35,9 @@ public class ProjectLikeService {
 	}
 
 	public Page<ProjectLikeDto> findAll(HttpServletRequest request, Pageable pageable) {
+		Page<ProjectLikeDto> likeArr = null;
 		String proType = request.getParameter("proType");
 		String proState = request.getParameter("proState");
-
-		Page<ProjectLikeDto> likeArr = null;
-
 		if (proType != null && !proType.equals("") && proState != null && !proState.equals("")) {
 			likeArr = findAllByMemNoAndProTypeAndProState(request, pageable);
 		} else if (proType != null && !proType.equals("")) {
@@ -61,20 +51,17 @@ public class ProjectLikeService {
 	}
 
 	private Page<ProjectLikeDto> findAllByMemNo(HttpServletRequest request, Pageable pageable) {
-		Long memNo = (Long) request.getSession().getAttribute("memNo");
-
-		if (pageable.getSort().toString() == "UNSORTED") { // 정렬 값이 없다면 기본키 내림차순 정렬
+		if (pageable.getSort().toString() == "UNSORTED") {
 			pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("LikeNo").descending());
 		}
 
+		Long memNo = (Long) request.getSession().getAttribute("memNo");
 		Page<ProjectLikeDto> likeArr = projectLikeRepository.findAllByMemNo(memNo, pageable);
-		likeArr.forEach(e -> { // 해당 회원의 좋아한 프로젝트 내역을 불러옴
-			Optional<ProjectDto> projectOpt = projectRepository.findById(e.getProNo()); // 좋아한 내역과 일치하는 프로젝트 정보를 불러옴
+		likeArr.forEach(e -> {
+			Optional<ProjectDto> projectOpt = projectRepository.findById(e.getProNo());
 			projectOpt.ifPresent(project -> {
-				Optional<ImgDto> imgOpt = imgRepository.findByProNo(project.getProNo()); // 프로젝트의 이미지 파일 경로를 불러옴
-				imgOpt.ifPresent(img -> {
-					project.setImgDto(img);
-				});
+				project.setProThumb(project.getProThumb());
+				project.setProceed(project.getProceed());
 				e.setProjectDto(project); // ProjectLikeDto 리스트에 담기 위한 프로젝트 객체 set
 			});
 		});
@@ -84,15 +71,12 @@ public class ProjectLikeService {
 	private Page<ProjectLikeDto> findAllByMemNoAndProType(HttpServletRequest request, Pageable pageable) {
 		Long memNo = (Long) request.getSession().getAttribute("memNo");
 		String proType = request.getParameter("proType");
-
 		Page<ProjectLikeDto> likeArr = projectLikeRepository.findAllByMemNoAndProType(memNo, proType, pageable);
-		likeArr.forEach(e -> { // 해당 회원의 좋아한 프로젝트 내역을 불러옴
-			Optional<ProjectDto> projectOpt = projectRepository.findById(e.getProNo()); // 좋아한 내역과 일치하는 프로젝트 정보를 불러옴
+		likeArr.forEach(e -> {
+			Optional<ProjectDto> projectOpt = projectRepository.findById(e.getProNo());
 			projectOpt.ifPresent(project -> {
-				Optional<ImgDto> imgOpt = imgRepository.findByProNo(project.getProNo()); // 프로젝트의 이미지 파일 경로를 불러옴
-				imgOpt.ifPresent(img -> {
-					project.setImgDto(img);
-				});
+				project.setProThumb(project.getProThumb());
+				project.setProceed(project.getProceed());
 				e.setProjectDto(project); // ProjectLikeDto 리스트에 담기 위한 프로젝트 객체 set
 			});
 		});
@@ -102,15 +86,12 @@ public class ProjectLikeService {
 	private Page<ProjectLikeDto> findAllByMemNoAndProState(HttpServletRequest request, Pageable pageable) {
 		Long memNo = (Long) request.getSession().getAttribute("memNo");
 		String proState = request.getParameter("proState");
-
 		Page<ProjectLikeDto> likeArr = projectLikeRepository.findAllByMemNoAndProState(memNo, proState, pageable);
-		likeArr.forEach(e -> { // 해당 회원의 좋아한 프로젝트 내역을 불러옴
-			Optional<ProjectDto> projectOpt = projectRepository.findById(e.getProNo()); // 좋아한 내역과 일치하는 프로젝트 정보를 불러옴
+		likeArr.forEach(e -> {
+			Optional<ProjectDto> projectOpt = projectRepository.findById(e.getProNo());
 			projectOpt.ifPresent(project -> {
-				Optional<ImgDto> imgOpt = imgRepository.findByProNo(project.getProNo()); // 프로젝트의 이미지 파일 경로를 불러옴
-				imgOpt.ifPresent(img -> {
-					project.setImgDto(img);
-				});
+				project.setProThumb(project.getProThumb());
+				project.setProceed(project.getProceed());
 				e.setProjectDto(project); // ProjectLikeDto 리스트에 담기 위한 프로젝트 객체 set
 			});
 		});
@@ -121,15 +102,12 @@ public class ProjectLikeService {
 		Long memNo = (Long) request.getSession().getAttribute("memNo");
 		String proType = request.getParameter("proType");
 		String proState = request.getParameter("proState");
-
 		Page<ProjectLikeDto> likeArr = projectLikeRepository.findAllByMemNoAndProTypeAndProState(memNo, proType, proState, pageable);
-		likeArr.forEach(e -> { // 해당 회원의 좋아한 프로젝트 내역을 불러옴
-			Optional<ProjectDto> projectOpt = projectRepository.findById(e.getProNo()); // 좋아한 내역과 일치하는 프로젝트 정보를 불러옴
+		likeArr.forEach(e -> {
+			Optional<ProjectDto> projectOpt = projectRepository.findById(e.getProNo());
 			projectOpt.ifPresent(project -> {
-				Optional<ImgDto> imgOpt = imgRepository.findByProNo(project.getProNo()); // 프로젝트의 이미지 파일 경로를 불러옴
-				imgOpt.ifPresent(img -> {
-					project.setImgDto(img);
-				});
+				project.setProThumb(project.getProThumb());
+				project.setProceed(project.getProceed());
 				e.setProjectDto(project); // ProjectLikeDto 리스트에 담기 위한 프로젝트 객체 set
 			});
 		});
@@ -139,5 +117,9 @@ public class ProjectLikeService {
 	public int countByMemNo(HttpServletRequest request) {
 		Long memNo = (Long) request.getSession().getAttribute("memNo");
 		return projectLikeRepository.findAllByMemNo(memNo).size();
+	}
+
+	public Long countByMemNoAndProNo(Long proNo, HttpServletRequest request) {
+		return projectLikeRepository.countByMemNoAndProNo((Long) request.getSession().getAttribute("memNo"), proNo);
 	}
 }

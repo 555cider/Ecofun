@@ -12,11 +12,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import com.study.springboot.dto.ImgDto;
 import com.study.springboot.dto.MemberDto;
 import com.study.springboot.dto.OrdersDto;
 import com.study.springboot.dto.ProjectDto;
-import com.study.springboot.repository.ImgRepository;
 import com.study.springboot.repository.MemberRepository;
 import com.study.springboot.repository.OrdersRepository;
 import com.study.springboot.repository.ProjectRepository;
@@ -32,9 +30,6 @@ public class OrdersService {
 
 	@Autowired
 	private MemberRepository memberRepository;
-
-	@Autowired
-	private ImgRepository imgRepository;
 
 	public OrdersDto findByOrderNo(Long orderNo) {
 		return ordersRepository.findByOrderNo(orderNo);
@@ -74,10 +69,8 @@ public class OrdersService {
 		orderArr.forEach(e -> {
 			Optional<ProjectDto> projectOpt = projectRepository.findById(memNo);
 			projectOpt.ifPresent(project -> {
-				Optional<ImgDto> imgOpt = imgRepository.findByProNo(project.getProNo());
-				imgOpt.ifPresent(img -> {
-					project.setImgDto(img);
-				});
+				project.setProThumb(project.getProThumb());
+				project.setProceed(project.getProceed());
 				Optional<MemberDto> memberOpt = memberRepository.findById(project.getMemNo());
 				memberOpt.ifPresent(member -> {
 					e.setProjectMemberName(member.getMemName());
@@ -110,10 +103,8 @@ public class OrdersService {
 		orderArr.forEach(e -> {
 			Optional<ProjectDto> projectOpt = projectRepository.findById(memNo);
 			projectOpt.ifPresent(project -> {
-				Optional<ImgDto> imgOpt = imgRepository.findByProNo(project.getProNo());
-				imgOpt.ifPresent(img -> {
-					project.setImgDto(img);
-				});
+				project.setProThumb(project.getProThumb());
+				project.setProceed(project.getProceed());
 				Optional<MemberDto> memberOpt = memberRepository.findById(project.getMemNo());
 				memberOpt.ifPresent(member -> {
 					e.setProjectMemberName(member.getMemName());
