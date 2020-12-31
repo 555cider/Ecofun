@@ -1,5 +1,6 @@
 package com.study.springboot.controller;
 
+import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.study.springboot.dto.OrdersDto;
+import com.study.springboot.dto.ProjectCmtDto;
 import com.study.springboot.dto.ProjectDto;
 import com.study.springboot.dto.ProjectLikeDto;
 import com.study.springboot.dto.ProjectOptionDto;
@@ -49,7 +51,7 @@ public class ProjectController {
 	ProjectLikeService likeService;
 
 	@Autowired
-	ProjectCmtService commentService;
+	ProjectCmtService cmtService;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -90,12 +92,13 @@ public class ProjectController {
 
 	// 프로젝트 상세
 	@GetMapping("/detail")
-	public String detail(Long proNo, Model model, HttpServletRequest request) {
+	public String detail(Long proNo, Model model, HttpServletRequest request, Pageable pageable) {
 		model.addAttribute("project", projectService.findByProNo(proNo));
 		model.addAttribute("optionList", optionService.findAllByProNo(proNo));
 		model.addAttribute("like", likeService.countByMemNoAndProNo(proNo, request));
+		model.addAttribute("cmtList", cmtService.findAllByProNo(proNo, pageable));
+		model.addAttribute("memList", cmtService.findAllMemberByProjectCmt(cmtService.findAllByProNo(proNo)));
 		request.setAttribute("proState", (String) (projectService.findByProNo(proNo).getProState()));
-		// model.addAttribute("commentList", commentService.getCommentList(proNo));
 		return "index.jsp?contentPage=project/proDetail";
 	}
 
@@ -119,11 +122,12 @@ public class ProjectController {
 	}
 
 	// 프로젝트 상세 - 댓글 입력
-	// @GetMapping("/commentInsert")
-	// public String commentInsert(ProCommentDto proCommentDto) {
-	// commentService.setComment(proCommentDto);
-	// return "redirect:main";
-	// }
+	@GetMapping("/commentInsert")
+	public String save(ProjectCmtDto cmtDto) {
+		cmtDto.setCmtDate(LocalDateTime.now());
+		cmtService.save(cmtDto);
+		return "redirect:/main";
+	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

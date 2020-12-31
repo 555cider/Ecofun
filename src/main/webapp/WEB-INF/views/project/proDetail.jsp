@@ -4,7 +4,8 @@
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
-	String memId = (String) session.getAttribute("memId");
+	Long memNo = (Long) session.getAttribute("memNo");
+String memId = (String) session.getAttribute("memId");
 String proState = (String) request.getAttribute("proState");
 %>
 
@@ -101,10 +102,7 @@ function orderCheck() {
 <div class="container">
 	<br>
 	<div>
-		<h4>
-			|
-			<a href="/project/list">프로젝트</a>
-			> 상세
+		<h4>| <a href="/project/list">프로젝트</a> > 상세
 		</h4>
 	</div>
 	<hr>
@@ -130,11 +128,8 @@ function orderCheck() {
 						</tr>
 						<tr>
 							<td colspan="2">
-								<a href="/project/list?type=${project.proType}">
-									<label class="badge">${project.proType}</label>
-								</a>
-								<a>
-									<label class="badge">${project.proState}</label>
+								<a href="/project/list?type=${project.proType}"> <label class="badge">${project.proType}</label>
+								</a> <a> <label class="badge">${project.proState}</label>
 								</a>
 							</td>
 						</tr>
@@ -256,84 +251,96 @@ function orderCheck() {
 
 	<div id="content">
 		<!-- 내용 -->
-		<div id="STORY" class="pro-content">
+		<article id="STORY" class="project-content">
+			<div></div>
 			<div style="width: 100%;">${project.proContent}</div>
-		</div>
+		</article>
 
 		<!-- 댓글 -->
-		<div id="COMMENT" class="pro-content">
-			<%--<div>
-				<table border="1" style="width: 100%;">
-					 <c:forEach var="comment" items="{commentList.content}">
-	                              <tr>
-	                                   <td style="width: 15%;"><span>${comment.proCmtMemNo}</span></td>
-	                                   <td rowspan="2">${comment.proComment}</td>
-	                              </tr>
-	                              <tr>
-	                                   <td>${comment.proCmtDate}</td>
-	                              </tr>
-	                         </c:forEach> 
-				</table>
-			</div>--%>
-
-			<%
-				if (memId == null) {
-			%>
-			<div style="width: 100%;">
-				<div style="border: 1px solid black; border-radius: 5px; display: flex; vertical-align: middle;">
-					<textarea name="proCmt" rows="2" style="width: 80%; border: none; resize: none;" placeholder="로그인이 필요합니다."></textarea>
-					<button type="button" style="width: 20%;" onclick="changeView(1)">등록</button>
-				</div>
-			</div>
-
-			<%
-				} else {
-			%>
-			<div style="width: 100%;">
-				<form action="/project/commentInsert">
-					<input hidden="hidden" name="proNo" value=${project.proNo } />
-					<div style="border: 1px solid lightgray; border-radius: 5px; display: flex; vertical-align: middle;">
-						<textarea name="proCmt" rows="2" style="width: 80%; border: none; resize: none;"></textarea>
-						<button type="submit" class="button" style="width: 20%;">등록</button>
+		<div id="COMMENT" class="project-content">
+			<ul>
+				<%
+					if (memId == null) {
+				%>
+				<li>
+					<div class="d-flex">
+						<textarea class="col-10" rows="2" style="resize: none;" placeholder="로그인이 필요합니다."></textarea>
+						<button type="button" class="col-2 btn-outline" onclick="changeView(1)">등록</button>
 					</div>
-				</form>
-			</div>
-			<!-- Pagination -->
-			<%-- <div>
-				<ul class="pagination justify-center" style="justify-content: center;">
-					<c:if test="${!commentList.first}">
-						<li class="page-item"><a href="?sort=proCmtNo,desc" class="page-link">&laquo;</a></li>
-						<li class="page-item"><a href="?sort=proCmtNo,desc&page=${commentList.number - 1}" class="page-link">&lt;</a></li>
-					</c:if>
-					<c:set var="pageRange" scope="session" value="5" />
-					<f:parseNumber var="pageIndex" integerOnly="true" value="${commentList.number div pageRange}" />
-					<c:choose>
-						<c:when test="${pageIndex * pageRange + pageRange > commentList.totalPages - 1}">
-							<c:set var="lastPage" scope="session" value="${commentList.totalPages}" />
-						</c:when>
-						<c:otherwise>
-							<c:set var="lastPage" scope="session" value="${pageIndex * pageRange + pageRange}" />
-						</c:otherwise>
-					</c:choose>
-					<c:forEach var="i" begin="${pageIndex * pageRange + 1}" end="${lastPage}">
-						<c:choose>
-							<c:when test="${commentList.number + 1 == i}">
-								<li class="page-item active"><a href="#" class="page-link"> <c:out value="${i}" /></a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="page-item"><a href="?sort=proNo,desc&page=${i - 1}" class="page-link"> <c:out value="${i}" /></a></li>
-							</c:otherwise>
-						</c:choose>
+				</li>
+				<%
+					} else {
+				%>
+				<li>
+					<form action="/project/commentInsert" class="d-flex" method="get">
+						<textarea name="comment" rows="2" class="col-10" style="resize: none;"></textarea>
+						<button type="submit" class="col-2 btn btn-primary">등록</button>
+						<input class="hidden" name="proNo" value="${project.proNo}" />
+						<input class="hidden" name="cmtMemNo" value="<%=memNo%>" />
+					</form>
+				</li>
+				<%
+					}
+				%>
+				<c:if test="${cmtList!=null}">
+					<c:forEach items="${cmtList.content}" var="cmtDto" varStatus="cmt">
+						<li class="project-comment-list">
+							<div class="col-3">
+								<b>${memList[cmt.index].memName}</b> <br>
+							</div>
+							<div class="col-6">${cmtDto.comment}</div>
+							<div class="col-3">${cmtDto.cmtDate}</div>
+						</li>
 					</c:forEach>
-					<c:if test="${!commentList.last}">
-						<li class="page-item"><a href="?sort=proNo,desc&page=${commentList.number + 1}" class="page-link">&gt;</a></li>
-						<li class="page-item"><a href="?sort=proNo,desc&page=${commentList.totalPages - 1}" class="page-link">&raquo;</a></li>
-					</c:if>
-				</ul>
-			</div> --%>
-			<%
-				}
-			%>
+				</c:if>
+				<li>
+					<!-- Pagination -->
+					<div class="text-center">
+						<ul class="pagination">
+							<c:if test="${!cmtList.first}">
+								<li class="page-item">
+									<a href="?sort=cmtNo,desc" class="page-link">&laquo;</a>
+								</li>
+								<li class="page-item">
+									<a href="?sort=cmtNo,desc&page=${cmtList.number - 1}" class="page-link">&lt;</a>
+								</li>
+							</c:if>
+							<c:set var="pageRange" scope="session" value="5" />
+							<f:parseNumber var="pageIndex" integerOnly="true" value="${cmtList.number div pageRange}" />
+							<c:choose>
+								<c:when test="${pageIndex * pageRange + pageRange > cmtList.totalPages - 1}">
+									<c:set var="lastPage" scope="session" value="${cmtList.totalPages}" />
+								</c:when>
+								<c:otherwise>
+									<c:set var="lastPage" scope="session" value="${pageIndex * pageRange + pageRange}" />
+								</c:otherwise>
+							</c:choose>
+							<c:forEach var="i" begin="${pageIndex * pageRange + 1}" end="${lastPage}">
+								<c:choose>
+									<c:when test="${cmtList.number + 1 == i}">
+										<li class="page-item active">
+											<a href="#" class="page-link"> <c:out value="${i}" /></a>
+										</li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item">
+											<a href="?sort=proNo,desc&page=${i - 1}" class="page-link"> <c:out value="${i}" /></a>
+										</li>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${!cmtList.last}">
+								<li class="page-item">
+									<a href="?sort=proNo,desc&page=${cmtList.number + 1}" class="page-link">&gt;</a>
+								</li>
+								<li class="page-item">
+									<a href="?sort=proNo,desc&page=${cmtList.totalPages - 1}" class="page-link">&raquo;</a>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>

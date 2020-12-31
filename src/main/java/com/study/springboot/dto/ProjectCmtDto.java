@@ -1,6 +1,7 @@
 package com.study.springboot.dto;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,17 +24,21 @@ public class ProjectCmtDto {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_cmt_sequencer_gen")
 	@SequenceGenerator(sequenceName = "project_cmt_seq", allocationSize = 1, name = "project_cmt_sequencer_gen")
 	@Column(name = "pro_cmt_no")
-	private Long proCmtNo;
+	private Long cmtNo;
 
 	@Column(name = "pro_no")
 	private Long proNo;
 
 	@Column(name = "pro_comment")
-	private String proComment;
+	private String comment;
 
 	@Column(name = "pro_cmt_mem_no")
-	private Long proCmtMemNo;
+	private Long cmtMemNo;
 
 	@Column(name = "pro_cmt_date", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private LocalDateTime proCmtDate;
+	private LocalDateTime cmtDate;
+
+	public String getCmtDate() {
+		return cmtDate.format(DateTimeFormatter.ofPattern("yyyy/MM/dd (hh:mm:ss)"));		
+	}
 }
