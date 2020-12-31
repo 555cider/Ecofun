@@ -107,7 +107,7 @@
 			<br>
 
 			<!-- 하단 확인 버튼 -->
-			<div style="text-align: center;">
+			<div class="text-center">
 				<button type="button" onclick="history.back();">뒤로가기</button>
 				<button type="button" onclick="validation(this)">결제하기</button>
 			</div>

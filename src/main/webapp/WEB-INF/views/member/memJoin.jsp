@@ -2,17 +2,17 @@
 
 <script type="text/javascript">
 	$(function() {
-		$(".button_id_check").click(function() {
+		$(".btn-id-check").click(function() {
 			idCheck(this.form);
 		});
 
-		$(".password_check").keyup(function() {
+		$(".password-check").keyup(function() {
 			$(".pw_check_result").remove();
 			if ($("#memPw").val().length > 0 && $("#memPw_re").val().length > 0) {
 				if ($("#memPw").val() == $("#memPw_re").val()) {
-					$(".memPwLabel").after('<span class="pw_check_result id_check_sucess">비밀번호 일치</span>');
+					$(".memPwLabel").after('<span class="pw_check_result id-check-sucess">비밀번호 일치</span>');
 				} else {
-					$(".memPwLabel").after('<span class="pw_check_result id_check_fail">비밀번호 불일치</span>');
+					$(".memPwLabel").after('<span class="pw_check_result id-check-fail">비밀번호 불일치</span>');
 				}
 			}
 		});
@@ -33,7 +33,7 @@
 
 	function formCheck() {
 		if (isIdCheck.flag == 1 || isIdCheck.id != this.memId.value) {
-			$(".id_check_result").remove();
+			$(".id-check-result").remove();
 			alert("아이디 중복체크를 해주세요.");
 			return false;
 		}
@@ -55,7 +55,7 @@
 			return;
 		}
 
-		$(".id_check_result").remove();
+		$(".id-check-result").remove();
 		$.ajax({
 			type : "post",
 			url : "idCheck",
@@ -64,9 +64,9 @@
 				if (data == 0) {
 					isIdCheck.flag = 0;
 					isIdCheck.id = form.memId.value;
-					$(".button_id_check").after('<br><span class="id_check_result id_check_sucess">사용 가능한 아이디</span>');
+					$(".btn-id-check").after('<br><span class="id-check-result id-check-sucess">사용 가능한 아이디</span>');
 				} else {
-					$(".button_id_check").after('<br><span class="id_check_result id_check_fail">중복된 아이디</span>');
+					$(".btn-id-check").after('<br><span class="id-check-result id-check-fail">중복된 아이디</span>');
 				}
 			},
 			dataType : "text"
@@ -74,109 +74,70 @@
 	}
 </script>
 
-<div class="section auto">
-	<div class="main_wrap">
-		<div class="register col-md-10 col-md-offset-1" style="max-width: 100%; margin-top: 60px;">
-			<div class="top_nav" style="width: 1000px;">
-				<span id="tab">회원가입</span>
+<div class="container">
+	<div>
+		<h4>| 회원 가입</h4>
+	</div>
+	<hr>
+	<br>
+
+	<div class="register">
+		<form action="/member/join" method="post" onsubmit="return formCheck()">
+			<div id="mem-id" class="d-flex-wrap">
+				<!-- <label class="register-label" for="memId"><span class="red">*</span>아이디</label> -->
+				<input type="text" class="form-control not col-6" id="memId" name="memId" placeholder="아이디*" required>
+				<button type="button" class="btn-id-check col-3">중복체크</button>
+				<!-- <p class="help-block">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요</p> -->
 			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3>회원 가입</h3>
-				</div>
-				<div class="panel-heading">
-					<form action="/member/join" method="post" onsubmit="return formCheck()">
-						<!-- 아이디 입력 -->
-						<div class="" id="memId_div">
-							<!-- <label class="register-label" for="memId"><span class="red">*</span>아이디</label> -->
-							<div class="register-content-none-border">
-								<label style="width: 77%;">
-									<input type="text" id="memId" name="memId" class="form-control input" placeholder="아이디*" required>
-								</label>
-								<button type="button" class="button_id_check">중복체크</button>
-								<!-- <p class="help-block">영문자, 숫자, _ 만 입력 가능. 최소 3자이상 입력하세요</p> -->
-							</div>
-						</div>
-
-						<!-- 비밀번호입력 -->
-						<div class="" id="memPw_div">
-							<div class="register-content-none-border">
-								<label class="memPwLabel" style="width: 77%;">
-									<input type="password" id="memPw" name="memPw" class="form-control input password_check" maxlength="20" placeholder="비밀번호*" />
-								</label>
-								<!-- <p class="help-block">비밀번호는 6자리 이상이어야 합니다</p> -->
-							</div>
-						</div>
-
-						<!-- 비밀번호 확인 -->
-						<div id="memPw_re_div">
-							<div class="register-content-none-border">
-								<label style="width: 77%;">
-									<input type="password" id="memPw_re" name="memPw_re" class="form-control input password_check" placeholder="비밀번호 확인*" />
-								</label>
-							</div>
-						</div>
-
-						<!-- 이름입력 -->
-						<div id="memName_div">
-							<div class="register-content-none-border">
-								<input type="text" id="memName" name="memName" class="form-control input" placeholder="성함*" required>
-							</div>
-						</div>
-
-						<!-- 전화번호 입력 -->
-						<div id="memTel_div">
-							<div class="register-content-none-border">
-								<input type="text" id="memTel" name="memTel" class="form-control input" maxlength="11" placeholder="연락처*" required>
-							</div>
-						</div>
-						<div class="" id="mem_address_div">
-							<div class="register-content-none-border">
-								<label style="width: 77%;">
-									<input type="text" name="postalCode" id="postalCode" class="form-control input" placeholder="우편번호*" readonly="readonly" />
-								</label>
-								<label>
-									<button type="button" class="button_postnumber" onclick="sample4_execDaumPostcode();" style="padding-left: 9px; left: 0px;">주소 검색</button>
-								</label>
-								<br>
-								<input type="text" name="address1" id="address1" class="form-control input" placeholder="도로명주소*" style="margin-top: 20px;">
-								<br>
-								<input type="text" name="address2" id="address2" class="form-control input" placeholder="기본주소*">
-								<br>
-								<input type="text" name="address3" id="address3" class="form-control input" placeholder="상세주소*" required>
-								<br>
-								<input type="text" name="address4" id="address4" class="form-control input" readonly="readonly" placeholder="참고항목">
-								<input type="hidden" name="mem_address4">
-							</div>
-						</div>
-
-						<div id="bankName_div">
-							<label class="register-label" for="bankName">
-								<span class="red">*</span>
-								계좌
-							</label>
-							<div class="register-content-none-border">
-								<select name="bankName" class="form-control input" required>
-									<option value="">은행을 선택하세요 *</option>
-									<option value="국민은행">국민은행</option>
-									<option value="우리은행">우리은행</option>
-									<option value="신한은행">신한은행</option>
-									<option value="농협은행">농협은행</option>
-									<option value="카카오뱅크">카카오뱅크</option>
-								</select>
-								<br>
-								<input type="text" id="accountName" name="accountName" class="form-control input" maxlength="10" placeholder="계좌주입력*" required>
-								<br>
-								<input type="text" id="accountNumber" name="accountNumber" class="form-control input" maxlength="14" placeholder="계좌번호 입력*" required>
-							</div>
-						</div>
-						<div class="border_button">
-							<button type="submit" class="btn btn-success btn-sm">가입하기</button>
-						</div>
-					</form>
-				</div>
+			<div id="mem-pw">
+				<input type="password" class="form-control col-9 memPwLabel" id="memPw" name="memPw" class="password-check" maxlength="20" placeholder="비밀번호*" />
+				<!-- <p class="help-block">비밀번호는 6자리 이상이어야 합니다</p> -->
+				<input type="password" class="form-control col-9" id="memPw_re" name="memPw_re" class="password-check" placeholder="비밀번호 확인*" />
 			</div>
-		</div>
+			<br>
+
+			<div>
+				<input type="text" class="form-control col-9" id="memName" name="memName" placeholder="이름*" required>
+			</div>
+			<div>
+				<input type="text" class="form-control col-9" id="memTel" name="memTel" maxlength="11" placeholder="연락처*" required>
+			</div>
+			<br>
+
+			<div class="d-flex-wrap">
+				<span class="register-label">주소</span>
+				<input type="text" class="form-control not col-6" name="postalCode" id="postalCode" placeholder="우편번호*" readonly="readonly" />
+				<button type="button" onclick="sample4_execDaumPostcode();" class="btn-zipCode col-3">주소 검색</button>
+				<input type="text" class="form-control col-9" name="address1" id="address1" placeholder="도로명주소*" />
+				<input type="text" class="form-control col-9" name="address2" id="address2" placeholder="기본주소*" />
+				<input type="text" class="form-control col-9" name="address3" id="address3" placeholder="상세주소*" required />
+				<input type="text" class="form-control col-9" name="address4" id="address4" placeholder="참고항목" readonly="readonly" />
+				<input type="hidden" name="mem_address4" />
+			</div>
+			<br>
+
+			<div>
+				<span class="register-label">
+					계좌
+					<span class="red">*</span>
+				</span>
+				<select name="bankName" class="form-control" required>
+					<option value="">은행을 선택하세요 *</option>
+					<option value="국민은행">국민은행</option>
+					<option value="우리은행">우리은행</option>
+					<option value="신한은행">신한은행</option>
+					<option value="농협은행">농협은행</option>
+					<option value="카카오뱅크">카카오뱅크</option>
+				</select>
+				<input type="text" class="form-control col-9" id="accountName" name="accountName" maxlength="10" placeholder="계좌주*" required>
+				<input type="text" class="form-control col-9" id="accountNumber" name="accountNumber" maxlength="14" placeholder="계좌번호*" required>
+			</div>
+			<br> <br>
+
+			<div class="text-center">
+				<button type="submit" class="btn-register">가입하기</button>
+			</div>
+		</form>
 	</div>
 </div>
 
@@ -237,4 +198,3 @@
 </script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script type="text/javascript" src="/js/address.js"></script>
-<script type="text/javascript" src="/js/member_register.js"></script>

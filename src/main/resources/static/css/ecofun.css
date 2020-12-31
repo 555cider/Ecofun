@@ -72,11 +72,6 @@ td,th {
 	border-bottom: 1px solid lightgray;
 }
 
-input:focus,select:focus,textarea:focus,button:focus,img:focus {
-	outline: none !important;
-	outline-width: 0px;
-}
-
 a {
 	color: #000;
 	text-decoration: none;
@@ -86,9 +81,33 @@ a,button,input,textarea,img {
 	outline: none !important;
 }
 
+li {
+	list-style: none;
+}
+
 body,html {
 	overflow-x: hidden;
 	min-width: 360px;
+}
+
+input:focus,select:focus,textarea:focus,button:focus,img:focus {
+	outline: none !important;
+	outline-width: 0px;
+}
+
+@media ( max-width : 991px) {
+	.container {
+		max-width: 95%;
+	}
+}
+
+.container {
+	max-width: 1200px;
+}
+
+.d-flex-wrap {
+	display: flex;
+	flex-wrap: wrap;
 }
 
 /* Header */
@@ -135,7 +154,8 @@ body,html {
 	margin: 0 auto;
 }
 
-.pro-content {
+/* Project Detail */
+.project-content {
 	width: 100%;
 	padding: 7%;
 	border: 3px solid lightgray;
@@ -144,16 +164,44 @@ body,html {
 	border-radius: 15px;
 }
 
-.findPw-input {
-	height: 50px;
-	margin: 10px auto;
-	border: lightgray solid 1px;
+.project-comment-list {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px;
+	border-top: 1px solid gray;
+	text-align: left;
+	border-top: 1px solid gray;
 }
 
-#COMMENT {
-	padding-bottom: 10px;
+.project-comment-list div {
+	padding: 0 5px;
 }
 
+/* Project Order */
+.order-area td input {
+	margin: 5px auto;
+	background: #ececec;
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.address-area {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* Project Order Result */
+.result-area /*  */    
+	                                                                                                                                             
+.slick-slide:focus {
+	outline: none;
+}
+
+.mg-auto {
+	margin: auto;
+}
+
+/* info > company */
 #info-ecoFunLogo {
 	background-image: url('http://placehold.it/310x310');
 	background-size: 100% 100%;
@@ -161,10 +209,10 @@ body,html {
 	margin: 0 auto;
 }
 
-@media ( max-width : 991px) {
-	.container {
-		max-width: 95%;
-	}
+.findPw-input {
+	height: 50px;
+	margin: 10px auto;
+	border: lightgray solid 1px;
 }
 
 /* 회원 관리 */
@@ -187,86 +235,6 @@ body,html {
 	background-color: white;
 }
 
-/* Project Order */
-.order-area td input {
-	margin: 5px auto;
-	background: #ececec;
-	text-align: center;
-	font-size: 1.2rem;
-}
-
-.address-area {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-.zipCode-btn {
-	color: white;
-	background: #222;
-	border-radius: 3px;
-	border: none;
-	margin: 0 auto;
-}
-
-/* Project Order Result */
-.result-area /*  */                                                                
-.slick-slide:focus {
-	outline: none;
-}
-
-.mg-auto {
-	margin: auto;
-}
-
-/*정렬 옵션 클래스*/
-.auto {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.center {
-	display: inline-block;
-	margin: auto;
-}
-
-.cover {
-	background-size: cover;
-}
-
-.contain {
-	background-size: contain;
-}
-
-.white {
-	color: #fff;
-}
-
-.black {
-	color: #222;
-}
-
-.bg-w {
-	background: #fff;
-}
-
-.hover {
-	transition: 1s linear;
-	-webkit-transition: 1s linear;
-	-moz-transition: 1s linear;
-	-o-transition: 1s linear;
-	-ms-transition: 1s linear;
-}
-
-.hover:hover {
-	opacity: 0.8;
-	cursor: pointer;
-}
-
-.date {
-	display: inline-block;
-	width: 40%;
-}
-
 /* footer */
 .footer {
 	display: flex;
@@ -287,7 +255,7 @@ body,html {
 }
 
 .footer-sns img {
-	width: 50px;
+	width: 35px;
 	margin: 10px 20px 30px 20px;
 }
 
@@ -343,11 +311,6 @@ body,html {
 	text-align: center;
 }
 
-.main_wrap {
-	width: 900px;
-	margin: 0px auto;
-}
-
 .top {
 	z-index: 5;
 	position: fixed;
@@ -356,235 +319,30 @@ body,html {
 	top: 0px;
 }
 
-.Down {
-	top: 0px;
-}
-
-.menu_wrap {
-	width: 100%;
-	height: 70px;
-	background: #222;
-	position: relative;
-}
-
+/* Header */
 .pc-menu {
-	width: 1200px;
-	height: 70px;
-	margin: 0px auto;
-	z-index: 3;
-}
-
-.subtitle_bg {
-	width: 100%;
-	height: 180px;
-	background: #444;
-	margin-top: 70px;
 	position: absolute;
-	z-index: -100;
-	top: -180px;
-	-webkit-transition: top .5s ease;
-	transition: top .5s ease;
+	z-index: 3;
+	width: 30%;
+	height: 70px;
+	left: 35%;
+	margin: 0px auto;
+	text-align: center;
+	font-size: xx-large;
 }
 
-.subtitle_menu {
-	position: relative;
-	top: -180px;
-	-webkit-transition: top .5s ease;
-	transition: top .5s ease-in-out;
-}
-
-.top:hover .subtitle_bg {
-	top: 0px;
-}
-
-.top:hover .subtitle_menu {
-	top: 0px;
-}
-
-.subtitle {
-	width: 1200px;
-	margin: 0 auto;
-}
-
-.subtitle_logo {
-	width: 140px;
-	height: 20px;
-	margin-left: 16px;
-	margin-right: 20px;
-}
-
-.subtitle_menu li {
-	width: 100px;
-	height: 20px;
-	font-size: .75rem;
-}
-
-.subtitle_menu ul li a {
-	padding: 4px;
-	margin-top: 8px;
-	color: #b5b5b5;
-	transition: 0.5s linear;
-	-webkit-transition: 0.5s linear;
-}
-
-.subtitle_menu ul li a:hover {
-	color: white;
-}
-
-.subtitle li {
-	float: left;
-}
-
-.subtitle li ul li {
-	float: none;
-}
-
-.menu_title:hover .subtitle {
-	display: block;
-}
-
-.menu_icons {
-	background-size: cover;
-	width: 40px;
-	height: 40px;
-	transition: 0.2s ease;
-}
-
-/*모바일 메뉴*/
 .mobile-menu {
 	display: none;
-	z-index: 6;
-}
-
-.mobile-nav {
-	z-index: 7;
-	width: 75%;
-	height: 100%;
-	background: #444;
-	position: fixed;
-	visibility: visible;
-	overflow: visible;
-	top: 0;
-	right: -75%;
-	transition: right 0.3s ease-in-out;
-}
-
-.overflow_open {
-	overflow: hidden;
-	position: fixed;
-}
-
-.nav-titlemsg {
-	background: #222;
-	margin: 0px auto;
-	width: 100%;
-	height: 70px;
-	font-size: 1rem;
-}
-
-.nav-titlemsg p {
-	padding-top: 24px;
-}
-
-.nav-titlemsg p span {
-	color: #000000ba;
-}
-
-.nav-msg a {
-	display: inline-block;
-	width: 100%;
-	height: 22px;
-	padding-top: 8px;
-	font-size: .9rem;
-	color: white;
-	transition: .3s linear;
-	background: #333;
-	margin-bottom: 20px;
-}
-
-.nav-msg a:hover {
-	color: #FFEF01;
-}
-
-.nav-flex {
-	width: 100%;
-	height: 55%;
-	margin-bottom: 20px;
-}
-
-.nav-flex ul {
-	width: 100%;
-	height: 100%;
-	margin: 0px auto;
-}
-
-.nav-flex ul li {
-	width: 30%;
-	margin: 1.5%;
-	height: 30%;
-	border-radius: 10px;
-	border: 1px solid #ececec;
-	box-sizing: border-box;
-	float: left;
-	transition: 0.3s linear;
-}
-/*모바일 아이콘 배경 사이즈및 포지션 조정*/
-.nav-flex ul li a span {
-	color: white;
-	font-size: .9rem;
-	top: calc(100% - .9rem - 24px);
-	position: relative;
-}
-
-.nav-flex ul li a span:first-child {
-	font-size: .7rem;
-}
-
-.nav-flex ul li a {
-	width: 100%;
-	height: 100%;
-	border-radius: 10px;
-	background-size: 50%;
-	background-position: 50% 20%;
-}
-
-.nav-flex ul li:hover {
-	background: #333;
-	border-color: #000000ba;
-}
-
-.nav-sns_wrap {
-	width: 100%;
 	position: absolute;
-	bottom: 55px;
-	height: 35px;
-	margin-bottom: 15px;
-}
-
-.nav-sns_wrap ul {
-	margin: 0px auto;
-	width: calc(( 24px * 3)+ (6px* 6))
-}
-
-.nav-sns {
-	width: 24px;
-	height: 24px;
-	margin: 0px 6px;
-	float: left;
-}
-
-/*탭 메뉴 설정*/
-.tab_box {
-	width: 900px;
-	margin: 0 auto;
-	overflow: auto;
+	z-index: 6;
+	width: 58%;
+	left: 21%;
+	margin-top: 5px;
+	text-align: center;
+	font-size: xx-large;
 }
 
 /*메인 이미지 및 타이포*/
-.section {
-	text-align: center;
-}
-
 .slide dl {
 	width: 1200px;
 	padding: 200px 0px;
@@ -600,152 +358,6 @@ body,html {
 	box-sizing: border-box;
 }
 
-.slide_title,.slide_content {
-	width: 600px;
-	height: auto;
-	overflow: hidden;
-}
-
-.slide_title {
-	float: right;
-	position: relative;
-}
-
-.slide_content {
-	float: left;
-	z-index: 3;
-}
-
-.slide_title h1 {
-	color: white;
-	font-size: 3rem;
-}
-
-.slide_video_wrap {
-	width: 1200px;
-	left: calc(50% - 600px);
-	z-index: 2;
-	position: absolute;
-}
-
-.slide_video {
-	position: absolute;
-	width: 560px;
-	height: 315px;
-	right: 4%;
-	top: 350px;
-}
-
-.slide_video iframe {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-
-.slide_contentBox {
-	box-sizing: border-box;
-	width: 480px;
-	height: 480px;
-	margin-left: auto;
-	margin-right: auto;
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	align-content: flex-start;
-	flex-flow: row wrap;
-	box-sizing: border-box;
-}
-
-.slide_contentBox>li {
-	flex: 0 1 auto;
-	margin: 1%;
-	overflow: hideen;
-	box-sizing: border-box;
-}
-
-.slide_contentBox>li:nth-child(6) {
-	visibility: hidden;
-}
-
-.slide_contentBox li button {
-	background: none;
-	border: none;
-	color: white;
-}
-
-.slide_contentBox li button:hover {
-	transform: scale(1.1, 1.1);
-}
-
-.slide_contentBox li button {
-	transition: .5s ease;
-}
-
-.slide_contentBox li button div {
-	background-size: contain;
-	margin: 5px auto;
-	width: 100px;
-	height: 100px;
-	box-sizing: border-box;
-	border: 3px solid white;
-	border-radius: 35%;
-}
-
-.slide_title>button:hover,.slide_text>button:hover {
-	background-color: #222;
-	opacity: .9;
-}
-
-.slide_title>button,.slide_text>button {
-	box-sizing: border-box;
-	border: 2px solid white;
-	border-radius: 4px;
-	background: none;
-	padding: 8px;
-	color: white;
-	font-size: 1.2rem;
-	transition: .5s linear;
-}
-
-.slide_title>button {
-	position: relative;
-	left: 200px;
-	top: -20px;
-}
-
-.slide_text {
-	width: 100%;
-	height: 300px;
-}
-
-.slide_text>button {
-	position: relative;
-	top: 20px;
-}
-
-.slide_contentBox li h3 {
-	margin-top: 4px;
-	color: white;
-	font-size: 1.25rem;
-}
-
-.slide_content p {
-	color: white;
-	font-size: 1.6rem;
-	line-height: 3rem;
-}
-
-.slide_content p.huigge {
-	margin-top: 320px;
-}
-
-.product {
-	width: 100%;
-	height: 100%;
-}
-
 .content {
 	width: 300px;
 	border: 1px solid #CCC;
@@ -754,56 +366,29 @@ body,html {
 	display: inline-block;
 }
 
-.button_a {
-	width: 100%;
-}
-
-.button:hover {
-	border: 1px solid #000000ba;
-	background: #000000ba;
-	color: white;
-}
-
 /* log in */
+.login {
+	display: inline-block;
+	padding: 15% 0 5% 0;
+	width: 400px;
+	text-align: center;
+}
+
 .login a {
 	color: #999;
 }
 
-.pc-login h2 {
+.login h2 {
 	margin: 20px;
 	font-size: 1.2rem;
 }
 
-.login_area {
-	position: relative;
-}
-
-.login_area>span {
-	position: absolute;
-	color: #999;
-	top: 45%;
-	right: 15px;
-}
-
-.mobile-login {
-	display: none;
-}
-
-.login_contain {
-	width: 400px;
-	position: relative;
-}
-
-.login {
-	display: inline-block;
-	margin-top: 60px;
-}
-
-.login_title {
+.login-title {
 	font-size: 1.8em;
 	color: #3A3A3A;
 	margin-top: 60px;
 	margin-bottom: 40px;
+	text-align: center;
 }
 
 .login_form {
@@ -824,6 +409,19 @@ body,html {
 	background: white;
 }
 
+.auto-login {
+	text-align: left;
+	display: block;
+	position: relative;
+	top: 15px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	font-size: 1.1rem;
+	float: left;
+	color: #777;
+}
+
 .find_account {
 	float: right;
 	margin-top: 13px;
@@ -837,7 +435,7 @@ body,html {
 	color: #444;
 }
 
-.login-button,.join-button,.pc-login-button,.pc-join-button {
+.login-button,.join-button {
 	width: 100%;
 	box-sizing: border-box;
 	padding: 16px;
@@ -846,20 +444,13 @@ body,html {
 	font-size: 1.2rem;
 }
 
-.pc-login-button {
-	color: white;
-	margin-top: 0px;
-	background: #000000ba;
-	margin-top: 12px;
-}
-
 .login-button {
 	color: white;
 	margin-top: 12px;
-	background: #999;
+	background: #000000ba;
 }
 
-.pc-join-button {
+.join-button {
 	width: 100%;
 	box-sizing: border-box;
 	padding: 16px;
@@ -867,49 +458,28 @@ body,html {
 	font-weight: bold;
 	font-size: 1.2rem;
 	color: black;
-	background: #e9e7e7;
+	background: #999;
 }
 
-.join-button {
-	color: #999;
-	background: white;
-	border: 1px solid #bbb;
-}
-
-.login_line {
+.login-line {
 	width: 100%;
 	height: 1px;
 	border-bottom: 1px solid #ccc;
 	margin: 16px 0px;
 }
 
-.wrap_container {
-	height: 100%;
-	box-sizing: border-box;
-	padding-top: 70px;
-	margin: 0px auto;
+/* Agreement */
+.agree-list {
+	flex: 0 0 auto;
+	width: 95%;
 }
 
-.agreetitle {
-	margin-bottom: 30px;
-}
-
-.account_agree_wrap {
-	width: 1000px;
-	overflow: hidden;
-	margin: 0px auto;
-	box-sizing: border-box;
-}
-
-.account_agree_contain {
+.agree-list li {
 	width: 100%;
+	text-align: left;
 }
 
-.account_agree_contain li {
-	width: 100%;
-}
-
-.agreearea {
+.agree-area {
 	box-sizing: border-box;
 	margin-top: 4px;
 	margin-bottom: 10px;
@@ -924,91 +494,7 @@ body,html {
 	resize: none;
 }
 
-.button_id_check {
-	font-size: .875rem;
-	color: white;
-	background: #222;
-	padding: 9px;
-	margin-bottom: 10px;
-	position: relative;
-	border-radius: 3px;
-	box-sizing: border-box;
-	border: none;
-	cursor: pointer;
-}
-
-/*결제정보*/
-.payment_wrap {
-	width: 480px;
-	margin: 0 auto;
-}
-
-.payment_text {
-	padding: 15px;
-	line-height: 1.6em;
-	margin-bottom: 15px;
-}
-
-.payment_contain {
-	text-align: left;
-	display: block;
-	position: relative;
-	left: 0px;
-	padding-left: 50px;
-	margin-bottom: 20px;
-	cursor: pointer;
-	font-size: 1.2em;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.kakaopay {
-	position: absolute;
-	display: block;
-	top: 0px;
-	left: 140px;
-	width: 45px;
-	height: 20px;
-	background: red;
-	background-image: url("/assets/images/test/kakaopay.jpg");
-	background-size: cover;
-	border-radius: 3px;
-}
-
-.payment_contain input,.payment_agree_contain input {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-	height: 0;
-	width: 0;
-}
-
-.payment_checkmark {
-	position: absolute;
-	top: -4px;
-	left: 15px;
-	height: 25px;
-	width: 25px;
-	background-color: #eee;
-	border-radius: 50%;
-}
-
-.payment_price {
-	margin-top: 40px;
-	margin-bottom: 40px;
-	text-align: right;
-	padding: 15px;
-	font-size: 1.4em;
-}
-
-.payment_pricelabel {
-	color: #999;
-	margin-right: 20px;
-}
-
-.payment_agree_contain {
+.agree-label {
 	text-align: left;
 	display: block;
 	position: relative;
@@ -1024,29 +510,25 @@ body,html {
 	user-select: none;
 }
 
-.auto_login {
-	text-align: left;
-	display: block;
-	position: relative;
-	top: 15px;
-	/* width:80px; */
-	padding-left: 30px;
-	margin-bottom: 20px;
+.agree-label input {
+	position: absolute;
+	opacity: 0;
 	cursor: pointer;
-	font-size: 1.1rem;
-	float: left;
-	color: #777;
+	height: 0;
+	width: 0;
 }
 
-.last {
-	margin-bottom: 60px;
-}
-
-.auto_login_chk {
+.agree-checkmark {
+	position: absolute;
+	top: -4px;
 	left: 0px;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+	border-radius: 10%;
 }
 
-.payment_agree_contain .payment_agree_checkmark:after {
+.agree-label .agree-checkmark:after {
 	left: 9px;
 	top: 5px;
 	width: 5px;
@@ -1057,36 +539,137 @@ body,html {
 	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
-/* On mouse-over, add a grey background color */
-.payment_contain:hover input ~ .payment_checkmark {
-	background-color: #ccc;
-}
 
 /* When the radio button is checked, add a blue background */
-.payment_contain input:checked ~ .payment_checkmark,.payment_agree_contain input:checked ~ .payment_agree_checkmark {
+.agree-label input:checked ~ .agree-checkmark {
 	background-color: #000000ba;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
-.payment_checkmark:after,.payment_agree_checkmark:after {
+.agree-checkmark:after {
 	content: "";
 	position: absolute;
 	display: none;
 }
 
 /* Show the indicator (dot/circle) when checked */
-.payment_contain input:checked ~ .payment_checkmark:after,.payment_agree_contain input:checked ~ .payment_agree_checkmark:after {
+.agree-label input:checked ~ .agree-checkmark:after {
 	display: block;
 }
 
 /* Style the indicator (dot/circle) */
-.payment_contain .payment_checkmark:after {
+.agree-label .agree-checkmark:after {
 	top: 9px;
 	left: 9px;
 	width: 8px;
 	height: 8px;
 	border-radius: 50%;
 	background: white;
+}
+
+/* Registration */
+.register {
+	padding: 5%;
+	border-top: 1px solid #ebebeb;
+	border-right: 1px solid #ebebeb;
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+.register form div {
+	color: #222;
+	text-align: left;
+	margin: 0 auto;
+	box-sizing: border-box;
+	width: 75%;
+}
+
+.register form div .not {
+	width: 75%;
+}
+
+.register form div input {
+	border: 1px solid #222;
+	margin: 0 auto;
+}
+
+.register form div input:not(.not) {
+	margin: 0.5rem auto;
+}
+
+.register-label {
+	padding: 1rem;
+	font-weight: bold;
+	font-size: 1rem;
+	color: #222;
+	width: 25%;
+	box-sizing: border-box;
+	text-align: left;
+	float: left;
+	line-height: 1.3rem;
+	width: 100%;
+}
+
+.btn-id-check {
+	border: none;
+	border-radius: 3px;
+	background: #222;
+	color: white;
+}
+
+.btn-zipCode {
+	border: none;
+	border-radius: 3px;
+	background: #222;
+	color: white;
+}
+
+.btn-postnumber {
+	font-size: .875rem;
+	color: white;
+	background: #222;
+	padding: 9px;
+	position: relative;
+	top: -2px;
+	left: -8px;
+	border-radius: 3px;
+	box-sizing: border-box;
+	border: none;
+	cursor: pointer;
+}
+
+.btn-register {
+	width: 100%;
+	padding: 1%;
+	border-radius: none;
+	background: #222;
+	color: white;
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+.id-check-sucess {
+	padding-left: 10px;
+	color: blue;
+}
+
+.id-check-fail {
+	padding-left: 10px;
+	color: red;
+}
+
+/*결제정보*/
+.kakaopay {
+	position: absolute;
+	display: block;
+	top: 0px;
+	left: 140px;
+	width: 45px;
+	height: 20px;
+	background: red;
+	background-image: url("/assets/images/test/kakaopay.jpg");
+	background-size: cover;
+	border-radius: 3px;
 }
 
 /*글쓰기*/
@@ -1118,80 +701,10 @@ body,html {
 	color: #cb0a0f;
 }
 
-.board .form-group {
-	border-top: 1px solid #ebebeb;
-	border-right: 1px solid #ebebeb;
-	box-sizing: border-box;
-	width: 100%;
-	overflow: hidden;
-	font-size: .9rem;
-	color: #222;
-}
-
-.board .form-group {
-	border-right: none;
-}
-
-.board .form-group>label {
-	width: 12%;
-	padding: 16px 12px;
-	box-sizing: border-box;
-	float: left;
-	background: #f4f4f4;
-}
-
-.board .form-group div {
-	box-sizing: border-box;
-	float: left;
-	padding-top: 10px;
-	padding-left: 12px;
-	width: 88%;
-}
-
 label.subject_title::before {
 	content: "\2217";
 	color: #cb0a0f;
 	font-size: 1.1rem;
-}
-
-.board .input-group {
-	position: relative;
-	margin-top: -9px;
-	left: -10px;
-	height: 20px;
-}
-
-.form-group div.col-sm-12 {
-	float: left;
-	width: 800px;
-	padding: 12px;
-}
-
-.form-group>label.content-title {
-	background: white;
-	font-size: 1.1rem;
-	font-weight: bold;
-	position: relative;
-	left: -10px;
-	margin-top: 24px;
-	margin-bottom: 0px;
-	width: 100%;
-	height: 40px;
-}
-
-.form-group>div.content-contain {
-	clear: both;
-	width: 100%;
-	margin-bottom: 36px;
-}
-
-#post_content {
-	float: none;
-	margin: 0px auto;
-	min-width: 100%;
-	max-width: 100%;
-	min-height: 300px;
-	border: 1px solid #999;
 }
 
 .alert {
@@ -1241,12 +754,6 @@ button.close {
 	opacity: .2;
 }
 
-.alert-dismissible .close {
-	position: relative;
-	top: -3px;
-	color: inherit;
-}
-
 .alert-warning {
 	background-image: -webkit-linear-gradient(top, #fcf8e3 0, #f8efc0 100%);
 	background-image: -o-linear-gradient(top, #fcf8e3 0, #f8efc0 100%);
@@ -1260,81 +767,6 @@ button.close {
 	border-color: #faebcc;
 }
 
-/* 일반페이지 이동 버튼 */
-.document-button {
-	width: 100%;
-	height: 50px;
-	margin: 32px auto;
-	color: white;
-}
-
-.document-button button {
-	width: 50%;
-	height: 100%;
-	float: left;
-	border: none;
-	box-sizing: border-box;
-	background: #444;
-	color: white;
-}
-
-.border-button {
-	width: 100%;
-	height: 50px;
-	margin-top: 48px;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.border-button button {
-	width: 50%;
-	height: 100%;
-	float: left;
-	border: none;
-	box-sizing: border-box;
-	background: #444;
-	color: white;
-}
-
-.border-button {
-	color: white;
-}
-
-button.btn-success {
-	background: #222;
-	color: white;
-	border-radius: none;
-	width: 100%;
-	font-weight: bold;
-	font-size: 1rem;
-}
-
-.register nav {
-	text-align: left;
-	margin-bottom: 20px;
-}
-
-.btn {
-	display: inline-block;
-	padding: 6px 12px;
-	margin-bottom: 0;
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 1.42857143;
-	text-align: center;
-	white-space: nowrap;
-	vertical-align: middle;
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	background-image: none;
-	border: 1px solid transparent;
-	border-radius: 4px;
-}
 /* 페이지네이션 */
 nav,.pagination {
 	text-align: center;
@@ -1349,10 +781,6 @@ nav,.pagination {
 
 .pagination>li {
 	display: inline;
-}
-
-li {
-	list-style: none;
 }
 
 .pagination>li:first-child>a,.pagination>li:first-child>span {
@@ -1382,74 +810,6 @@ li {
 	margin: 0 5px;
 }
 
-.top-nav {
-	width: 900px;
-	margin: 0 auto;
-	text-align: left;
-	font-size: .75em;
-}
-
-.top-nav a {
-	display: inline-block;
-}
-
-.top-nav span {
-	font-weight: bold;
-	color: #866e4a;
-}
-
-/*정보수정*/
-.modify_table {
-	width: 100%;
-	background: white;
-	box-shadow: 1px 1px 5px 1px #ccc;
-	margin-bottom: 60px;
-}
-
-.modify_table tr {
-	border-bottom: 1px solid #ddd;
-}
-
-.modify_table span {
-	padding-left: 1rem;
-}
-
-.modify_label {
-	padding: 1rem;
-	font-weight: bold;
-	font-size: 1rem;
-	color: #222;
-	width: 30%;
-	text-align: left;
-	border-right: 1px solid #ddd;
-}
-
-.modify_content {
-	line-height: 1.3rem;
-	color: #222;
-	text-align: left;
-	width: 70%;
-	font-size: 0.875rem;
-}
-
-.modify_input placeholder {
-	color: #222;
-}
-
-.modify_input {
-	color: #222;
-	padding: 1rem;
-	box-sizing: content-box;
-	border: none;
-	width: 200px;
-	height: 100%;
-}
-
-.modify_post {
-	display: block;
-	float: none;
-}
-
 .date_line {
 	position: relative;
 	display: block;
@@ -1465,212 +825,6 @@ li {
 	height: 5px;
 	background: #222;
 	margin: 12px auto 0px auto;
-}
-
-.article_contain h2 {
-	display: inline-block;
-	font-size: 1.8rem;
-	margin-bottom: 24px;
-}
-
-.article_contain img {
-	width: auto;
-}
-
-.id_check_sucess {
-	padding-left: 10px;
-	color: blue;
-}
-
-.id_check_fail {
-	padding-left: 10px;
-	color: red;
-}
-
-/* 회원가입 */
-.register {
-	margin-top: 140px;
-	margin-bottom: 70px;
-}
-
-.panel-heading h3 {
-	font-weight: bold;
-	font-size: 1.6rem;
-	padding: 8px 0px;
-	margin-bottom: 32px;
-}
-
-.form-body {
-	width: 100%;
-	background: white;
-	box-shadow: 1px 1px 5px 1px #ccc;
-}
-
-.register .form-group {
-	border-bottom: 1px solid #ddd;
-}
-
-.register .form-group {
-	border-top: 1px solid #ebebeb;
-	border-right: 1px solid #ebebeb;
-	box-sizing: border-box;
-	width: 100%;
-	overflow: hidden;
-	font-size: .9rem;
-	color: #222;
-}
-
-.register-label {
-	padding: 1rem;
-	font-weight: bold;
-	font-size: 1rem;
-	color: #222;
-	width: 25%;
-	box-sizing: border-box;
-	text-align: left;
-	float: left;
-	line-height: 1.3rem;
-}
-
-.register-content {
-	line-height: 1.3rem;
-	padding: 1rem;
-	color: #222;
-	text-align: left;
-	width: 75%;
-	box-sizing: border-box;
-	font-size: 0.875rem;
-	padding-left: 1rem;
-	float: left;
-	border-left: 1px solid #ddd;
-}
-
-.register-content-none-border {
-	line-height: 1.3rem;
-	padding: 1rem;
-	color: #222;
-	text-align: left;
-	width: 100%;
-	box-sizing: border-box;
-	font-size: 0.875rem;
-	padding-left: 1rem;
-	float: left;
-	border-left: 0px solid #ddd;
-}
-
-.register-content input {
-	border-radius: 2px;
-	border: 1px solid #222;
-	position: relative;
-}
-
-.btn-default {
-	background: #cb0a0f;
-	color: white;
-}
-
-.modify_input placeholder {
-	color: #222;
-}
-
-.modify_input {
-	color: #222;
-	padding: 1rem;
-	box-sizing: content-box;
-	border: none;
-	width: 300px;
-	height: 100%;
-}
-
-.modify_select {
-	border: none;
-	position: relative;
-	left: 0.875rem;
-	color: #222;
-	width: 60px;
-	height: 20px;
-}
-
-.modify_post {
-	display: block;
-	float: none;
-}
-
-li.address_change_wrap {
-	padding: 8px;
-}
-
-.address_change {
-	/*width:100%;*/
-	text-align: center;
-	color: white;
-	background: #222;
-	border: none;
-	border-radius: 3px;
-	padding: 8px;
-	margin-top: -8px;
-	cursor: pointer;
-}
-
-div.bank-info {
-	font-size: .75rem;
-	text-align: left;
-	line-height: 1.2rem;
-	padding-left: 15px;
-	margin-top: 32px;
-}
-
-.payment_select {
-	font-weight: bold;
-	font-size: 1.2rem;
-	text-align: left;
-	padding-left: 15px;
-	margin-bottom: 32px;
-}
-
-table.payment_inform {
-	width: calc(100% - 15px);
-	box-sizing: border-box;
-	font-size: 1rem;
-	margin-bottom: 32px;
-}
-
-table.payment_inform th {
-	text-align: left;
-	width: 90px;
-	padding: 8px 15px;
-}
-
-table.payment_inform td {
-	text-align: right;
-	box-sizing: border-box;
-	padding: 8px;
-}
-
-table.payment_inform td input {
-	width: 100px;
-	box-sizing: border-box;
-	padding: 4px;
-}
-
-table.payment_inform td:nth-child(2) {
-	width: 150px;
-}
-
-table.payment_inform td:last-child {
-	text-align: left;
-	font-size: .75rem;
-	text-align: center;
-}
-
-table.payment_inform tr:last-child {
-	border: 1px solid #dcdcdc;
-	border-width: 1px 0px 1px 0px;
-}
-
-table.payment_inform tr:last-child td {
-	font-size: 1.2rem;
-	font-weight: bold;
 }
 
 button.edit-button {
@@ -1703,106 +857,6 @@ button.edit-button {
 	box-sizing: border-box;
 }
 
-button.hasSelect {
-	background: #666;
-	color: white;
-}
-
-.orderList table tr td button,.standard_info>li>button {
-	-moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-	box-shadow: inset 0px 1px 0px 0px #ffffff;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
-	background: -moz-linear-gradient(center top, #f9f9f9 5%, #e9e9e9 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9');
-	background-color: #f9f9f9;
-	-webkit-border-top-left-radius: 0px;
-	-moz-border-radius-topleft: 0px;
-	border-top-left-radius: 0px;
-	-webkit-border-top-right-radius: 0px;
-	-moz-border-radius-topright: 0px;
-	border-top-right-radius: 0px;
-	-webkit-border-bottom-right-radius: 0px;
-	-moz-border-radius-bottomright: 0px;
-	border-bottom-right-radius: 0px;
-	-webkit-border-bottom-left-radius: 0px;
-	-moz-border-radius-bottomleft: 0px;
-	border-bottom-left-radius: 0px;
-	text-indent: 0px;
-	border: 1px solid #dcdcdc;
-	display: inline-block;
-	color: #222222;
-	font-family: Arial;
-	font-size: 12px;
-	font-weight: normal;
-	font-style: normal;
-	height: 24px;
-	line-height: 24px;
-	width: 80px;
-	text-decoration: none;
-	text-align: center;
-}
-
-.orderList table tr td button:hover,.standard_info>li>button:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
-	background: -moz-linear-gradient(center top, #e9e9e9 5%, #f9f9f9 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9');
-	background-color: #e9e9e9;
-}
-
-.orderList table tr td button:active,.standard_info>li>button:active {
-	position: relative;
-	top: 1px;
-}
-
-.orderListButton {
-	-moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
-	box-shadow: inset 0px 1px 0px 0px #ffffff;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
-	background: -moz-linear-gradient(center top, #f9f9f9 5%, #e9e9e9 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9');
-	background-color: #f9f9f9;
-	-webkit-border-top-left-radius: 0px;
-	-moz-border-radius-topleft: 0px;
-	border-top-left-radius: 0px;
-	-webkit-border-top-right-radius: 0px;
-	-moz-border-radius-topright: 0px;
-	border-top-right-radius: 0px;
-	-webkit-border-bottom-right-radius: 0px;
-	-moz-border-radius-bottomright: 0px;
-	border-bottom-right-radius: 0px;
-	-webkit-border-bottom-left-radius: 0px;
-	-moz-border-radius-bottomleft: 0px;
-	border-bottom-left-radius: 0px;
-	text-indent: 0px;
-	border: 1px solid #dcdcdc;
-	display: inline-block;
-	color: #222;
-	font-family: Arial;
-	font-size: 12px;
-	font-weight: normal;
-	font-style: normal;
-	padding: 4px 6px;
-	box-sizing: border-box;
-	text-decoration: none;
-	text-align: center;
-	position: relative;
-	top: -1px;
-}
-
-.orderListButton:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
-	background: -moz-linear-gradient(center top, #e9e9e9 5%, #f9f9f9 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9');
-	background-color: #e9e9e9;
-}
-
-.orderListButton:active {
-	position: relative;
-	top: 1px;
-}
-
 .red {
 	font-size: 1.2rem;
 	color: red;
@@ -1822,17 +876,6 @@ button.hasSelect {
 	background: #f7f7f7;
 	box-sizing: border-box;
 	line-height: 1.5rem;
-}
-
-.optionContent {
-	flex: 1 1 auto;
-	width: calc(( 100% - 24%)/3);
-	box-sizing: border-box;
-}
-
-li.optionContent input {
-	padding: 4px;
-	margin-left: 8px;
 }
 
 /*deposit*/

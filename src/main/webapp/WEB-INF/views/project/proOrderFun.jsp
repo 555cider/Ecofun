@@ -88,7 +88,7 @@
 						<th>주소</th>
 						<td class="address-area">
 							<input type="number" class="col-5" name="postalCode" id="postalCode" placeholder="우편번호" onclick="sample4_execDaumPostcode()" readonly />
-							<button type="button" class="col-5 zipCode-btn" id="address" onclick="sample4_execDaumPostcode()">주소 검색</button>
+							<button type="button" class="col-5 btn-zipCode" id="address" onclick="sample4_execDaumPostcode()">주소 검색</button>
 							<input type="text" class="col-11" name="address1" id="address1" placeholder="도로명주소" />
 							<input type="text" class="col-11" name="address2" id="address2" placeholder="기본주소" />
 							<input type="text" class="col-11" name="address4" id="address4" readonly placeholder="참고항목" />
@@ -131,7 +131,7 @@
 			<br>
 
 			<!-- 하단 확인 버튼 -->
-			<div style="text-align: center;">
+			<div class="text-center">
 				<button type="button" onclick="history.back();">뒤로가기</button>
 				<button type="button" onclick="validation(this)">결제하기</button>
 			</div>

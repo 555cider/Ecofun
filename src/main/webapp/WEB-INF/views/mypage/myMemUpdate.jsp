@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="org.springframework.ui.Model"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
@@ -33,7 +33,6 @@ tr {
 .btn {
 	float: right;
 	background-color: white;
-	/* border-color: lightgray solid 0.5px; */
 }
 
 .phone {
@@ -67,11 +66,12 @@ tr {
 		<h4>| 개인정보 수정</h4>
 	</div>
 	<hr>
+	<br>
 
 	<!-- table -->
-	<div style="margin: 0 auto;">
+	<div class="content-center">
 		<form action="" id="form">
-			<table style="width: 100%;">
+			<table>
 				<tr>
 					<!-- 아이디 -->
 					<td class="td1">
@@ -96,7 +96,7 @@ tr {
 						연락처
 					</td>
 					<td class="td2">
-						<input type="text" id="memTel" name="memTel" class="form-control input" value="${member.memTel}" required>
+						<input type="text" id="memTel" name="memTel" value="${member.memTel}" required>
 					</td>
 				</tr>
 
@@ -106,19 +106,17 @@ tr {
 					<td class="td2">
 						<!-- <input type="button" class="btn" id="address" value="?"> -->
 						<label style="width: 91%;">
-							<input type="text" name="postalCode" id="postalCode" class="form-control input" value="${address.postalCode}" readonly="readonly" />
+							<input type="text" name="postalCode" id="postalCode" value="${address.postalCode}" readonly="readonly" />
 						</label>
-						<label>
-							<button type="button" class="button_postnumber" onclick="sample4_execDaumPostcode();" style="padding-left: 9px; left: 0px;">주소 검색</button>
-						</label>
+						<button type="button" onclick="sample4_execDaumPostcode();" style="padding-left: 9px; left: 0px;">주소 검색</button>
 						<br>
-						<input type="text" name="address1" id="address1" class="form-control input" value="${address.address1}" style="margin-top: 20px;">
+						<input type="text" name="address1" id="address1" value="${address.address1}">
 						<br>
-						<input type="text" name="address2" id="address2" class="form-control input" value="${address.address2}">
+						<input type="text" name="address2" id="address2" value="${address.address2}">
 						<br>
-						<input type="text" name="address3" id="address3" class="form-control input" value="${address.address3}">
+						<input type="text" name="address3" id="address3" value="${address.address3}">
 						<br>
-						<input type="text" name="address4" id="address4" class="form-control input" readonly="readonly" value="${address.address4}">
+						<input type="text" name="address4" id="address4" readonly="readonly" value="${address.address4}">
 						<input type="hidden" name="mem_address4">
 					</td>
 				</tr>
@@ -129,7 +127,7 @@ tr {
 					<td class="td2">
 						은행선택 :
 						<!-- <input type="button" class="btn" id="bank" value="?">  -->
-						<select name="bankName" id="bankName" class="form-control input">
+						<select name="bankName" id="bankName">
 							<option value="" selected="${account.bankName}">은행을 선택하세요</option>
 							<option value="국민은행">국민은행</option>
 							<option value="우리은행">우리은행</option>
@@ -137,44 +135,35 @@ tr {
 							<option value="농협은행">농협은행</option>
 							<option value="카카오뱅크">카카오뱅크</option>
 						</select> <br>
-						<input type="text" id="accountName" name="accountName" class="form-control input" value="${account.accountName}">
+						<input type="text" id="accountName" name="accountName" value="${account.accountName}">
 						<br>
-						<input type="text" id="accountNumber" name="accountNumber" class="form-control input" value="${account.accountNumber}">
+						<input type="text" id="accountNumber" name="accountNumber" value="${account.accountNumber}">
 				</tr>
 			</table>
 
 			<!-- table end -->
 			<!-- 동의서 -->
-			<div class="col-lg-12 col-sm-12" style="margin-bottom: 5%;">
+			<div class="col-12" style="margin-bottom: 5%;">
 				<h5>| 마케팅정보 제공동의</h5>
 				<hr>
-				<textarea class="col-lg-12 col-sm-12" name="" id="" style="resize: none;"></textarea>
+				<textarea class="col-12" style="resize: none;"></textarea>
 				<hr>
 			</div>
 
-			<div class="upButtonWrap" role="group" aria-label="..." style="margin: 0 auto;">
-
-				<a href="/main"><input type="button" class="uploadButton" value="취소하기"></a> <a href="/main"><input type="button" class="uploadButton"
-						onclick="update(this)" value="저장하기"
-					></a>
+			<div class="content-center" role="group" aria-label="...">
+				<a href="/main">
+					<input type="button" class="uploadButton" value="취소하기">
+				</a>
+				<a href="/main">
+					<input type="button" class="uploadButton" onclick="update(this)" value="저장하기">
+				</a>
 			</div>
 		</form>
 	</div>
 </div>
 
-
-<!-- <script>
-	$('#address').click(function() {
-		alert("공백은 회원가입 시 저장 안해서 그럼");
-	});
-
-	$('#bank').click(function() {
-		alert("공백은 회원가입 시 저장 안해서 그럼");
-	});
-</script> -->
 <script>
 	function update(elClickedObj) {
-		alert("들어옴");
 		var phone = document.getElementById('memTel').value;
 		var postalCode = document.getElementById('postalCode').value; //우편번호
 		var address3 = document.getElementById('address3').value; //상세주소
@@ -210,7 +199,6 @@ tr {
 				}
 			});
 			alert("개인정보수정이 완료되었습니다.");
-
 		}
 	}
 </script>
@@ -225,12 +213,13 @@ tr {
 				var roadAddr = data.roadAddress; // 도로명 주소 변수
 				var extraRoadAddr = ''; // 참고 항목 변수
 
-				//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+				// 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+				// 사용자가 도로명 주소를 선택했을 경우
+				if (data.userSelectedType === 'R') {
 					addr = data.roadAddress;
-				} /* else { // 사용자가 지번 주소를 선택했을 경우(J)
-																               addr = data.jibunAddress;
-																           } */
+				}
+				// 사용자가 지번 주소를 선택했을 경우(J)
+				// else { addr = data.jibunAddress; }
 
 				// 법정동명이 있을 경우 추가한다. (법정리는 제외)
 				// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.

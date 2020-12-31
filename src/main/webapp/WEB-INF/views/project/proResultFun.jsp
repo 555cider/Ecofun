@@ -30,7 +30,7 @@ alert("잘못된 경로로 접근하셨습니다."); window.location = '/main';
 
 	<div>
 		<h5>| 참여 프로젝트 정보</h5>
-		<div class="d-flex flex-wrap">
+		<div class="d-flex-wrap">
 			<div class="col-12 col-md-3" style="background-image: url('${project.proThumb}'); background-size: 100% 100%;">
 				<img src="http://placehold.it/300x300" alt="이미지" class="hidden">
 			</div>
@@ -131,7 +131,7 @@ alert("잘못된 경로로 접근하셨습니다."); window.location = '/main';
 	<br>
 
 	<!-- 하단 확인 버튼 -->
-	<div class="upButtonWrap text-center">
+	<div class="text-center">
 		<button type="button" onclick="changeView(0)">확인</button>
 	</div>
 </div>

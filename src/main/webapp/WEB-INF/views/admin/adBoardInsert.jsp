@@ -17,62 +17,57 @@ td {
 .category {
 	margin-left: 2%;
 }
-
 </style>
 <div class="container" id="container">
 	<div>
-		<h4>
-			|
-			<a href="/board/list">게시판</a>
-			> 작성
+		<h4>| <a href="/board/list">게시판</a> > 작성
 		</h4>
 	</div>
 	<hr>
 	<br>
+
 	<div>
 		<form action="/admin/boardInsert" id="frm" enctype="multipart/form-data" method="post">
 			<!-- 기본 정보 -->
 			<div>
-				<div>
-					<h5>기본 정보</h5>
-				</div>
-				<div>
-					<table>
-						<tr>
-							<th>
-								<strong>카테고리</strong>
-							</th>
-							<td>
-								<label class="category">
-									<input type="radio" name="bbsType" value="공지사항" id="radio">
-									공지사항
-								</label>
-								<label class="category">
-									<input type="radio" name="bbsType" value="이벤트">
-									이벤트
-								</label>
-							</td>
-						</tr>
-						<tr>
-							<th>
-								<strong>제목</strong>
-							</th>
-							<td>
-								<input type="text" id="title" name="bbsTitle" class="form-control">
-							</td>
-						</tr>
-						<tr id="hidden" style="display: none;">
-							<th>
-								<strong>기간</strong>
-							</th>
-							<td>
-								<input type="date" id="Date1" class="date form-control" name="bbsStart" value="" onchange="check_date1();" />
-								<label style="margin-left: 2%; margin-right: 2%;">~</label>
-								<input type="date" id="Date2" class="date form-control" name="bbsEnd" value="" onchange="check_date2();" />
-							</td>
-						</tr>
-					</table>
-				</div>
+				<h5>기본 정보</h5>
+			</div>
+			<div>
+				<table>
+					<tr>
+						<th>
+							<strong>카테고리</strong>
+						</th>
+						<td>
+							<label class="category">
+								<input type="radio" name="bbsType" value="공지사항" id="radio">
+								공지사항
+							</label>
+							<label class="category">
+								<input type="radio" name="bbsType" value="이벤트">
+								이벤트
+							</label>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<strong>제목</strong>
+						</th>
+						<td>
+							<input type="text" id="title" name="bbsTitle" class="form-control">
+						</td>
+					</tr>
+					<tr id="hidden" style="display: none;">
+						<th>
+							<strong>기간</strong>
+						</th>
+						<td>
+							<input type="date" id="Date1" class="date form-control" name="bbsStart" value="" onchange="check_date1();" />
+							<label style="margin-left: 2%; margin-right: 2%;">~</label>
+							<input type="date" id="Date2" class="date form-control" name="bbsEnd" value="" onchange="check_date2();" />
+						</td>
+					</tr>
+				</table>
 			</div>
 			<br> <br>
 
@@ -174,7 +169,9 @@ td {
 
 	function pasteHTML(filepath) {
 		var sHTML = '<img src="../../../se2/upload/' + filepath + '">';
-		oEditors.getById["textAreaContent"].exec("PASTE_HTML", [ sHTML ]);
+		oEditors.getById["textAreaContent"].exec("PASTE_HTML", [
+			sHTML
+		]);
 	}
 
 	function checkEx(input) { //이미지 파일 확장자 검사

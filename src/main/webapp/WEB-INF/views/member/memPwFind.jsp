@@ -56,7 +56,7 @@
 	<br>
 	<div>
 		<div class="pw-mail">
-			<div class="col-md-10 col-sm-10" style="margin: 30px auto; text-align: center;">
+			<div class="col-md-10 col-sm-10 text-center" style="margin: 30px auto;">
 				<h5>회원가입 시 입력한 이름과 이메일 주소를 적어주세요</h5>
 			</div>
 			<div class="row">
@@ -70,7 +70,7 @@
 			</div>
 		</div>
 		<div class="pw-check" style="display: none;">
-			<div class="col-md-10 col-sm-10" style="margin: 30px auto; text-align: center;">
+			<div class="col-md-10 col-sm-10 text-center" style="margin: 30px auto;">
 				<h5>발송된 인증 코드를 입력해주세요.</h5>
 			</div>
 			<div class="row">

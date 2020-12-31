@@ -66,7 +66,6 @@ public class MypageController {
 		model.addAttribute("orderList", ordersService.findAllByMemNoAndProTypeAndOrderDateBetween(memNo, proType, startDate, endDate, pageable));
 		model.addAttribute("sum", ordersService.sumTotalPriceByMemNoAndProTypeAndOrderDateBetween(memNo, proType, startDate, endDate));
 		}
-		// model.addAttribute("proType", proType);
 		model.addAttribute("startDate", startDate);
 		model.addAttribute("endDate", endDate);
 		return "index.jsp?contentPage=mypage/myProList";

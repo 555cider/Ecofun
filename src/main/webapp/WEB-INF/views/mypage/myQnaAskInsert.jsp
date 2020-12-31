@@ -7,7 +7,7 @@
 	<hr>
 	<br>
 
-	<div style="text-align: center;">
+	<div class="text-center">
 		<h6>작성완료를 누르면 관리자에게 전송됩니다. 답변은 나의 문의내역에서 확인 가능합니다.</h6>
 	</div>
 

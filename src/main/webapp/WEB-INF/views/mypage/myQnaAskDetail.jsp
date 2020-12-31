@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -10,17 +11,14 @@
 		if (id != null && id.equals("admin")) {
 		%>
 		<div class="col">
-			<h6>
-				| <a href="/adSuggestList">문의 및 신청</a> > 문의
+			<h6>| <a href="/adSuggestList">문의 및 신청</a> > 문의
 			</h6>
 		</div>
-
 		<%
 			} else {
 		%>
 		<div class="col">
-			<h6>
-				| <a href="/mySuggestList">문의 및 신청</a> > 문의
+			<h6>| <a href="/mySuggestList">문의 및 신청</a> > 문의
 			</h6>
 		</div>
 		<%
@@ -32,7 +30,7 @@
 	<!-- Detail -->
 	<div class="row">
 		<fmt:parseDate value="${ask.askDate}" var="dateValue" pattern="yyyy-MM-dd'T'HH:mm" />
-		<table class="table" style="width: 100%; text-align: center; padding: 0;">
+		<table class="table">
 			<tr class="thead-light">
 				<th style="width: 10%;">${ask.askNo}</th>
 				<th style="width: 65%;">${ask.askTitle}</th>
@@ -57,7 +55,7 @@
 	<br>
 
 	<!-- 목록으로 -->
-	<div class="row" style="text-align: center;">
+	<div class="row text-center">
 		<%
 			if (id != null && id.equals("admin")) {
 		%>
@@ -65,7 +63,6 @@
 			<a href="/adSuggestList"> <input type="button" value="목록으로">
 			</a>
 		</div>
-
 		<%
 			} else {
 		%>

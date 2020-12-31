@@ -32,7 +32,7 @@
 		<!-- 문의 -->
 		<div class="tab-pane fade show active" id="ask">
 			<div>
-				<table class="table table-striped" style="width: 100%; text-align: center; padding: 0;">
+				<table class="table table-striped text-center">
 					<tr class="thead-dark">
 						<th style="width: 10%;">번호</th>
 						<th style="width: 50%;">제목</th>
@@ -109,7 +109,7 @@
 		<!-- 신청 -->
 		<div class="tab-pane fade show" id="apply">
 			<div>
-				<table class="table" style="width: 100%; text-align: center; padding: 0;">
+				<table class="table">
 					<tr class="thead-dark">
 						<th style="width: 10%;">번호</th>
 						<th style="width: 50%;">제목</th>
@@ -135,7 +135,7 @@
 
 			<!-- Pagination -->
 			<div>
-				<ul class="pagination justify-center" style="position: relative; justify-content: center;">
+				<ul class="pagination justify-center">
 					<c:if test="${!aplList.first}">
 						<li class="page-item">
 							<a href="?sort=aplNo,desc" class="page-link">&laquo;</a>

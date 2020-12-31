@@ -32,7 +32,7 @@ String memName = (String) session.getAttribute("memName");
 
 
 <div class="navbar fixed-top navbar-light bg-light" style="padding: 10px 5%;">
-	<div class="container-fluid">
+	<div class="container">
 		<!-- 좌측 메뉴 버튼 -->
 		<div style="padding: 0;">
 			<button class="btn" id="navLeft-show" type="button" data-toggle="modal" data-target="#navLeft">
@@ -41,13 +41,13 @@ String memName = (String) session.getAttribute("memName");
 		</div>
 
 		<!-- 로고 (모바일) -->
-		<div class="navbar-brand mobile-menu text-center" style="width: 58%; left: 21%; position: absolute; font-size: xx-large; margin-top: 5px;">
+		<div class="navbar-brand mobile-menu">
 			<a href="/main"> <b class="RymanEco">Ecofun Project</b>
 			</a>
 		</div>
 
 		<!-- 로고 (PC) -->
-		<div class="navbar-brand pc-menu text-center" style="width: 30%; left: 35%; position: absolute; font-size: xx-large;">
+		<div class="navbar-brand pc-menu">
 			<a href="/main"> <b class="RymanEco">Ecofun Project</b>
 			</a>
 		</div>

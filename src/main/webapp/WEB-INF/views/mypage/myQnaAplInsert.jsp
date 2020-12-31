@@ -7,7 +7,6 @@
 th {
 	width: 20%;
 	background: #f7f7f7;
-	text-align: center;
 	padding: 10px 15px;
 }
 </style>
@@ -83,7 +82,7 @@ th {
 			<br>
 
 			<!-- 신청/취소 -->
-			<div style="text-align: center;">
+			<div class="text-center">
 				<button type="button" style="width: 15%;" onclick="history.back()">취소</button>
 				<button type="button" style="width: 15%;" onclick="submitContents(this)">신청</button>
 			</div>

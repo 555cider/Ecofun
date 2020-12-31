@@ -25,10 +25,7 @@ input {
 
 <div class="container">
 	<div>
-		<h4>
-			|
-			<a href="/admin/projectList">프로젝트 관리</a>
-			> 게시
+		<h4>| <a href="/admin/projectList">프로젝트 관리</a> > 게시
 		</h4>
 		<hr>
 	</div>
@@ -62,7 +59,7 @@ input {
 						<tr>
 							<th>주최자</th>
 							<td>
-								<input class="form-control member-search" type="search" name="memId" placeholder="주최자 아이디" style="width: 100%;" required>
+								<input class="member-search" type="search" name="memId" placeholder="주최자 아이디" style="width: 100%;" required>
 								<div id="member-search-result"></div>
 							</td>
 						</tr>
@@ -75,15 +72,15 @@ input {
 						<tr>
 							<th>기간</th>
 							<td>
-								<input type="date" id="Date1" class="date form-control" name="proStart" onchange="check_date1();" />
-								<label style="width: 10%; text-align: center;">~</label>
-								<input type="date" id="Date2" class="date form-control" name="proEnd" onchange="check_date2();" required />
+								<input type="date" id="Date1" class="col-5" name="proStart" onchange="check_date1();" />
+								<label class="col-2 text-center">~</label>
+								<input type="date" id="Date2" class="col-5" name="proEnd" onchange="check_date2();" required />
 							</td>
 						</tr>
 						<tr>
 							<th>목표금액</th>
 							<td>
-								<input type="number" name="proTarget" class="form-control" style="width: 50%; text-align: right;" required />
+								<input type="number" name="proTarget" class="col-6 text-end" required />
 								<label style="width: 10%;">원</label>
 							</td>
 						</tr>

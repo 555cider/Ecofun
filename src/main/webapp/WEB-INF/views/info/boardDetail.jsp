@@ -13,7 +13,7 @@
 
 	<!-- Detail -->
 	<div class="row">
-		<table class="table" style="width: 100%; text-align: center; padding: 0;">
+		<table class="table text-center">
 			<tr class="thead-light">
 				<th style="width: 10%;">${bbsNo.bbsNo}</th>
 				<th style="width: 75%;">${bbsNo.bbsTitle}</th>
@@ -36,7 +36,7 @@
 	</div>
 	<br>
 
-	<div class="row" style="text-align: center;">
+	<div class="row text-center">
 		<!-- <div class="col">
             <button>이전</button>
         </div> -->

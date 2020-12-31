@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.study.springboot.dto.ProjectDto;
 import com.study.springboot.dto.ProjectLikeDto;
-import com.study.springboot.repository.ImgRepository;
 import com.study.springboot.repository.ProjectLikeRepository;
 import com.study.springboot.repository.ProjectRepository;
 

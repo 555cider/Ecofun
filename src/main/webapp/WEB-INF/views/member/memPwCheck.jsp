@@ -9,7 +9,7 @@
 
 	<!-- 설명 -->
 	<div class="row text-center">
-		<h5 class="col-lg-8 col-sm-9 center">사용자 확인을 위해 비밀번호를 다시 한번 입력해주세요!</h5>
+		<h5 class="col-lg-8 col-sm-9">사용자 확인을 위해 비밀번호를 다시 한번 입력해주세요!</h5>
 	</div>
 	<br> <br>
 

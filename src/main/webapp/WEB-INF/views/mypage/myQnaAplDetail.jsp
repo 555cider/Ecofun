@@ -37,7 +37,7 @@
 	<!-- Detail -->
 	<div class="row">
 		<fmt:parseDate value="${apl.aplDate}" var="dateValue" pattern="yyyy-MM-dd'T'HH:mm" />
-		<table class="table" style="width: 100%; text-align: center; padding: 0;">
+		<table class="table text-center">
 			<tr class="thead-light">
 				<th style="width: 10%;">${apl.aplNo}</th>
 				<th style="width: 65%;">${apl.aplTitle}</th>

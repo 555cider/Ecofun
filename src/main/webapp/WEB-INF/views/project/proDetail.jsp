@@ -109,7 +109,7 @@ function orderCheck() {
 	<br>
 
 	<div>
-		<div class="d-flex flex-wrap">
+		<div class="d-flex-wrap">
 			<!-- 대표 이미지 -->
 			<div class="col-12 col-lg-6 border" style="background-image: url('${project.proThumb}'); background-size: 100% 100%;">
 				<img src="https://place-hold.it/588x341/FFFFFF/C0C0C0.png&text=Ecofun&fontsize=10" alt="이미지" class="hidden" />
