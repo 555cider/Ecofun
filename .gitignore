@@ -1,24 +1,15 @@
-### Code-Java ###
-.project
-.classpath
-factoryConfiguration.json
+HELP.md
 
 ### Gradle ###
 .gradle
 build/
 gradle-app.setting
 !gradle-wrapper.jar
-.gradletasknamecache
-gradle-app.setting
-!gradle-wrapper.jar
-.gradletasknamecache
-**/build/
-
-# gradle/wrapper/gradle-wrapper.properties
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 ### Eclipse ###
 .metadata
-bin/
 tmp/
 *.tmp
 *.bak
@@ -26,49 +17,24 @@ tmp/
 *~.nib
 local.properties
 application.properties
-.settings/
 .loadpath
 .recommenders
 .externalToolBuilders/
 *.launch
 
-# PyDev (Python IDE for Eclipse)
-*.pydevproject
-
-# CDT (C/C++ Development Tooling)
-.cproject
-.autotools
-
-# APT (Java annotation processor)
+### STS ###
+.apt_generated
+.classpath
 .factorypath
-.apt_generated/
-.apt_generated_test/
-
-# PDT (PHP Development Tools)
-.buildpath
-
-# Scala IDE for Eclipse
-.cache-main
-.scala_dependencies
-.worksheet
-
-# STS (Spring Tool Suite)
+.project
+.settings
 .springBeans
-.sts4-cache/
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
-# sbteclipse plugin
-.target
-
-# Tern plugin
-.tern-project
-
-# TeXlipse plugin
-.texlipse
-
-# Code Recommenders
-.recommenders/
-
-### vscode ###
+### VS Code ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -77,10 +43,7 @@ application.properties
 *.code-workspace
 
 ### Git ###
-# Created by git for backups. To disable backups in Git: '$ git config --global mergetool.keepBackup false'
 *.orig
-
-# Created by git when using merge tools for conflicts
 *.BACKUP.*
 *.BASE.*
 *.LOCAL.*
