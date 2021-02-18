@@ -9,9 +9,7 @@
   <br>
 
   <div>
-    <form action="join" class="form-horizontal" name="fregisterform" id="fregisterform"
-      accept-charset="utf-8"
-    >
+    <form action="join" class="form-horizontal" id="agree-form">
       <input type="hidden" name="register" value="1" />
       <ul class="agree-list">
         <li>회원가입약관</li>
@@ -160,7 +158,7 @@
         <li>
           <label class="agree-label">
             회원가입약관의 내용에 동의합니다.
-            <input type="checkbox" name="agree-terms" id="agree" />
+            <input type="checkbox" name="agree1" id="agree1" />
             <span class="agree-checkmark"></span>
           </label>
         </li>
@@ -219,19 +217,19 @@ o 로그 기록
         <li>
           <label class="agree-label">
             개인정보취급방침안내의 내용에 동의합니다.
-            <input type="checkbox" name="agree-terms" id="agree2" />
+            <input type="checkbox" name="agree2" id="agree2" />
             <span class="agree-checkmark"></span>
           </label>
         </li>
         <li>
           <label class="agree-label">
             회원가입약관, 개인정보취급방침안내의 내용에 모두 동의합니다.
-            <input type="checkbox" name="agree-terms" id="agree-all" />
+            <input type="checkbox" id="agree-all" />
             <span class="agree-checkmark"></span>
           </label>
         </li>
         <li class="text-center">
-          <button type="button" id="nextBtn">회원가입</button>
+          <button type="button" id="agree-btn">회원가입</button>
         </li>
       </ul>
     </form>
@@ -239,37 +237,35 @@ o 로그 기록
 </div>
 
 <script>
-  $(document).ready(function() {
-    $('#fregisterform').validate({
-      rules : {
-        agree : {
-          required : true
-        },
-        agree2 : {
-          required : true
+    document.querySelector("#agree-all")
+        .addEventListener("change", function(e) {
+            e.preventDefault();
+            document.querySelector("#agree1").checked = this.checked;
+            document.querySelector("#agree2").checked = this.checked;
+        });
+</script>
+<script>
+    document.querySelector("#agree-btn").addEventListener("click", function() {
+        if (!document.querySelector("#agree1").checked) {
+            alert("회원가입약관 동의가 필요합니다.");
+            return;
+        } else if (!document.querySelector("#agree2").checked) {
+            alert("개인정보취급방침안내 동의가 필요합니다.");
+            return;
+        } else {
+            document.querySelector("#agree-form").submit();
         }
-      }
     });
-    $("#nextBtn").click(function() {
-      if ($("#agree").is(":checked") === false) {
-        alert("회원가입약관 동의가 필요합니다.");
-        return;
-      } else if ($("#agree2").is(":checked") === false) {
-        alert("개인정보취급방침안내 동의가 필요합니다.");
-        return;
-      } else {
-        $("#fregisterform").submit();
-      }
+</script>
+<script>
+    document.querySelector("#agree-form").validate({
+        rules : {
+            agree1 : {
+                required : true
+            },
+            agree2 : {
+                required : true
+            }
+        }
     });
-  });
-
-  $(document).ready(function() {
-    $('#agree-all').click(function() {
-      if ($('#agree-all').is(":checked") === true) {
-        $("input[name=agree-terms]").prop('checked', true);
-      } else {
-        $("input[name=agree-terms]").prop('checked', false);
-      }
-    });
-  });
 </script>
