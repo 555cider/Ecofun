@@ -10,7 +10,7 @@
             wrap : true,
             keyboard : true
         });
-    });
+    }
 </script>
 
 <!-- 캐러셀 -->
@@ -63,16 +63,15 @@
   <div>
     <div class="row">
       <h4 class="text-start">
-        진행중인 프로젝트 <a href="project/list" style="float: right;"> <span style="font-size: small;">더보기></span>
-        </a>
+        진행중인 프로젝트 <a href="project/list" style="float: right;">더보기></a>
       </h4>
     </div>
     <br>
     <div>
       <ul class="row">
         <c:forEach end="5" var="project1" items="${projectList1.content}">
-          <li class="col-sm-6 col-lg-4 project-item">
-            <a href="/project/detail?proNo=${project1.proNo}" class="d-inline">
+          <li class="col-sm-6 col-lg-4 project-item"><a
+            href="/project/detail?proNo=${project1.proNo}" class="d-inline">
               <div
                 style="height: 10rem; background-image: url('${project1.proThumb}'); background-size: 100% 100%;"></div>
               <div class="progress-bar" role="progressbar" style="width: ${project1.proceed}%;"
@@ -81,8 +80,7 @@
               <div>
                 <span class="badge">${project1.proType}</span> <span style="float: right;">${project1.proStart}~${project1.proEnd}</span>
               </div>
-            </a>
-          </li>
+          </a></li>
         </c:forEach>
       </ul>
     </div>
@@ -93,16 +91,15 @@
   <div>
     <div class="row">
       <h4 class="text-start">
-        마감된 프로젝트 <a href="project/list" style="float: right;"> <span style="font-size: small;">더보기></span>
-        </a>
+        마감된 프로젝트 <a href="project/list" style="float: right;">더보기></a>
       </h4>
     </div>
     <br>
     <div>
       <ul class="row">
         <c:forEach end="5" var="project2" items="${projectList2.content}">
-          <li class="col-sm-6 col-lg-4 project-item">
-            <a href="/project/detail?proNo=${project2.proNo}" class="d-inline">
+          <li class="col-sm-6 col-lg-4 project-item"><a
+            href="/project/detail?proNo=${project2.proNo}" class="d-inline">
               <div
                 style="height: 10rem; background-image: url('${project2.proThumb}'); background-size: 100% 100%;"></div>
               <div class="progress-bar" role="progressbar" style="width: ${project2.proceed}%;"
@@ -111,8 +108,7 @@
               <div>
                 <span class="badge">${project2.proType}</span> <span style="float: right;">${project2.proStart}~${project2.proEnd}</span>
               </div>
-            </a>
-          </li>
+          </a></li>
         </c:forEach>
       </ul>
     </div>
@@ -123,16 +119,15 @@
   <div>
     <div class="row">
       <h4 class="text-start">
-        예정된 프로젝트 <a href="project/list" style="float: right;"> <span style="font-size: small;">더보기></span>
-        </a>
+        예정된 프로젝트 <a href="project/list" style="float: right;">더보기></a>
       </h4>
     </div>
     <br>
     <div>
       <ul class="row">
         <c:forEach end="5" var="project3" items="${projectList3.content}">
-          <li class="col-sm-6 col-lg-4 project-item">
-            <a href="/project/detail?proNo=${project3.proNo}" class="d-inline">
+          <li class="col-sm-6 col-lg-4 project-item"><a
+            href="/project/detail?proNo=${project3.proNo}" class="d-inline">
               <div
                 style="height: 10rem; background-image: url('${project3.proThumb}'); background-size: 100% 100%;"></div>
               <div class="progress-bar" role="progressbar" style="width: ${project3.proceed}%;"
@@ -141,8 +136,7 @@
               <div>
                 <span class="badge">${project3.proType}</span> <span style="float: right;">${project3.proStart}~${project3.proEnd}</span>
               </div>
-            </a>
-          </li>
+          </a></li>
         </c:forEach>
       </ul>
     </div>

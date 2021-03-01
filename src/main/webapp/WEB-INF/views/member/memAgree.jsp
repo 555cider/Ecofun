@@ -9,12 +9,11 @@
   <br>
 
   <div>
-    <form action="join" class="form-horizontal" id="agree-form">
+    <form action="join" id="agree-form">
       <input type="hidden" name="register" value="1" />
       <ul class="agree-list">
         <li>회원가입약관</li>
-        <li>
-          <textarea class="agree-area" rows="5" readonly="readonly">
+        <li><textarea class="agree-area" rows="5" readonly="readonly">
 제1조(목적)
 이 약관은 에코펀(전자상거래 사업자)가 운영하는 에코펀 프로젝트(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
 ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
@@ -153,18 +152,12 @@
 ① “몰”과 이용자 간에 발생한 전자상거래 분쟁에 관한 소송은 제소 당시의 이용자의 주소에 의하고, 주소가 없는 경우에는 거소를 관할하는 지방법원의 전속관할로 합니다. 다만, 제소 당시 이용자의 주소 또는 거소가 분명하지 않거나 외국 거주자의 경우에는 민사소송법상의 관할법원에 제기합니다.
 ② “몰”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
 부 칙(시행일) 이 약관은 2020년 11월 15일부터 시행합니다.						
-						</textarea>
-        </li>
-        <li>
-          <label class="agree-label">
-            회원가입약관의 내용에 동의합니다.
-            <input type="checkbox" name="agree1" id="agree1" />
-            <span class="agree-checkmark"></span>
-          </label>
-        </li>
+						</textarea></li>
+        <li><label class="agree-label"> 회원가입약관의 내용에 동의합니다. <input type="checkbox"
+            name="agree1" id="agree1" /> <span class="agree-checkmark"></span>
+        </label></li>
         <li>개인정보취급방침안내</li>
-        <li>
-          <textarea class="agree-area" rows="5" readonly="readonly">
+        <li><textarea class="agree-area" rows="5" readonly="readonly">
 1. 개인정보 수집목적 및 이용목적
 
 가. 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산
@@ -212,22 +205,13 @@ o 로그 기록
 -보존기간 : 3개월
 
 ※ 동의를 거부할 수 있으나 거부시 회원 가입이 불가능합니다.						
-						</textarea>
-        </li>
-        <li>
-          <label class="agree-label">
-            개인정보취급방침안내의 내용에 동의합니다.
-            <input type="checkbox" name="agree2" id="agree2" />
-            <span class="agree-checkmark"></span>
-          </label>
-        </li>
-        <li>
-          <label class="agree-label">
-            회원가입약관, 개인정보취급방침안내의 내용에 모두 동의합니다.
-            <input type="checkbox" id="agree-all" />
-            <span class="agree-checkmark"></span>
-          </label>
-        </li>
+						</textarea></li>
+        <li><label class="agree-label"> 개인정보취급방침안내의 내용에 동의합니다. <input type="checkbox"
+            name="agree2" id="agree2" /> <span class="agree-checkmark"></span>
+        </label></li>
+        <li><label class="agree-label"> 회원가입약관, 개인정보취급방침안내의 내용에 모두 동의합니다. <input
+            type="checkbox" id="agree-all" /> <span class="agree-checkmark"></span>
+        </label></li>
         <li class="text-center">
           <button type="button" id="agree-btn">회원가입</button>
         </li>
@@ -237,35 +221,34 @@ o 로그 기록
 </div>
 
 <script>
-    document.querySelector("#agree-all")
-        .addEventListener("change", function(e) {
-            e.preventDefault();
-            document.querySelector("#agree1").checked = this.checked;
-            document.querySelector("#agree2").checked = this.checked;
-        });
+  document.querySelector("#agree-all").onchange = function(e) {
+    e.preventDefault();
+    document.querySelector("#agree1").checked = this.checked;
+    document.querySelector("#agree2").checked = this.checked;
+  });
 </script>
 <script>
-    document.querySelector("#agree-btn").addEventListener("click", function() {
-        if (!document.querySelector("#agree1").checked) {
-            alert("회원가입약관 동의가 필요합니다.");
-            return;
-        } else if (!document.querySelector("#agree2").checked) {
-            alert("개인정보취급방침안내 동의가 필요합니다.");
-            return;
-        } else {
-            document.querySelector("#agree-form").submit();
-        }
-    });
+  document.querySelector("#agree-btn").onclick = function() {
+    if (!document.querySelector("#agree1").checked) {
+      alert("회원가입약관 동의가 필요합니다.");
+      return;
+    } else if (!document.querySelector("#agree2").checked) {
+      alert("개인정보취급방침안내 동의가 필요합니다.");
+      return;
+    } else {
+      document.querySelector("#agree-form").submit();
+    }
+  };
 </script>
 <script>
-    document.querySelector("#agree-form").validate({
-        rules : {
-            agree1 : {
-                required : true
-            },
-            agree2 : {
-                required : true
-            }
-        }
-    });
+  document.querySelector("#agree-form").validate({
+    rules : {
+      agree1 : {
+        required : true
+      },
+      agree2 : {
+        required : true
+      }
+    }
+  });
 </script>
